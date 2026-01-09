@@ -9,6 +9,6 @@ async def audio_stream(ws: WebSocket, session_id: str):
     try:
         while True:
             audio_chunk = await ws.receive_bytes()
-            await send_to_stt(session_id, audio_chunk)
+            await publish_audio(session_id, audio_chunk)
     except Exception as e:
         print("Connection closed", e)

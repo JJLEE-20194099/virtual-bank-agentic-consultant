@@ -1,0 +1,1 @@
+KAFKA_PRODUCER_ENDPOINT = "localhost:9092"
