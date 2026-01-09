@@ -1,5 +1,6 @@
 from app.agents.baseline_agent import BaselineAgent
-from config.prompt import CLIENT_EXTRACT_PROMPT
+from config.prompt import CLIENT_EXTRACT_PROMPT, CLIENT_TRANSCRIPT_EXTRACT_PROMPT
+import json
 
 class DataRetrievalAgent(BaselineAgent):
     
@@ -30,3 +31,26 @@ class DataRetrievalAgent(BaselineAgent):
         response = self.get_completion(messages, temperature=0.25)
         
         return response
+    
+    def extract_client_info_by_transcript(transcript):
+        prompt = CLIENT_TRANSCRIPT_EXTRACT_PROMPT.format(transcript=transcript),
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "You are a strict information extraction and validation engine. "
+                    "Extract only client facts that are explicitly stated in the conversation. "
+                    "Do not infer, assume, normalize, or add missing information. "
+                    "Return valid JSON only."
+                ),
+            },
+            {
+                "role": "user",
+                "content": prompt
+            },
+        ]
+
+        response = self.get_completion(messages, temperature=0, response_format={"type": "json_object"})
+        
+        return json.loads(response)
+        

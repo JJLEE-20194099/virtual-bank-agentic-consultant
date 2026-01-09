@@ -45,3 +45,31 @@ Instructions:
 Output:
 A short, clear summary in plain text.
 """
+
+
+CLIENT_TRANSCRIPT_EXTRACT_PROMPT = """You are an information extraction assistant.
+
+Your task is to extract ONLY factual information about the client that is explicitly stated in the conversation below.
+
+Rules:
+- Use ONLY information that is directly stated in the conversation
+- Do NOT infer, assume, or guess
+- Do NOT normalize or reinterpret the information
+- If a fact is not explicitly mentioned, do NOT include it
+- Output MUST be valid JSON
+- Include ONLY fields that are explicitly mentioned
+
+Conversation transcript:
+{transcript}
+
+Return a JSON object using ONLY the following allowed fields:
+{
+  "Location": "client's explicitly stated location",
+  "Marital Status": "client's explicitly stated marital status",
+  "Number of Children": "explicitly stated number of children",
+  "Occupation": "explicitly stated occupation",
+  "Educational Level": "explicitly stated educational level",
+  "Address": "explicitly stated address"
+}
+
+"""
