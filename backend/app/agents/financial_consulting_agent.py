@@ -37,7 +37,7 @@ class FinancialConsultingAgent(BaselineAgent):
 
     def run(self, conversation_data, client_obj):
         data_retrieval_agent = DataRetrievalAgent()
-        client_data = data_retrieval_agent.run(
+        client_data = data_retrieval_agent.extract_data_by_query(
             data = client_obj,
             query_type = CLIENT_COLLECTION,
             query = CLIENT_INFO_QUERY

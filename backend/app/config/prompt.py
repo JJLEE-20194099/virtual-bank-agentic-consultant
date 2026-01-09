@@ -23,3 +23,25 @@ Rules:
 - No generic advice
 - No extra text outside the list
 """
+
+CLIENT_EXTRACT_PROMPT = """
+You are an information extraction assistant.
+
+Given a structured client data object, extract and summarize ONLY the information that is directly relevant to the following query:
+
+Query:
+{query}
+
+Client data:
+{data}
+
+Instructions:
+- Use only information explicitly present in the client data
+- Do not infer or assume missing details
+- Ignore irrelevant fields
+- Keep the summary concise and focused on the query
+- If no relevant information exists, return: "No relevant information found."
+
+Output:
+A short, clear summary in plain text.
+"""
