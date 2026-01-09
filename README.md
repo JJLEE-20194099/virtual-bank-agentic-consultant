@@ -1,2 +1,6 @@
 Virtual Bank Agentic Consultant (VBAC)
 
+Prototype1:
++ Analyze conversation btw customer and bank
++ Client DB, Bank info, ...
++ Suggestion, ...
