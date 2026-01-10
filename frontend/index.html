@@ -1,52 +1,4 @@
-from fastapi import FastAPI, WebSocket
-import asyncio
-from app.service.gateway.grpc_client import STTClient
-from app.service.stt import stt_pb2
-
-app = FastAPI()
-stt_client = STTClient()
-
-@app.websocket("/ws/audio/{session_id}")
-async def audio_ws(ws: WebSocket, session_id: str):
-    await ws.accept()
-    print(f"WS accepted session: {session_id}")
-
-    audio_queue = asyncio.Queue()
-
-    async def audio_gen():
-        while True:
-            chunk = await audio_queue.get()
-            yield stt_pb2.AudioChunk(
-                session_id=session_id,
-                audio=chunk,
-                sample_rate=16000
-            )
-
-    async def receive_audio():
-        while True:
-            data = await ws.receive_bytes()
-            await audio_queue.put(data)
-
-    async def send_transcript():
-        async for transcript in stt_client.stream(audio_gen()):
-            await ws.send_json({
-                "text": transcript.text,
-                "is_final": transcript.is_final,
-                "language": transcript.language
-            })
-
-    await asyncio.gather(
-        receive_audio(),
-        send_transcript()
-    )
-
-
-from fastapi.responses import HTMLResponse
-
-@app.get("/")
-async def get():
-    return HTMLResponse("""
-        <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <body>
@@ -92,4 +44,3 @@ async def get():
 </body>
 
 </html>
-    """)

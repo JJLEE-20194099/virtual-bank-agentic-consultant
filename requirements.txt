@@ -1,0 +1,7 @@
+numpy
+fastapi
+uvicorn[standard]
+grpcio
+grpcio-tools
+faker
+faster-whisper
