@@ -1,5 +1,7 @@
+numpy
+fastapi
+uvicorn[standard]
 grpcio
 grpcio-tools
-fastapi
 faker
-whisper
+faster-whisper
