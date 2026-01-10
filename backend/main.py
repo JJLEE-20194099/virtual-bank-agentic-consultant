@@ -30,12 +30,13 @@ async def audio_ws(ws: WebSocket, session_id: str):
 
     async def send_transcript():
         async for transcript in stt_client.stream(audio_gen()):
-            publish_transcript(session_id, transcript)
-            await ws.send_json({
-                "text": transcript.text,
-                "is_final": transcript.is_final,
-                "language": transcript.language
-            })
+            if transcript.text != "":
+              publish_transcript(session_id, transcript)
+              await ws.send_json({
+                  "text": transcript.text,
+                  "is_final": transcript.is_final,
+                  "language": transcript.language
+              })
 
     await asyncio.gather(
         receive_audio(),

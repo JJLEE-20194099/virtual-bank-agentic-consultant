@@ -1,4 +1,4 @@
-from app.service.nlp.compliace.rules import check_suitability, check_disclosure
+from app.service.compliance.rules import check_suitability, check_disclosure
 
 def run_compliance(nlp, customer):
     issues = []

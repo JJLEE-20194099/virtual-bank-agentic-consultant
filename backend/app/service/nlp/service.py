@@ -18,7 +18,6 @@ consumer = KafkaConsumer(
 for msg in consumer:
     event = msg.value
     payload = event["payload"]
-
     if not payload["is_final"]:
         continue
     result = analyze(payload["text"])

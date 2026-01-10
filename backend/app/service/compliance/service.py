@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer, KafkaProducer
 import json
-from engine import run_compliance
+from app.service.compliance.engine import run_compliance
 from app.config.endpoint import TRANSCRIPT_KAFKA_CONSUMER_ENDPOINT, TRANSCRIPT_KAFKA_PRODUCER_ENDPOINT
 
 consumer = KafkaConsumer(
@@ -26,8 +26,10 @@ for msg in consumer:
         "risk_profile": "MEDIUM",
         "customer_profile": {}
     }
+    
+    print(nlp)
 
-    issues = run_compliance(nlp, customer)
+    issues = run_compliance(nlp, customer_data)
 
     producer.send("conversation.compliance", {
         "event_type": "COMPLIANCE_RESULT",

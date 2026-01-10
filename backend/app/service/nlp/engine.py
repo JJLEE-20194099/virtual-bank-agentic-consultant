@@ -1,4 +1,4 @@
-from app.service.sentiment.service import analyze_sentiment
+from app.service.sentiment.engine import analyze_sentiment
 def analyze(text: str):
     
     """

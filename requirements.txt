@@ -4,6 +4,6 @@ uvicorn[standard]
 grpcio
 grpcio-tools
 faker
-faster-whisper
+openai-whisper
 kafka-python
 transformers
