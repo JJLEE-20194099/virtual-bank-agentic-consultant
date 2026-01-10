@@ -29,8 +29,6 @@ for msg in consumer:
 
     # issues = run_compliance(nlp, customer_data)
     issues = []
-    
-    print(nlp)
     producer.send("conversation.compliance", {
         "event_type": "COMPLIANCE_RESULT",
         "session_id": session_id,

@@ -23,7 +23,7 @@
     ],
     "dialogue_example": [
       {"advisor": "Good day! How can I help you?"},
-      {"user": "What is the interest rate for unsecured loans at VPBank?"},
+      {"user": "What is the interest rate   for unsecured loans at VPBank?"},
       {"advisor": "Our interest rates for unsecured personal loans range from 12.5% to 16%. Would you like to know more about the loan terms?"},
       {"user": "How do I apply for a personal loan?"},
       {"advisor": "You can apply directly through our website or by visiting one of our branches. You will need to provide documents such as your ID card and income proof."}

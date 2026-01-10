@@ -1,8 +1,8 @@
 import openai
 from dotenv import load_dotenv
 import os
-from config.index import LLM_MODEL_NAME, OPENAI_API_KEY
-from processor.chat import ChatProcessor
+from app.config.index import LLM_MODEL_NAME, OPENAI_API_KEY
+from app.processor.chat import ChatProcessor
 
 class BaselineAgent:
 

@@ -73,3 +73,29 @@ Return a JSON object using ONLY the following allowed fields:
 }
 
 """
+
+QUERY_EXTRACT_PROMPT = """
+You are a financial assistant. Given the client's query, identify and provide specific responses or actions based on available bank services and frequently asked questions (QA).
+
+Query:
+{query}
+
+Bank services and products:
+{bank_services}
+
+Client information:
+{client_data}
+
+Frequently Asked Questions (QA):
+{qa_data}
+
+Instructions:
+- Match the query with the relevant bank service or product.
+- Check the QA list for common questions related to the client's query.
+- Suggest a solution or next action for the client based on the information provided.
+- If the query is about an unsecured loan, suggest actions based on the bank's unsecured loan products.
+- If a matching QA exists, provide a relevant response or follow-up action based on the QA.
+
+Output:
+A specific, actionable response to the client query based on bank offerings and frequently asked questions.
+"""

@@ -5,7 +5,7 @@ class ChatProcessor:
         openai.api_key = self.api_key
         self.gpt_model = gpt_model
 
-    def response(self, messages: List, temperature = float, response_format = None) -> str:
+    def response(self, messages: list, temperature = float, response_format = None) -> str:
         try:
             completion = openai.chat.completions.create(
                 model=self.gpt_model,
