@@ -4,7 +4,7 @@ import os
 os.environ["HF_HUB_DISABLE_SYMLINKS_WARNING"] = "1"
 
 print("Loading model...")
-model = WhisperModel("small") 
+model = WhisperModel("tiny") 
 print("Loaded model")
 
 
