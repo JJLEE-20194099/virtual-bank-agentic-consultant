@@ -2,10 +2,10 @@ from kafka import KafkaProducer
 import json
 import uuid
 import time
-from app.config.endpoint import KAFKA_PRODUCER_ENDPOINT
+from app.config.endpoint import TRANSCRIPT_KAFKA_PRODUCER_ENDPOINT
 
 producer = KafkaProducer(
-    bootstrap_servers=KAFKA_PRODUCER_ENDPOINT,
+    bootstrap_servers=TRANSCRIPT_KAFKA_PRODUCER_ENDPOINT,
     value_serializer=lambda v: json.dumps(v).encode("utf-8")
 )
 
