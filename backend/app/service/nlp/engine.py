@@ -1,4 +1,6 @@
 from app.service.sentiment.engine import analyze_sentiment
+from app.service.intent.engine import classify_intent
+from app.service.ner.engine import detect_entity
 def analyze(text: str):
     
     """
@@ -9,25 +11,15 @@ def analyze(text: str):
     entities = []
 
     t = text.lower()
-
-    if "invest" in t or "investment" in t:
-        intents.append("INVESTMENT_DISCUSSION")
-
-    if "mortgage" in t or "loan" in t:
-        intents.append("CREDIT_DISCUSSION")
-
-    if "real estate" in t:
-        entities.append({
-            "type": "ASSET_CLASS",
-            "value": "REAL_ESTATE"
-        })
         
     sentiment_result = analyze_sentiment(text)
+    intent_result = classify_intent(text)
+    entities_result = detect_entity(text)
 
     return {
         "transcript": text,
-        "sentiment_result":sentiment_result,
-        "intents": intents,
-        "entities": entities,
-        "risk_keywords": ["invest", "return"] if intents else []
+        "sentiments":sentiment_result,
+        "intents":intent_result,
+        "entities":entities_result,
+        "risk_keywords": []
     }

@@ -7,3 +7,4 @@ faker
 openai-whisper
 kafka-python
 transformers
+spacy

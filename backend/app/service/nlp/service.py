@@ -21,7 +21,6 @@ for msg in consumer:
     if not payload["is_final"]:
         continue
     result = analyze(payload["text"])
-    
     producer.send("conversation.nlp", {
         "event_type": "NLP_INSIGHT",
         "session_id": event["session_id"],

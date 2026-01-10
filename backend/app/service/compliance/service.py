@@ -26,11 +26,11 @@ for msg in consumer:
         "risk_profile": "MEDIUM",
         "customer_profile": {}
     }
+
+    # issues = run_compliance(nlp, customer_data)
+    issues = []
     
     print(nlp)
-
-    issues = run_compliance(nlp, customer_data)
-
     producer.send("conversation.compliance", {
         "event_type": "COMPLIANCE_RESULT",
         "session_id": session_id,
