@@ -1,3 +1,4 @@
 .env
 reference.txt
 .venv
+**/__pycache__
