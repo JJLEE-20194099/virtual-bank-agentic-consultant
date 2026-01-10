@@ -54,6 +54,10 @@ async def get():
 
 <body>
   <h1>STT Test</h1>
+  <div id="transcript-container">
+    <h2>Transcript:</h2>
+    <p id="transcript-text">Loading...</p>
+  </div>
   <script>
     const ws = new WebSocket("ws://localhost:8000/ws/audio/test123");
 
@@ -64,6 +68,9 @@ async def get():
     ws.onmessage = (e) => {
       const msg = JSON.parse(e.data);
       console.log("Transcript:", msg.text, msg.is_final);
+      const transcriptTextElement = document.getElementById("transcript-text");
+      transcriptTextElement.textContent += " " + msg.text;
+
     };
 
     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {

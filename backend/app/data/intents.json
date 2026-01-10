@@ -1,0 +1,243 @@
+[
+  {
+    "intent": "CREDIT_CARD_DISCUSSION",
+    "description": "Questions or requests related to credit card products from the bank.",
+    "questions": [
+      "I want to learn about VPBank credit cards.",
+      "What are the benefits of VPBank Flex card?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hello! How can I assist you today?"},
+      {"user": "I want to learn about VPBank credit cards."},
+      {"advisor": "We have several credit card products, such as the VPBank Flex, VPBank Prime, and VPBank Cashback. Are you interested in any specific one?"},
+      {"user": "Tell me more about the VPBank Flex card."},
+      {"advisor": "The VPBank Flex is a hybrid debit and credit card, offering flexible payment options and great benefits for shopping. Would you like to know more about its features?"}
+    ]
+  },
+  {
+    "intent": "UNSECURED_LOAN_DISCUSSION",
+    "description": "Questions or requests related to unsecured loans (no collateral).",
+    "questions": [
+      "What is the interest rate for unsecured loans at VPBank?",
+      "How do I apply for a personal loan without collateral?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Good day! How can I help you?"},
+      {"user": "What is the interest rate for unsecured loans at VPBank?"},
+      {"advisor": "Our interest rates for unsecured personal loans range from 12.5% to 16%. Would you like to know more about the loan terms?"},
+      {"user": "How do I apply for a personal loan?"},
+      {"advisor": "You can apply directly through our website or by visiting one of our branches. You will need to provide documents such as your ID card and income proof."}
+    ]
+  },
+  {
+    "intent": "SECURED_LOAN_DISCUSSION",
+    "description": "Questions or requests related to secured loans (loans with collateral such as home loans, car loans).",
+    "questions": [
+      "What is the interest rate for home loans at VPBank?",
+      "How do I apply for a car loan with collateral?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hello! How can I assist you today?"},
+      {"user": "What is the interest rate for home loans at VPBank?"},
+      {"advisor": "We offer home loans with interest rates ranging from 7% to 9.5%. Would you like to know more about our home loan offers?"},
+      {"user": "How do I apply for a car loan?"},
+      {"advisor": "You can apply for a car loan by providing documents such as proof of income, a copy of your ID, and the car’s registration details. Would you like me to guide you through the application process?"}
+    ]
+  },
+  {
+    "intent": "SAVINGS_DISCUSSION",
+    "description": "Questions or requests related to savings products.",
+    "questions": [
+      "What are the interest rates for fixed deposits at VPBank?",
+      "How can I open a savings account online?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Good morning! How may I help you today?"},
+      {"user": "What are the interest rates for fixed deposits at VPBank?"},
+      {"advisor": "The interest rates for our fixed deposit accounts range from 3.5% to 5.5% depending on the duration. Would you like to open one?"},
+      {"user": "Can I open a savings account online?"},
+      {"advisor": "Yes, you can easily open a savings account online through our website or the Cake app. Would you like the link to get started?"}
+    ]
+  },
+  {
+    "intent": "INSURANCE_DISCUSSION",
+    "description": "Questions or requests related to insurance products.",
+    "questions": [
+      "What benefits does VPBank life insurance offer?",
+      "Can I get loan protection insurance at VPBank?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hello! How can I assist you today?"},
+      {"user": "What benefits does VPBank life insurance offer?"},
+      {"advisor": "Our life insurance policies offer financial protection for you and your loved ones. They include death benefits, accident coverage, and more. Would you like more details?"},
+      {"user": "Can I get loan protection insurance?"},
+      {"advisor": "Yes, we offer loan protection insurance to help cover your loan repayments in case of unforeseen events like illness or job loss. Would you like to know more?"}
+    ]
+  },
+  {
+    "intent": "DIGITAL_BANKING_DISCUSSION",
+    "description": "Questions or requests related to digital banking services (Cake by VPBank, internet banking).",
+    "questions": [
+      "How do I open a Cake account?",
+      "Is VPBank's digital banking secure?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hi there! How can I help you today?"},
+      {"user": "How do I open a Cake account?"},
+      {"advisor": "You can open a Cake account directly on our website or through the Cake app. Would you like me to send you the download link?"},
+      {"user": "Is VPBank's digital banking secure?"},
+      {"advisor": "Yes, our digital banking platform is equipped with robust security features to ensure your transactions are safe. Would you like more information on this?"}
+    ]
+  },
+  {
+    "intent": "BANK_ACCOUNT_DISCUSSION",
+    "description": "Questions or requests related to bank accounts.",
+    "questions": [
+      "What are the benefits of a VPBank checking account?",
+      "How do I open an online savings account at VPBank?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hello! How can I assist you today?"},
+      {"user": "What are the benefits of a VPBank checking account?"},
+      {"advisor": "Our checking accounts offer easy bill payments, money transfers, and ATM withdrawals. Would you like to open an account?"},
+      {"user": "How do I open an online savings account?"},
+      {"advisor": "You can open an online savings account through our website or the Cake app. Would you like me to guide you through the process?"}
+    ]
+  },
+  {
+    "intent": "LOAN_REPAYMENT_DISCUSSION",
+    "description": "Questions related to loan repayment, including unsecured and secured loans.",
+    "questions": [
+      "How can I repay my personal loan?",
+      "What is the schedule for repaying a home loan?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hi, how can I assist you today?"},
+      {"user": "How can I repay my personal loan?"},
+      {"advisor": "You can repay your personal loan through online banking, ATM transfers, or at any VPBank branch. Would you like more details on the payment methods?"},
+      {"user": "What is the schedule for repaying a home loan?"},
+      {"advisor": "Home loan repayment schedules typically depend on the loan amount and term. Would you like to discuss your specific loan details?"}
+    ]
+  },
+  {
+    "intent": "PRODUCT_COMPARISON",
+    "description": "Requests to compare different products offered by the bank.",
+    "questions": [
+      "What is the difference between VPBank Flex and VPBank Prime cards?",
+      "How does the personal loan compare to a car loan at VPBank?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Good day! How may I help you?"},
+      {"user": "What is the difference between VPBank Flex and VPBank Prime cards?"},
+      {"advisor": "The VPBank Flex is a hybrid card offering both debit and credit functionalities, while the VPBank Prime is focused on young customers with lifestyle benefits. Would you like more details on either?"},
+      {"user": "How does the personal loan compare to a car loan?"},
+      {"advisor": "The personal loan offers flexibility without collateral, whereas a car loan uses your vehicle as collateral and typically has lower interest rates. Which one are you interested in?"}
+    ]
+  },
+  {
+    "intent": "GENERAL_INQUIRIES",
+    "description": "General inquiries about the bank and its products.",
+    "questions": [
+      "What products does VPBank offer?",
+      "Where can I find a VPBank branch?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hello! How can I assist you today?"},
+      {"user": "What products does VPBank offer?"},
+      {"advisor": "VPBank offers various products including credit cards, loans, savings accounts, insurance, and digital banking services. Would you like more details on any of these?"},
+      {"user": "Where can I find a VPBank branch?"},
+      {"advisor": "You can find a branch near you by visiting our website or using the VPBank mobile app. Would you like me to help you with that?"}
+    ]
+  },
+  {
+    "intent": "INTEREST_RATE_INQUIRY",
+    "description": "Questions related to interest rates for various bank products.",
+    "questions": [
+      "What is the interest rate for personal loans at VPBank?",
+      "What are the current interest rates for savings accounts?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hello! How can I assist you today?"},
+      {"user": "What is the interest rate for personal loans at VPBank?"},
+            {"advisor": "The interest rates for personal loans at VPBank range from 12.5% to 16%. Would you like to know more about the loan terms?"},
+      {"user": "What are the current interest rates for savings accounts?"},
+      {"advisor": "Our savings account interest rates range from 3.5% to 5.5%, depending on the term. Would you like to learn more?"}
+    ]
+  },
+  {
+    "intent": "DOCUMENT_REQUIREMENTS",
+    "description": "Questions about the required documents to apply for products.",
+    "questions": [
+      "What documents do I need to apply for a VPBank credit card?",
+      "What papers are required to get a home loan?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hello! How can I help you today?"},
+      {"user": "What documents do I need to apply for a VPBank credit card?"},
+      {"advisor": "To apply for a VPBank credit card, you will need a valid ID (CMND/CCCD) and your salary statement. Do you have those documents ready?"},
+      {"user": "What papers are required to get a home loan?"},
+      {"advisor": "For a home loan, you will need proof of income, a valid ID, property documents, and other related papers. Would you like help with your loan application?"}
+    ]
+  },
+  {
+    "intent": "PROMOTIONS_AND_OFFERS",
+    "description": "Questions related to promotions or offers on the bank's products.",
+    "questions": [
+      "Are there any promotions for credit cards at VPBank?",
+      "What is the latest offer on home loans?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Good day! How may I assist you?"},
+      {"user": "Are there any promotions for credit cards at VPBank?"},
+      {"advisor": "Yes, VPBank is currently offering promotions on select credit cards, including cashback and travel rewards. Would you like details on any specific card?"},
+      {"user": "What is the latest offer on home loans?"},
+      {"advisor": "We are offering a special promotion with reduced interest rates for home loans at the moment. Would you like to know more?"}
+    ]
+  },
+  {
+    "intent": "CUSTOMER_SUPPORT_REQUEST",
+    "description": "Requests for customer support or complaints.",
+    "questions": [
+      "I need help with my VPBank account.",
+      "How do I file a complaint about a loan?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hello! How can I assist you today?"},
+      {"user": "I need help with my VPBank account."},
+      {"advisor": "Sure! Could you please tell me the issue you are experiencing with your account?"},
+      {"user": "How do I file a complaint about a loan?"},
+      {"advisor": "You can file a complaint by contacting our support team via phone or email. Would you like assistance with this?"}
+    ]
+  },
+  {
+    "intent": "MOBILE_APP_INQUIRY",
+    "description": "Questions related to the bank's mobile app or online banking services.",
+    "questions": [
+      "Where can I download the VPBank mobile app?",
+      "How do I use Cake by VPBank?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hi! How can I help you today?"},
+      {"user": "Where can I download the VPBank mobile app?"},
+      {"advisor": "You can download the VPBank mobile app from the App Store or Google Play. Would you like the link?"},
+      {"user": "How do I use Cake by VPBank?"},
+      {"advisor": "Cake by VPBank is a digital banking platform that allows you to open accounts, make payments, and more. Would you like a step-by-step guide on using the app?"}
+    ]
+  },
+  {
+    "intent": "REPAYMENT_SCHEDULE",
+    "description": "Questions about the repayment schedules for loans.",
+    "questions": [
+      "What is the repayment schedule for a home loan?",
+      "Can I change my loan repayment plan?"
+    ],
+    "dialogue_example": [
+      {"advisor": "Hello! How may I assist you?"},
+      {"user": "What is the repayment schedule for a home loan?"},
+      {"advisor": "The repayment schedule for a home loan depends on the loan amount and term. We can offer you monthly, quarterly, or annual repayment options. Would you like to discuss your specific loan details?"},
+      {"user": "Can I change my loan repayment plan?"},
+      {"advisor": "Yes, you can modify your repayment plan under certain conditions. Would you like assistance in adjusting your plan?"}
+    ]
+  }
+]
+
