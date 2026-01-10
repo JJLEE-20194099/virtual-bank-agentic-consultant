@@ -5,3 +5,5 @@ grpcio
 grpcio-tools
 faker
 faster-whisper
+kafka-python
+transformers

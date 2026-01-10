@@ -2,6 +2,7 @@ from fastapi import FastAPI, WebSocket
 import asyncio
 from app.service.gateway.grpc_client import STTClient
 from app.service.stt import stt_pb2
+from app.service.gateway.kafka_producer import publish_transcript
 
 app = FastAPI()
 stt_client = STTClient()
@@ -29,6 +30,7 @@ async def audio_ws(ws: WebSocket, session_id: str):
 
     async def send_transcript():
         async for transcript in stt_client.stream(audio_gen()):
+            publish_transcript(session_id, transcript)
             await ws.send_json({
                 "text": transcript.text,
                 "is_final": transcript.is_final,
