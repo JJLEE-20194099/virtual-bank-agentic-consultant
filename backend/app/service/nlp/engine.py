@@ -1,3 +1,4 @@
+from app.service.sentiment.service import analyze_sentiment
 def analyze(text: str):
     
     """
@@ -20,8 +21,12 @@ def analyze(text: str):
             "type": "ASSET_CLASS",
             "value": "REAL_ESTATE"
         })
+        
+    sentiment_result = analyze_sentiment(text)
 
     return {
+        "transcript": text,
+        "sentiment_result":sentiment_result,
         "intents": intents,
         "entities": entities,
         "risk_keywords": ["invest", "return"] if intents else []
