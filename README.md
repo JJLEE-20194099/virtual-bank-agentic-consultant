@@ -8,7 +8,7 @@ This project leverages an event-driven architecture with Apache Kafka and a mult
 
 ## System Architecture
 
-![Virtual Bank Agentic Consultant Architecture](System Architecture.png)
+![Virtual Bank Agentic Consultant Architecture](https://github.com/JJLEE-20194099/virtual-bank-agentic-consultant/blob/master/System%20Architecture.png)
 
 ## Features
 
