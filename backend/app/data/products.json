@@ -1,0 +1,213 @@
+[
+  {
+    "product_id": "VPB_CC_FLEX",
+    "category": "Credit Card",
+    "name": "VPBank Flex",
+    "description": "Thẻ tích hợp Debit + Credit, linh hoạt thanh toán và chi tiêu.",
+    "features": [
+      "Tích hợp tài khoản ghi nợ và tín dụng",
+      "Dễ dàng thanh toán mua sắm",
+      "Hạn mức tín dụng linh hoạt"
+    ],
+    "eligibility": {
+      "min_income_vnd": 7000000,
+      "required_documents": ["CMND/CCCD", "Sao kê lương"]
+    },
+    "website": "https://www.vpbank.com.vn/en/ca-nhan/the-tin-dung/vpbank-flex"
+  },
+  {
+    "product_id": "VPB_CC_PRIME",
+    "category": "Credit Card",
+    "name": "VPBank Prime",
+    "description": "Thẻ tín dụng ưu đãi cho mua sắm và lifestyle dành cho khách hàng trẻ.",
+    "features": [
+      "Ưu đãi du lịch, mua sắm",
+      "Tích điểm thưởng",
+      "Trải nghiệm digital banking thân thiện"
+    ],
+    "eligibility": {
+      "min_income_vnd": 15000000,
+      "required_documents": ["CMND/CCCD", "Sao kê lương"]
+    },
+    "website": "https://prime.vpbank.com.vn/"
+  },
+  {
+    "product_id": "VPB_CC_CASHBACK",
+    "category": "Credit Card",
+    "name": "VPBank Cashback Card",
+    "description": "Thẻ tín dụng hoàn tiền theo % chi tiêu.",
+    "features": [
+      "Hoàn tiền khi chi tiêu",
+      "Ưu đãi đối tác",
+      "Không phí thường niên năm đầu"
+    ],
+    "eligibility": {
+      "min_income_vnd": 10000000,
+      "required_documents": ["CMND/CCCD", "Sao kê lương"]
+    },
+    "website": "https://www.vpbank.com.vn/ca-nhan/the-tin-dung/vpbank-platinum"
+  },
+  {
+    "product_id": "VPB_UNSECURED_LOAN_PERSONAL",
+    "category": "Unsecured Loan",
+    "name": "Vay Tiêu Dùng Tín Chấp",
+    "description": "Cho vay tiêu dùng cá nhân không cần tài sản đảm bảo.",
+    "features": [
+      "Giải ngân nhanh",
+      "Hồ sơ đơn giản",
+      "Lãi suất cạnh tranh"
+    ],
+    "terms": {
+      "max_amount_vnd": 1000000000,
+      "max_term_months": 60,
+      "interest_rate_percent_range": [12.5, 16.0]
+    },
+    "website": "https://www.vpbank.com.vn/uu-dai/retail/home-and-vehicle-promotion-category/vay-mua-o-to-phe-duyet-nhanh"
+  },
+  {
+    "product_id": "VPB_UNSECURED_LOAN_QUICK",
+    "category": "Unsecured Loan",
+    "name": "Vay Nhanh VPBank",
+    "description": "Giải pháp vay tín chấp phê duyệt nhanh trong vài giờ.",
+    "features": [
+      "Xét duyệt nhanh",
+      "Không cần tài sản đảm bảo",
+      "Giải ngân trong ngày"
+    ],
+    "terms": {
+      "max_amount_vnd": 500000000,
+      "max_term_months": 36,
+      "interest_rate_percent_range": [13.0, 18.0]
+    },
+    "website": "https://www.vpbank.com.vn/vay-nhanh"
+  },
+  {
+    "product_id": "VPB_SECURED_LOAN_HOME",
+    "category": "Secured Loan",
+    "name": "Vay Mua Nhà / Bất Động Sản",
+    "description": "Vay thế chấp tài sản phục vụ mua nhà, căn hộ.",
+    "features": [
+      "Hạn mức lớn",
+      "Lãi suất ưu đãi",
+      "Thời hạn vay dài"
+    ],
+    "terms": {
+      "max_amount_vnd": 20000000000,
+      "max_term_months": 300,
+      "interest_rate_percent_range": [7.0, 9.5]
+    },
+    "website": "https://www.vpbank.com.vn/vay-mua-nha"
+  },
+  {
+    "product_id": "VPB_SECURED_LOAN_AUTO",
+    "category": "Secured Loan",
+    "name": "Vay Mua Ô Tô",
+    "description": "Cho vay mua xe ô tô mới hoặc cũ với tài sản bảo đảm là xe.",
+    "features": [
+      "Tài trợ mua xe",
+      "Hạn mức linh hoạt",
+      "Lãi suất cạnh tranh"
+    ],
+    "terms": {
+      "max_amount_vnd": 1500000000,
+      "max_term_months": 96,
+      "interest_rate_percent_range": [7.5, 10.0]
+    },
+    "website": "https://www.vpbank.com.vn/uu-dai/retail/home-and-vehicle-promotion-category/vay-mua-o-to-phe-duyet-nhanh"
+  },
+  {
+    "product_id": "VPB_SECURED_LOAN_RENOVATION",
+    "category": "Secured Loan",
+    "name": "Vay Sửa Nhà",
+    "description": "Vay thế chấp để sửa chữa, nâng cấp bất động sản.",
+    "features": [
+      "Hạn mức phù hợp",
+      "Thời hạn vay linh hoạt"
+    ],
+    "terms": {
+      "max_amount_vnd": 5000000000,
+      "max_term_months": 240,
+      "interest_rate_percent_range": [7.5, 10.0]
+    },
+    "website": "https://www.vpbank.com.vn/ca-nhan/vay/vay-xay-dung"
+  },
+  {
+    "product_id": "VPB_SAVINGS_DEPOSIT",
+    "category": "Savings",
+    "name": "Tiết Kiệm Có Kỳ Hạn",
+    "description": "Gửi tiết kiệm theo kỳ hạn từ 1 tháng đến 36 tháng với lãi suất hấp dẫn.",
+    "features": [
+      "Kỳ hạn linh hoạt",
+      "Lãi suất cạnh tranh",
+      "Bảo mật tiền gửi"
+    ],
+    "terms": {
+      "interest_rate_percent_range": [3.5, 5.5],
+      "min_deposit_vnd": 1000000
+    },
+    "website": "https://www.vpbank.com.vn/ca-nhan/tiet-kiem"
+  },
+  {
+    "product_id": "VPB_DIGITAL_BANK_CAKE",
+    "category": "Digital Banking",
+    "name": "Cake by VPBank",
+    "description": "Ngân hàng số cung cấp tài khoản, thanh toán & mở thẻ online.",
+    "features": [
+      "Mở tài khoản trực tuyến",
+      "Thanh toán hóa đơn",
+      "Giao dịch mọi lúc mọi nơi"
+    ],
+    "eligibility": {
+      "min_age": 18,
+      "required_documents": ["CMND/CCCD", "eKYC"]
+    },
+    "website": "https://cake.vn/"
+  },
+  {
+    "product_id": "VPB_INSURANCE_LIFE",
+    "category": "Insurance",
+    "name": "Bảo Hiểm Nhân Thọ",
+    "description": "Giải pháp bảo hiểm bảo vệ tài chính và người thân.",
+    "features": [
+      "Bảo vệ tài chính dài hạn",
+      "Quyền lợi tử vong",
+      "Quyền lợi thương tật"
+    ],
+    "website": "https://baohiem.vpbank.com.vn/nonlife/bao-hiem-bsh"
+  },
+  {
+    "product_id": "VPB_INSURANCE_LOAN_PROTECTION",
+    "category": "Insurance",
+    "name": "Bảo Hiểm Khoản Vay",
+    "description": "Bảo hiểm cho các khoản vay tại ngân hàng nhằm bảo vệ khách hàng.",
+    "features": [
+      "Chi trả nợ khi rủi ro",
+      "Hỗ trợ tài chính"
+    ],
+    "website": "https://www.vpbank.com.vn/bao-hiem-khoan-vay"
+  },
+  {
+    "product_id": "VPB_ACCOUNT_CHECKING",
+    "category": "Bank Account",
+    "name": "Tài Khoản Thanh Toán",
+    "description": "Tài khoản thanh toán cơ bản phục vụ giao dịch hàng ngày.",
+    "features": [
+      "Chuyển tiền, nhận tiền",
+      "Thanh toán hóa đơn",
+      "Rút tiền ATM"
+    ],
+    "website": "https://www.vpbank.com.vn/tai-khoan-thanh-toan"
+  },
+  {
+    "product_id": "VPB_ACCOUNT_SAVINGS",
+    "category": "Bank Account",
+    "name": "Tài Khoản Tiết Kiệm Online",
+    "description": "Tài khoản tiết kiệm số hóa trên ứng dụng Cake/Internet Banking.",
+    "features": [
+      "Lãi suất huy động",
+      "Theo dõi số dư trực tuyến",
+      "Rút/gửi dễ dàng"
+    ],
+    "website": "https://www.vpbank.com.vn/tai-khoan-tiet-kiem-online"
+  }
+]

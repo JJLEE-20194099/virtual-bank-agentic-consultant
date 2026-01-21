@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <h1>STT Test</h1>
+  <script>
+    const ws = new WebSocket("ws://localhost:8000/ws/audio/test123");
+
+    ws.onopen = () => console.log("WS connected");
+    ws.onerror = (err) => console.error("WS error", err);
+    ws.onclose = (e) => console.log("WS closed", e);
+
+    ws.onmessage = (e) => {
+      const msg = JSON.parse(e.data);
+      console.log("Transcript:", msg.text, msg.is_final);
+    };
+
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+      const ctx = new AudioContext({ sampleRate: 16000 });
+      const source = ctx.createMediaStreamSource(stream);
+      const processor = ctx.createScriptProcessor(4096, 1, 1);
+
+      source.connect(processor);
+      processor.connect(ctx.destination);
+
+      processor.onaudioprocess = e => {
+        const pcm = e.inputBuffer.getChannelData(0);
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(float32ToPCM16(pcm));
+        }
+      };
+    });
+
+    function float32ToPCM16(float32) {
+      const buffer = new ArrayBuffer(float32.length * 2);
+      const view = new DataView(buffer);
+      for (let i = 0; i < float32.length; i++) {
+        let s = Math.max(-1, Math.min(1, float32[i]));
+        view.setInt16(i * 2, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+      }
+      return buffer;
+    }
+  </script>
+</body>
+
+</html>

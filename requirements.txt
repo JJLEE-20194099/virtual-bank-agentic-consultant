@@ -1,0 +1,10 @@
+numpy
+fastapi
+uvicorn[standard]
+grpcio
+grpcio-tools
+faker
+openai-whisper
+kafka-python
+transformers
+spacy
