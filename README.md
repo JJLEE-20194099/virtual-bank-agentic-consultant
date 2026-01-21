@@ -6,6 +6,10 @@ The Virtual Bank Agentic Consultant (VBAC) is a real-time, AI-powered system des
 
 This project leverages an event-driven architecture with Apache Kafka and a multi-agent system to process audio streams and generate actionable insights for bank agents.
 
+## System Architecture
+
+![Virtual Bank Agentic Consultant Architecture](System Architecture.png)
+
 ## Features
 
 *   **Real-time Speech-to-Text:** Low-latency transcription of conversations using OpenAI Whisper, streamed via gRPC for high performance.
