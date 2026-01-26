@@ -2,7 +2,11 @@
 
 [![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/JJLEE-20194099/virtual-bank-agentic-consultant/tree/prototype1)
 
-The Virtual Bank Agentic Consultant (VBAC) is a real-time, AI-powered system designed to assist bank advisors during live conversations with customers. It provides live transcription, conversation analysis, compliance checks, and suggests relevant financial products, all in real-time.
+The Virtual Bank Agentic Consultant (VBAC) is AI-powered system support real-time, designed to assist bank advisors during live conversations with customers. It provides live transcription, conversation analysis, compliance checks, and suggests relevant financial products, all in real-time.
+
+## MVP Data Flow
+
+![Virtual Bank Agentic Consultant DataFlow](https://github.com/JJLEE-20194099/virtual-bank-agentic-consultant/blob/master/mvp%20data%20flow.png)
 
 This project leverages an event-driven architecture with Apache Kafka and a multi-agent system to process audio streams and generate actionable insights for bank agents.
 
