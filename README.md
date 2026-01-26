@@ -6,7 +6,7 @@ The Virtual Bank Agentic Consultant (VBAC) is AI-powered system support real-tim
 
 ## MVP Data Flow
 
-![Virtual Bank Agentic Consultant DataFlow](https://github.com/JJLEE-20194099/virtual-bank-agentic-consultant/blob/master/mvp%20data%20flow.png)
+![Virtual Bank Agentic Consultant DataFlow](https://github.com/JJLEE-20194099/virtual-bank-agentic-consultant/blob/master/mvp_data_flow.png)
 
 This project leverages an event-driven architecture with Apache Kafka and a multi-agent system to process audio streams and generate actionable insights for bank agents.
 
