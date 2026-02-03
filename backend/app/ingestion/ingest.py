@@ -1,8 +1,11 @@
 import pandas as pd
+import os
 from sqlalchemy import create_engine
 
-DB_URL = "sqlite:///storage/transactions.db"
-engine = create_engine(DB_URL)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "..", "storage", "transactions.db")
+
+engine = create_engine(f"sqlite:///{DB_PATH}")
 
 def ingest_transactions():
     trx = pd.read_csv("../data/raw/transactions.csv")
