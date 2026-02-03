@@ -13,10 +13,11 @@ def load_feature(user_id):
 def run_consultant(user_id):
     feature = load_feature(user_id)
     behaviors = detect_behavior(feature)
-    insight = explain(feature, behaviors)
     product = recommend(behaviors)
+    insight = explain(feature, behaviors, product)
 
     return {
+        "feature": feature,
         "behaviors": behaviors,
         "insight": insight,
         "recommendation": product
