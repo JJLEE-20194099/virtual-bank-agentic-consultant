@@ -12,3 +12,5 @@ __pycache__/
 **/*.pyd
 
 kafka
+get_pip.py
+backend/app/data/raw
