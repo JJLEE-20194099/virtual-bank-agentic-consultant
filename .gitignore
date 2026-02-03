@@ -14,3 +14,4 @@ __pycache__/
 kafka
 get_pip.py
 backend/app/data/raw
+backend/.env

@@ -9,3 +9,4 @@ kafka-python
 transformers
 spacy
 SQLAlchemy
+aiokafka

@@ -1,12 +1,15 @@
 import pandas as pd
 from sqlalchemy import create_engine
 import json
+import os
 
-DB_URL = "sqlite:///storage/transactions.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_PATH = os.path.join(BASE_DIR, "../..", "storage", "transactions.db")
+
 FEATURE_STORE = "../../storage/feature_store.json"
 
 def run_feature_job():
-    engine = create_engine(DB_URL)
+    engine = create_engine(f"sqlite:///{DB_PATH}")
     trx = pd.read_sql("transactions", engine)
 
     features = trx.groupby("user_id").agg(

@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from pydantic import BaseModel
 from app.agents.ai_orchestrator_agent.orchestrator import run_consultant
 
 
@@ -14,4 +15,4 @@ def chat(req: ChatRequest):
     result = run_consultant(req.user_id)
     return {
         "reply": result
-    }
+    }    

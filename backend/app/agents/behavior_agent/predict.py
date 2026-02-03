@@ -4,7 +4,7 @@ def detect_behavior(features):
         patterns.append("travel-heavy")
     if features["installment_ratio"] > 0.5:
         patterns.append("high-installment")
-    if feature["trx_count"] > 80:
+    if features["trx_count"] > 80:
         behaviors.append("high-frequency-spender")
-
+    print(features)
     return patterns

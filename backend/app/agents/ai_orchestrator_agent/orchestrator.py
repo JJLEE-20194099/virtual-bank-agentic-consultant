@@ -1,9 +1,9 @@
 import json
-from behavior_agent.behavior import detect_behavior
-from explainable_agent.explain import explain
-from product_rec_agent.recommend import recommend
+from app.agents.behavior_agent.predict import detect_behavior
+from app.agents.explainable_agent.explain import explain
+from app.agents.product_rec_agent.recommend import recommend
 
-FEATURE_STORE = "storage/feature_store.json"
+FEATURE_STORE = "app/storage/feature_store.json"
 
 def load_feature(user_id):
     with open(FEATURE_STORE) as f:
