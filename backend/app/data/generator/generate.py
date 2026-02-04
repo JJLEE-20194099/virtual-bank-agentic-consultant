@@ -141,6 +141,10 @@ def generate_transactions(users: pd.DataFrame):
                     "trx_time": random_date_in_month(m)
                 })
 
+        if len(transactions) >= 3000:
+            break
+        
+
     return pd.DataFrame(transactions)
 
 if __name__ == "__main__":

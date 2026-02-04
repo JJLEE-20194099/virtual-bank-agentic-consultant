@@ -1,4 +1,5 @@
 numpy
+pandas
 fastapi
 uvicorn[standard]
 grpcio
@@ -10,3 +11,8 @@ transformers
 spacy
 SQLAlchemy
 aiokafka
+openai
+feast
+redis
+pyarrow
+fastparquet
