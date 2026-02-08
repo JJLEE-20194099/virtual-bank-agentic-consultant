@@ -37,12 +37,13 @@ python3 /workspace/code/virtual-bank-agentic-consultant/backend/app/ingestion/ka
 sudo apt update
 sudo apt install -y redis-server
 
-redis-server --daemonize yes
 redis-cli ping
 
 pip install feast redis
 feast version
 
+
+service/feature_engine
 mkdir feature_store
 cd feature_store/repo
 

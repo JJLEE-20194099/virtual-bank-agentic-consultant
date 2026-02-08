@@ -132,18 +132,44 @@ def generate_transactions(users: pd.DataFrame):
                     category, (500_000, 3_000_000)
                 )
 
+                amount = random.randint(*amount_range)
+                is_installment = random.random() < profile["installment_ratio"]
+
+                installment_data = {
+                    "status": False,
+                    "info": {}
+                }
+
+                if is_installment:
+                    total_months = random.choice([3, 6, 9, 12])
+                    current_month = random.randint(1, total_months)
+                    interest_rate = random.choice([0, 1, 2, 3, 5])
+
+                    installment_amount = int(
+                        amount * (1 + interest_rate / 100) / total_months
+                    )
+
+                    installment_data = {
+                        "status": True,
+                        "info": {
+                            "current_installment_month": current_month,
+                            "total_installment_month": total_months,
+                            "interest_rate": interest_rate,
+                            "installment_amount": installment_amount
+                        }
+                    }
+
                 transactions.append({
                     "trx_id": str(uuid.uuid4()),
                     "user_id": user.user_id,
                     "category": category,
-                    "amount": random.randint(*amount_range),
-                    "installment": random.random() < profile["installment_ratio"],
+                    "amount": amount,
+                    "installment": installment_data,
                     "trx_time": random_date_in_month(m)
                 })
+    
 
-        if len(transactions) >= 3000:
-            break
-        
+    transactions["installment"] = transactions["installment"].apply(json.dumps)
 
     return pd.DataFrame(transactions)
 

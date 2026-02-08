@@ -29,7 +29,7 @@ def load_feature(user_id):
         features=FEATURE_LIST,
         entity_rows=[{"user_id": user_id}]
     ).to_dict()
-    
+    print(feature_vector)
     feature_vector["category_ratio"] = [json.loads(feature_vector["category_ratio_json"][0])]
     del feature_vector["category_ratio_json"]
 
