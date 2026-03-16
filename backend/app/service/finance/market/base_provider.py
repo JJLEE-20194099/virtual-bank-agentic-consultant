@@ -4,9 +4,9 @@ from abc import ABC, abstractmethod
 class MarketDataProvider(ABC):
 
     @abstractmethod
-    async def get_ohlcv(self, symbol: str):
+    def get_ohlcv(self, symbol: str, start_date: str, end_date: str, interval: str):
         pass
 
     @abstractmethod
-    async def get_multiple(self, symbols: list[str]):
+    def get_multiple(self, symbols: list[str]):
         pass

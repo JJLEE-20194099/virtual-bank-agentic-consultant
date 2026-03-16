@@ -13,11 +13,13 @@ VNSTOCK_API = os.getenv("VNSTOCK_API")
 class VNDirectProvider:
 
 
-    def get_ohlcv(self, symbol):
+    def get_ohlcv(self, symbol, start_date, end_date, interval):
 
         stock = Vnstock().stock(symbol=symbol, source='KBS')
-        df = stock.quote.history(start='2026-03-13', end='2026-03-13', interval='15m')
-        df["time"] = df["time"].apply(lambda x: x.timestamp())
+
+        print(start_date, end_date, interval)
+        df = stock.quote.history(start=start_date, end=end_date, interval=interval)
+        # df["time"] = df["time"].apply(lambda x: x.timestamp())
 
         data = df.to_dict(orient='records')
 
@@ -34,8 +36,3 @@ class VNDirectProvider:
         # }
 
         return data
-
-if __name__ == "__main__":
-    provider = VNDirectProvider()
-    data = provider.get_ohlcv("VCB")
-    print(data)
