@@ -127,7 +127,8 @@ def explain(feature: dict, behaviors: list[str], products: list[str]) -> str:
             {"role": "system", "content": "Bạn là trợ lý tài chính ngân hàng."},
             {"role": "user", "content": prompt}
         ],
-        temperature=0.3
+        temperature=0.3,
+        max_tokens=400
     )
 
     return response.choices[0].message.content.strip()

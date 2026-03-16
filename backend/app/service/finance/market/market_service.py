@@ -1,4 +1,5 @@
 from app.service.finance.market.vndirect_provider import VNDirectProvider
+from vnstock.explorer.misc import *
 
 class MarketService:
 
@@ -15,3 +16,11 @@ class MarketService:
 
     def get_multiple(self, symbols):
         return self.provider.get_multiple(symbols)
+
+    def get_exchange_rate(self, date):
+        data = vcb_exchange_rate(date=date).to_dict(orient='records')
+        return data
+
+    def get_sjc_gold_price(self, date):
+        data = sjc_gold_price(date).to_dict(orient='records')
+        return data

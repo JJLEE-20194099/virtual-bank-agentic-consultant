@@ -16,6 +16,7 @@ class VNDirectProvider:
 
         stock = Quote(symbol=symbol, source='KBS')
         df = stock.history(length=length, interval=interval)
+        df = df.sort_values(by="time", ascending=False)
         # df["time"] = df["time"].apply(lambda x: x.timestamp())
 
         data = df.to_dict(orient='records')
@@ -28,8 +29,9 @@ class VNDirectProvider:
 
         print(start_date, end_date, interval)
         df = stock.quote.history(start=start_date, end=end_date, interval=interval)
+        df = df.sort_values(by="time", ascending=False)
         # df["time"] = df["time"].apply(lambda x: x.timestamp())
-
+        
         data = df.to_dict(orient='records')
 
         # item = data[0]
