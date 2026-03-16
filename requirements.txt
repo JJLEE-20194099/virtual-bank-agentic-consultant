@@ -16,3 +16,5 @@ feast
 redis
 pyarrow
 fastparquet
+python-dotenv
+vnstock

@@ -1,9 +1,17 @@
 from fastapi import APIRouter, Query, HTTPException
 from datetime import datetime
+from typing import Optional
+
+from pydantic import BaseModel
 import os
 import pandas as pd
 import json
 import ast
+import sqlite3
+import uuid
+
+from app.service.feature_engine.job import run_feature_job
+from app.agents.ai_orchestrator_agent.orchestrator import run_consultant
 
 router = APIRouter()
 
@@ -11,6 +19,17 @@ def fetch_from_postgres(user_id):
     return None
 
 DATA_PATH = "app/data/raw/transactions.csv"
+DB_PATH = "app/storage/transactions.db"
+
+
+class TransactionEvent(BaseModel):
+    user_id: str
+    type: str  # e.g., transfer, stock_trade
+    amount: float
+    category: Optional[str] = None
+    description: Optional[str] = None
+    trx_time: Optional[datetime] = None
+
 
 @router.get("/{user_id}")
 def get_transactions(
@@ -61,4 +80,69 @@ def get_transactions(
         "to": to_date,
         "total_transactions": len(result),
         "transactions": result.to_dict(orient="records")
+    }
+
+
+@router.post("/trigger")
+def trigger_transaction(event: TransactionEvent):
+    """Simulate a transaction event (transfer or stock trade) and bump the advisory pipeline.
+
+    This endpoint inserts the transaction into the local SQLite store, recomputes features, and
+    runs the consultant pipeline (behavior detection + recommendation + confidence scoring).
+    """
+
+    # Insert the transaction into the backend transaction store.
+    os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    # Ensure the transactions table exists. Schema is intentionally permissive for the PoC.
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS transactions (
+            trx_id TEXT PRIMARY KEY,
+            user_id TEXT,
+            type TEXT,
+            amount REAL,
+            category TEXT,
+            description TEXT,
+            trx_time TEXT,
+            created_at TEXT
+        )
+        """
+    )
+
+    trx_time = event.trx_time or datetime.utcnow()
+    cursor.execute(
+        "INSERT OR REPLACE INTO transactions (trx_id, user_id, type, amount, category, description, trx_time, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+        (
+            str(uuid.uuid4()),
+            event.user_id,
+            event.type,
+            event.amount,
+            event.category,
+            event.description,
+            trx_time.isoformat(),
+            datetime.utcnow().isoformat(),
+        ),
+    )
+    conn.commit()
+    conn.close()
+
+    # Recompute feature store (simple PoC: recompute for all users from transactions table)
+    run_feature_job()
+
+    # Run the consultant pipeline
+    result = run_consultant(
+        user_id=event.user_id,
+        query=None,
+        intent_score=None,
+        is_transaction_trigger=True,
+    )
+
+    return {
+        "status": "ok",
+        "user_id": event.user_id,
+        "transaction": event.dict(),
+        "result": result,
     }
