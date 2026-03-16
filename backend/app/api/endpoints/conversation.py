@@ -24,7 +24,7 @@ class ChatResponse(BaseModel):
     context: dict
 
 def detect_symbols(message: str):
-    return ["VIF"]
+    return ["FPT"]
 
 def today_str():
     return datetime.today().strftime("%Y-%m-%d")
@@ -34,7 +34,7 @@ def chat(req: ChatRequest):
     user_message = req.message
     context = {}
 
-    symbols = ["VCB"]
+    symbols = detect_symbols(user_message)
     symbol = symbols[0].upper() if symbols else None
 
     data_context = {}
@@ -254,6 +254,13 @@ def chat(req: ChatRequest):
         4. Chỉ sử dụng dữ liệu có trong **data_context**.
         5. Nếu thiếu dữ liệu → nói rõ.
         6. Không đưa ra lời khuyên đầu tư tuyệt đối.
+        7.QUY TẮC ĐỘ DÀI
+
+        Câu trả lời phải ngắn gọn.
+        Giới hạn tối đa khoảng 600-800 từ.
+
+        Nếu nội dung dài hơn, hãy tóm tắt để đảm bảo câu trả lời hoàn chỉnh
+        không bị cắt giữa chừng.
 
         --------------------------------------------------
         FORMAT OUTPUT
@@ -270,13 +277,15 @@ def chat(req: ChatRequest):
         **3. Kết luận / Lưu ý**
 
         - ...
+
+
         """
 
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
         temperature=0.1,
-        max_tokens=400
+        max_tokens=800
     )
 
     answer = response.choices[0].message.content.strip()
