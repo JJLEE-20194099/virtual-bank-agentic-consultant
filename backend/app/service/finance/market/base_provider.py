@@ -8,5 +8,9 @@ class MarketDataProvider(ABC):
         pass
 
     @abstractmethod
+    def get_ohlcv_by_length(self, symbol: str, length: int, interval: str):
+        pass
+
+    @abstractmethod
     def get_multiple(self, symbols: list[str]):
         pass

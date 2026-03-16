@@ -1,6 +1,6 @@
 import httpx
 from dotenv import load_dotenv
-from vnstock import Vnstock
+from vnstock import Vnstock, Quote, Trading
 import os
 load_dotenv() 
 import datetime
@@ -12,6 +12,15 @@ VNSTOCK_API = os.getenv("VNSTOCK_API")
 
 class VNDirectProvider:
 
+    def get_ohlcv_by_length(self, symbol: str, length: int, interval: str):    
+
+        stock = Quote(symbol=symbol, source='KBS')
+        df = stock.history(length=length, interval=interval)
+        # df["time"] = df["time"].apply(lambda x: x.timestamp())
+
+        data = df.to_dict(orient='records')
+
+        return data
 
     def get_ohlcv(self, symbol, start_date, end_date, interval):
 
@@ -35,4 +44,11 @@ class VNDirectProvider:
         #     "volume": item["volume"]
         # }
 
+        return data
+
+    def get_multiple(self, symbols: list[str] = ['VCB','ACB','TCB','BID']):
+        board = Trading(source='KBS').price_board(symbols)
+
+        data = board.to_dict(orient='records')
+        
         return data
