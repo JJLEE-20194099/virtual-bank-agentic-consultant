@@ -34,7 +34,6 @@ class GoldProvider:
         }
         resp = self.client.get(url, params=params)
         resp.raise_for_status()
-        print(resp.json())
         items = resp.json()["prices"]
 
         data = [{

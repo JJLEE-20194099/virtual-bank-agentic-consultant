@@ -41,7 +41,6 @@ def chat(req: ChatRequest):
     context = {}
 
     query_parser = json.loads(parse_query(user_message).replace('\\"', '"').replace("```json", "").replace("```", ""))
-
     symbols = query_parser["symbols"]
     intent = query_parser["intent"]
     context["ohlcv"] = {}
@@ -50,18 +49,18 @@ def chat(req: ChatRequest):
             context["exchange_rate"] = service.get_exchange_rate(today_str())
         
         if external_factor["type"] == "gold":
-            if external_factor["scope"] == "domestic":
-                context["ohlcv"]["domestic_gold_price"] = service.get_domestic_gold_price()
-            else:
+            if external_factor["scope"] == "global":
                 context["ohlcv"]["global_gold_price"] = service.get_global_gold_price()
+            else:
+                context["ohlcv"]["domestic_gold_price"] = service.get_domestic_gold_price()
             
 
 
         if external_factor["type"] == "oil":
-            if external_factor["scope"] == "domestic":
-                context["ohlcv"]["domestic_oil_price"] = service.get_domestic_oil_price()
-            else:
+            if external_factor["scope"] == "global":
                 context["ohlcv"]["global_oil_price"] = service.get_global_oil_price()
+            else:
+                context["ohlcv"]["domestic_oil_price"] = service.get_domestic_oil_price()
 
     if len(symbols) > 0:
         if "company_info" in [factor["type"] for factor in query_parser["external_factors"]]:

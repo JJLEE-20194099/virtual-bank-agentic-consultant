@@ -181,6 +181,7 @@ Mỗi yếu tố có cấu trúc:
 - "global": thế giới
 - KHÔNG áp dụng cho "company_info"
 
+
 ---
 
 ### sub_type (nếu có):
@@ -217,6 +218,8 @@ Mỗi yếu tố có cấu trúc:
 - Nếu không rõ phạm vi → scope = "unknown"
 - company_info → không có scope
 - (Có giá xăng trong nước trong thông tin giá dầu). Nên khi hỏi về giá dầu cx đồng nghĩa hãy trả lời và lấy dữ liệu giá xăng nữa.
+- Nếu hỏi mua bán vàng thì external factors vẫn là gold.
+- Khi hỏi mua bán cổ phiếu thì hãy luôn có yêu cầu thông tin công ty vì điều đó giúp cho việc người dùng hiểu hơn về công ty phát hành cổ phiếu đó, tức là company_info nằm trong external factors
 ---
 
 ## Ví dụ:
@@ -364,7 +367,8 @@ Bạn là chuyên gia phân tích tài chính. Dựa trên dữ liệu đã đư
 3. Nếu intent là "impact" → mô tả tác động của các yếu tố bên ngoài tới cổ phiếu.  
 4. Nếu intent là "company_info" → cung cấp thông tin hoạt động, sản phẩm, chiến lược của công ty.  
 5. Nếu intent là "compare" → trình bày so sánh trực tiếp giữa các cổ phiếu dựa trên dữ liệu có sẵn (giá, biến động, thanh khoản).  
-6. Nếu intent là unknown / khác → đưa thông tin tổng quan, dữ liệu thực tế, tránh đánh giá chủ quan.  
+6. Nếu intent là "buy_sell" → dựa trên phân tích dữ liệu (OHLCV), tính toán trend xu hướng và đưa ra gợi ý mua/bán nhưng không được mang tính chủ quan, chỉ dựa trên dữ liệu.
+7. Nếu intent là unknown / khác → đưa thông tin tổng quan, dữ liệu thực tế, tránh đánh giá chủ quan.  
 
 - Chỉ sử dụng dữ liệu có sẵn trong `context`.  
 - Không đưa ra dự đoán nếu dữ liệu không có.  

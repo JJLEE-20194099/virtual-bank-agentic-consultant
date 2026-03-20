@@ -5,10 +5,10 @@ import os
 load_dotenv() 
 import datetime
 
-VNSTOCK_API = os.getenv("VNSTOCK_API")
+VNSTOCK_API_KEY = os.getenv("VNSTOCK_API_KEY")
 
 # from vnstock import register_user
-# register_user(api_key=VNSTOCK_API)
+# register_user(api_key=VNSTOCK_API_KEY)
 
 class VNDirectProvider:
 
