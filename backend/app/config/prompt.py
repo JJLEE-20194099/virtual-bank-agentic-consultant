@@ -172,7 +172,6 @@ Mỗi yếu tố có cấu trúc:
 - "exchange_rate" → tỷ giá, USD, forex
 - "gold" → vàng
 - "oil" → dầu
-- "interest_rate" → lãi suất
 - "company_info" → khi câu hỏi liên quan nội tại doanh nghiệp
 
 ---
@@ -213,9 +212,11 @@ Mỗi yếu tố có cấu trúc:
 - Symbol là chữ IN HOA (FPT, VNM, AAPL…)
 - Chuẩn hóa về uppercase
 - Không đoán nếu không chắc chắn
+-- Nếu intent khác → đưa thông tin tổng quan, giải thích đơn giản.
 - External factor chỉ extract nếu có rõ ràng
 - Nếu không rõ phạm vi → scope = "unknown"
 - company_info → không có scope
+- (Có giá xăng trong nước trong thông tin giá dầu). Nên khi hỏi về giá dầu cx đồng nghĩa hãy trả lời và lấy dữ liệu giá xăng nữa.
 ---
 
 ## Ví dụ:
@@ -339,9 +340,42 @@ Input: Giá vàng thế giới giảm có ảnh hưởng đến giá vàng trong
   "confidence": 0.93
 }
 
-Câu người dùng:
+Câu hỏi của người dùng:
 "{message}"
 
 Trả về JSON:
 """
 
+
+MARKET_ANALYSIS_RESPONSE_FORMAT = """
+Bạn là chuyên gia phân tích tài chính. Dựa trên dữ liệu đã được trích xuất, hãy cung cấp thông tin chính xác, ngắn gọn và dựa trên dữ liệu thực tế.  
+
+## Dữ liệu hiện có:
+
+- Intent: {intent}
+- Symbols: {symbols}
+- OHLCV và các chỉ số liên quan (Giá của cổ phiếu, giá vàng hoặc giá dầu trong và ngoài nước): {ohlcv_data}
+- Company info (nếu có): {company_info}
+- External factors (Các yếu tố bên ngoài ảnh hưởng tới cổ phiếu): {exchange_rate}
+
+## Hướng dẫn trả lời:
+1. Nếu intent là "price" → cung cấp giá hiện tại hoặc giá gần nhất.  
+2. Nếu intent là "analysis" → trình bày phân tích ngắn hạn (7 ngày) dựa trên OHLCV, chỉ số biến động, thanh khoản.  
+3. Nếu intent là "impact" → mô tả tác động của các yếu tố bên ngoài tới cổ phiếu.  
+4. Nếu intent là "company_info" → cung cấp thông tin hoạt động, sản phẩm, chiến lược của công ty.  
+5. Nếu intent là "compare" → trình bày so sánh trực tiếp giữa các cổ phiếu dựa trên dữ liệu có sẵn (giá, biến động, thanh khoản).  
+6. Nếu intent là unknown / khác → đưa thông tin tổng quan, dữ liệu thực tế, tránh đánh giá chủ quan.  
+
+- Chỉ sử dụng dữ liệu có sẵn trong `context`.  
+- Không đưa ra dự đoán nếu dữ liệu không có.  
+- Trình bày dễ hiểu, kèm số liệu cụ thể khi có.
+
+### Ví dụ trả lời:
+- FPT hiện có giá đóng cửa trung bình 7 ngày là 40.000 VND/cổ phiếu, dao động ±2%.  
+- Giá vàng thế giới tăng có thể khiến giá vàng trong nước tăng nhẹ.  
+- VNM hiện kinh doanh trong lĩnh vực sữa, thực phẩm, lợi nhuận ổn định 6 tháng gần nhất.
+
+Câu hỏi của người dùng: {user_message}
+
+Trả lời:
+"""

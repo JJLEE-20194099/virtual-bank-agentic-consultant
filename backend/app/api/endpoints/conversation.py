@@ -4,6 +4,7 @@ from app.service.intent.engine import classify_intent
 from app.service.finance.market.market_service import MarketService
 from app.service.finance.market.company_service import get_company_info
 from openai import OpenAI
+import json
 from dotenv import load_dotenv
 from app.agents.market_analysis_agent import MarketAnalysisAgent
 import os
@@ -39,7 +40,7 @@ def chat(req: ChatRequest):
     user_message = req.message
     context = {}
 
-    query_parser = parse_query(user_message)
+    query_parser = json.loads(parse_query(user_message).replace('\\"', '"').replace("```json", "").replace("```", ""))
 
     symbols = query_parser["symbols"]
     intent = query_parser["intent"]
@@ -47,26 +48,20 @@ def chat(req: ChatRequest):
     for external_factor in query_parser["external_factors"]:
         if external_factor["type"] == "exchange_rate":
             context["exchange_rate"] = service.get_exchange_rate(today_str())
-        if external_factor["type"] == "interest_rate":
-            context["interest_rate"] = service.get_interest_rate(today_str())
         
         if external_factor["type"] == "gold":
             if external_factor["scope"] == "domestic":
                 context["ohlcv"]["domestic_gold_price"] = service.get_domestic_gold_price()
-            elif external_factor["scope"] == "global":
+            else:
                 context["ohlcv"]["global_gold_price"] = service.get_global_gold_price()
+            
+
 
         if external_factor["type"] == "oil":
             if external_factor["scope"] == "domestic":
-                context["ohlcv"]["domestic_oil_price"] = {
-                    "today": service.get_domestic_oil_price(today_str()),
-                    "history": service.get_domestic_oil_price_history(length=7)
-                }
-            elif external_factor["scope"] == "global":
-                context["ohlcv"]["global_oil_price"] = {
-                    "today": service.get_global_oil_price(today_str()),
-                    "history": service.get_global_oil_price_history(length=7)
-                }
+                context["ohlcv"]["domestic_oil_price"] = service.get_domestic_oil_price()
+            else:
+                context["ohlcv"]["global_oil_price"] = service.get_global_oil_price()
 
     if len(symbols) > 0:
         if "company_info" in [factor["type"] for factor in query_parser["external_factors"]]:
@@ -79,5 +74,6 @@ def chat(req: ChatRequest):
         for symbol in symbols:
             context["ohlcv"][symbol] = service.get_ohlcv_by_length(symbol, length=7, interval="1d")
 
+    
 
-    return context
+    return market_analysis_agent.response_market_question(context, user_message, query_parser)
