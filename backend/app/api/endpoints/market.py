@@ -29,8 +29,6 @@ async def get_history_ohlcv_by_length(
 
     return service.get_ohlcv_by_length(symbol, length, interval)
 
-
-
 @router.post("/ohlcv-by-symbols")
 async def get_multiple(symbols: list[str]):
     print(symbols)
@@ -41,6 +39,14 @@ async def get_multiple(symbols: list[str]):
 async def get_exchange_rate(date: str = Query(..., description="YYYY-MM-DD")):
     return service.get_exchange_rate(date)
 
-@router.get("/sjc-gold-price")
-async def get_sjc_gold_price(date: str = Query(..., description="YYYY-MM-DD")):
-    return service.get_sjc_gold_price(date)
+@router.get("/domestic-gold-price-by-date")
+async def get_domestic_gold_price_date(date: str = Query(..., description="YYYY-MM-DD")):
+    return service.get_domestic_gold_price_date(date)
+
+@router.get("/domestic-gold-price")
+async def get_domestic_gold_price():
+    return service.get_domestic_gold_price()
+
+@router.get("/global-gold-price")
+async def get_global_gold_price():
+    return service.get_global_gold_price()

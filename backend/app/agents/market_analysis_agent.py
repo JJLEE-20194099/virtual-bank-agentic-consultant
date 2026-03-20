@@ -1,6 +1,6 @@
 import os
 from app.agents.baseline_agent import BaselineAgent
-from config.prompt import MARKET_ANALYSIS_PROMPT
+from app.config.prompt import MARKET_ANALYSIS_PROMPT
 
 class MarketAnalysisAgent(BaselineAgent):
     

@@ -52,9 +52,9 @@ def chat(req: ChatRequest):
         
         if external_factor["type"] == "gold":
             if external_factor["scope"] == "domestic":
-                context["ohlcv"]["sjc_gold_price"] = {
-                    "today": service.get_sjc_gold_price(today_str()),
-                    "history": service.get_sjc_gold_price_history(length=7)
+                context["ohlcv"]["domestic_gold_price"] = {
+                    "today": service.get_domestic_gold_price(today_str()),
+                    "history": service.get_domestic_gold_price_history(length=7)
                 }
             elif external_factor["scope"] == "global":
                 context["ohlcv"]["global_gold_price"] = {
