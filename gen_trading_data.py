@@ -3,14 +3,12 @@ import numpy as np
 import random
 from datetime import datetime, timedelta, time
 
-# ===== CUSTOMERS =====
 customers = {
     "C001": "intraday",
     "C002": "swing",
     "C003": "longterm"
 }
 
-# ===== 100 VN STOCKS (subset realistic) =====
 stocks = [
 "ACB","BCM","BID","BVH","CTG","FPT","GAS","GVR","HDB","HPG",
 "MBB","MSN","MWG","PLX","POW","SAB","SSI","STB","TCB","TPB",
@@ -26,16 +24,15 @@ stocks = [
 transactions = []
 portfolio = {}
 
-start_date = datetime(2023, 7, 1)
+start_date = datetime(2023, 7, 3)
 
-# ===== LIMIT HOLDING =====
 MAX_STOCK_HOLD = {
     "intraday": 5,
     "swing": 10,
     "longterm": 20
 }
 
-# ===== TRADING FREQUENCY =====
+
 TRADES_PER_DAY = {
     "intraday": (5, 15),
     "swing": (1, 3),
@@ -51,7 +48,7 @@ DAY_GAP = {
 INTRADAY_CLOSE_PROB = 0.8
 
 
-# ===== HELPER =====
+
 def random_time(session, date):
     if session == "morning":
         hour = random.randint(9, 11)
@@ -63,16 +60,28 @@ def random_time(session, date):
         minute = random.randint(0, 59)
     return datetime.combine(date.date(), time(hour, minute))
 
+excluded_dates = [
+    "2023-09-01", "2023-09-04", "2024-09-03","2023-04-30",
+    "2024-01-01",
+    "2024-02-08","2024-02-09","2024-09-02", "2024-02-12","2024-02-13","2024-02-14",
+    "2024-04-18","2024-04-29","2024-04-30",
+    "2024-05-01",
+    "2024-09-02","2025-04-30", "2025-09-01", "2025-05-02", "2025-01-28", "2025-05-01", "2024-01-28", "2024-05-01", "2023-01-28", "2023-05-01"
+]
 
 def next_trading_day(date):
     date += timedelta(days=1)
-    while date.weekday() >= 5:
+    while date.weekday() >= 5 or date.strftime("%Y-%m-%d") in excluded_dates:
         date += timedelta(days=1)
+    return date
+
+def advance_trading_days(date, n_days):
+    for _ in range(n_days):
+        date = next_trading_day(date)
     return date
 
 now = datetime.now()
 
-# ===== GENERATE =====
 for cust, style in customers.items():
     current_date = start_date
 
@@ -90,7 +99,6 @@ for cust, style in customers.items():
 
         for i in range(trades_today):
 
-            # ===== CHỌN STOCK CÓ GIỚI HẠN SỐ MÃ =====
             if len(held_stocks) < MAX_STOCK_HOLD[style]:
                 stock = random.choice(stocks)
                 held_stocks.add(stock)
@@ -102,7 +110,7 @@ for cust, style in customers.items():
 
             price = round(np.random.uniform(20, 100), 2)
 
-            # ================= INTRADAY =================
+           
             if style == "intraday":
 
                 if i < trades_today // 2:
@@ -145,7 +153,7 @@ for cust, style in customers.items():
                     else:
                         continue
 
-            # ================= SWING =================
+          
             elif style == "swing":
                 action = random.choices(["buy","sell"], [0.6,0.4])[0]
 
@@ -163,7 +171,6 @@ for cust, style in customers.items():
                     random_time("afternoon", current_date)
                 ])
 
-            # ================= LONG TERM =================
             else:
                 if trades_today == 0:
                     continue
@@ -184,7 +191,7 @@ for cust, style in customers.items():
                     random_time("afternoon", current_date)
                 ])
 
-            fee = price * quantity * 0.001
+            fee = price * quantity * random.uniform(0.001, 0.005)
 
             transactions.append([
                 f"T{cust}_{d}_{i}",
@@ -214,10 +221,9 @@ for cust, style in customers.items():
                         0
                     ])
 
-        # ===== next day =====
         gap = random.randint(*DAY_GAP[style])
         for _ in range(gap + 1):
-            current_date = next_trading_day(current_date)
+            current_date = advance_trading_days(current_date, gap + 1)
 
 
 df = pd.DataFrame(transactions, columns=[
