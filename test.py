@@ -44,8 +44,8 @@ TRADES_PER_DAY = {
 
 DAY_GAP = {
     "intraday": (0, 0),
-    "swing": (1, 3),
-    "longterm": (5, 15)
+    "swing": (1, 5),
+    "longterm": (8, 30)
 }
 
 INTRADAY_CLOSE_PROB = 0.8
@@ -70,6 +70,7 @@ def next_trading_day(date):
         date += timedelta(days=1)
     return date
 
+now = datetime.now()
 
 # ===== GENERATE =====
 for cust, style in customers.items():
@@ -77,10 +78,15 @@ for cust, style in customers.items():
 
     held_stocks = set()
 
-    for d in range(60):
+    today = datetime.today().date()
+
+    for d in range(300):
 
         trades_today = random.randint(*TRADES_PER_DAY[style])
         intraday_pos = {}
+
+        if current_date.date() > now.date():
+            break
 
         for i in range(trades_today):
 
@@ -170,7 +176,7 @@ for cust, style in customers.items():
                 else:
                     if qty_holding == 0:
                         continue
-                    quantity = random.randint(1, qty_holding)
+                    quantity = random.randint(qty_holding // 2, qty_holding)
                     portfolio[key] -= quantity
 
                 txn_time = random.choice([
