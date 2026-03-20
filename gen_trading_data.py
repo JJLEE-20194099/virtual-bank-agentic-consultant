@@ -35,14 +35,13 @@ MAX_STOCK_HOLD = {
 
 TRADES_PER_DAY = {
     "intraday": (5, 15),
-    "swing": (1, 3),
-    "longterm": (0, 2)
+    "swing": (1, 3)
 }
 
 DAY_GAP = {
     "intraday": (0, 0),
-    "swing": (1, 5),
-    "longterm": (8, 30)
+    "swing": (1, 3),
+    "longterm": (5, 30)
 }
 
 INTRADAY_CLOSE_PROB = 0.8
@@ -61,12 +60,12 @@ def random_time(session, date):
     return datetime.combine(date.date(), time(hour, minute))
 
 excluded_dates = [
-    "2023-09-01", "2023-09-04", "2024-09-03","2023-04-30",
+    "2023-09-01", "2023-09-04", "2024-09-03","2023-04-30", '2025-01-01', '2025-01-29', '2026-01-02', '2026-02-17', "2025-01-30",
     "2024-01-01",
-    "2024-02-08","2024-02-09","2024-09-02", "2024-02-12","2024-02-13","2024-02-14",
+    "2024-02-08","2024-02-09","2024-09-02", "2024-02-12","2024-02-13","2024-02-14", '2025-01-27', '2026-02-18','2025-01-27', '2026-02-17','2026-02-19','2026-02-20','2026-02-21','2026-02-22','2025-01-31', '2025-04-07', '2026-01-01',
     "2024-04-18","2024-04-29","2024-04-30",
     "2024-05-01",
-    "2024-09-02","2025-04-30", "2025-09-01", "2025-05-02", "2025-01-28", "2025-05-01", "2024-01-28", "2024-05-01", "2023-01-28", "2023-05-01"
+    "2024-09-02","2025-04-30", "2025-09-01", "2025-09-02", "2025-05-02", "2025-01-28", "2025-05-01", "2024-01-28", "2024-05-01", "2023-01-28", "2023-05-01"
 ]
 
 def next_trading_day(date):
@@ -91,7 +90,17 @@ for cust, style in customers.items():
 
     for d in range(300):
 
-        trades_today = random.randint(*TRADES_PER_DAY[style])
+        if style != "longterm":
+            trades_today = random.randint(*TRADES_PER_DAY[style])
+        else:
+            if np.random.rand() < 0.2:
+                trades_today = 0
+            else:
+                numbers = [1, 2, 3, 4]
+                weights = [0.5, 0.3, 0.15, 0.05] 
+
+                trades_today = random.choices(numbers, weights=weights, k=1)[0]
+
         intraday_pos = {}
 
         if current_date.date() > now.date():
@@ -172,10 +181,11 @@ for cust, style in customers.items():
                 ])
 
             else:
-                if trades_today == 0:
+
+                if np.random.rand() < 0.2 and trades_today == 0:
                     continue
 
-                action = random.choices(["buy","sell"], [0.85,0.15])[0]
+                action = random.choices(["buy","sell"], [0.7,0.3])[0]
 
                 if action == "buy":
                     quantity = random.randint(20, 200)
@@ -204,7 +214,6 @@ for cust, style in customers.items():
                 fee
             ])
 
-        # ===== intraday: force close =====
         if style == "intraday":
             for key, qty in list(intraday_pos.items()):
                 if qty > 0:
@@ -223,7 +232,8 @@ for cust, style in customers.items():
 
         gap = random.randint(*DAY_GAP[style])
         for _ in range(gap + 1):
-            current_date = advance_trading_days(current_date, gap + 1)
+            current_date = advance_trading_days(current_date, 1)
+           
 
 
 df = pd.DataFrame(transactions, columns=[
