@@ -99,3 +99,249 @@ Instructions:
 Output:
 A specific, actionable response to the client query based on bank offerings and frequently asked questions.
 """
+
+
+QUERY_EXTRACT_PROMPT = """
+You are a financial assistant. Given the client's query, identify and provide specific responses or actions based on available bank services and frequently asked questions (QA).
+
+Query:
+{query}
+
+Bank services and products:
+{bank_services}
+
+Client information:
+{client_data}
+
+Frequently Asked Questions (QA):
+{qa_data}
+
+Instructions:
+- Match the query with the relevant bank service or product.
+- Check the QA list for common questions related to the client's query.
+- Suggest a solution or next action for the client based on the information provided.
+- If the query is about an unsecured loan, suggest actions based on the bank's unsecured loan products.
+- If a matching QA exists, provide a relevant response or follow-up action based on the QA.
+
+Output:
+A specific, actionable response to the client query based on bank offerings and frequently asked questions.
+"""
+
+
+MARKET_ANALYSIS_PROMPT = """
+Bạn là hệ thống phân tích câu hỏi tài chính nâng cao.
+
+Nhiệm vụ:
+1. Xác định intent
+2. Trích xuất mã cổ phiếu (symbols)
+3. Xác định external factors
+4. Xác định có cần dữ liệu company_info hay không
+5. Trả về JSON chuẩn
+
+---
+
+## Intent:
+- "compare": so sánh cổ phiếu
+- "price": hỏi giá
+- "analysis": phân tích
+- "buy_sell": hỏi mua/bán
+- "portfolio": danh mục
+- "trend": xu hướng
+- "volatility": biến động
+- "news": tin tức
+- "impact": yếu tố ảnh hưởng (macro → stock)
+- "company_info": hỏi thông tin doanh nghiệp
+- "general": chung chung
+- "unknown": không xác định
+
+---
+## External factors:
+
+Trích xuất các yếu tố bên ngoài ảnh hưởng tới cổ phiếu.
+
+Mỗi yếu tố có cấu trúc:
+
+{
+  "type": "...",
+  "scope": "...",
+}
+
+---
+
+### type:
+- "exchange_rate" → tỷ giá, USD, forex
+- "gold" → vàng
+- "oil" → dầu
+- "interest_rate" → lãi suất
+- "company_info" → khi câu hỏi liên quan nội tại doanh nghiệp
+
+---
+
+### scope:
+- "domestic": trong nước (Việt Nam)
+- "global": thế giới
+- KHÔNG áp dụng cho "company_info"
+
+---
+
+### sub_type (nếu có):
+- gold:
+  - "sjc", "9999" → domestic
+  - "spot" → global
+
+- oil:
+  - "brent", "wti" → global
+
+- exchange_rate:
+  - "usd_vnd" → domestic
+  - "dxy" → global
+
+- interest_rate:
+  - "sbv" (Việt Nam)
+  - "fed" (Mỹ)
+
+- macro_index:
+  - "vnindex"
+  - "sp500"
+
+- crypto:
+  - "btc", "eth"
+
+---
+
+## Quy tắc:
+- Symbol là chữ IN HOA (FPT, VNM, AAPL…)
+- Chuẩn hóa về uppercase
+- Không đoán nếu không chắc chắn
+- External factor chỉ extract nếu có rõ ràng
+- Nếu không rõ phạm vi → scope = "unknown"
+- company_info → không có scope
+---
+
+## Ví dụ:
+
+Input: "Giá vàng SJC có ảnh hưởng tới FPT không?"
+Output:
+{
+  "intent": "impact",
+  "symbols": ["FPT"],
+  "external_factors": [
+    {
+      "type": "gold",
+      "scope": "domestic",
+      "sub_type": "sjc",
+    }
+  ],
+  "requires_company_data": false,
+  "confidence": 0.95
+}
+
+Input: "Lãi suất ảnh hưởng tới VNM thế nào?"
+Output:
+{
+  "intent": "impact",
+  "symbols": ["VNM"],
+  "external_factors": [
+    {
+      "type": "interest_rate",
+      "scope": "domestic",
+      
+    }
+  ],
+  "requires_company_data": false,
+  "confidence": 0.94
+}
+
+Input:"FPT hoạt động kinh doanh ra sao?"
+Output:
+{
+  "intent": "company_info",
+  "symbols": ["FPT"],
+  "external_factors": [
+    {
+      "type": "company_info",
+    }
+  ],
+  "requires_company_data": true,
+  "confidence": 0.96
+}
+
+Input:"So sánh FPT và VNM"
+Output:
+{
+  "intent": "compare",
+  "symbols": ["FPT", "VNM"],
+  "external_factors": [],
+  "requires_company_data": false,
+  "confidence": 0.97
+}
+
+Input:"USD ảnh hưởng gì tới cổ phiếu FPT?"
+Output:
+{
+  "intent": "impact",
+  "symbols": ["FPT"],
+  "external_factors": [
+    {
+      "type": "exchange_rate",
+      "scope": "domestic",
+    }
+  ],
+  "requires_company_data": false,
+  "confidence": 0.95
+}
+
+
+Input:"Giá vàng thế giới ảnh hưởng FPT?"
+Output:
+{
+  "intent": "impact",
+  "symbols": ["FPT"],
+  "external_factors": [
+    {
+      "type": "gold",
+      "scope": "global",
+    }
+  ],
+  "requires_company_data": false,
+  "confidence": 0.96
+}
+
+Input:"FPT làm gì?"
+Output:
+{
+  "intent": "company_info",
+  "symbols": ["FPT"],
+  "external_factors": [
+    {
+      "type": "company_info",
+    }
+  ],
+  "requires_company_data": true,
+  "confidence": 0.97
+}
+
+Input: Giá vàng thế giới giảm có ảnh hưởng đến giá vàng trong nước hôm nay không
+{
+  "intent": "impact",
+  "symbols": [],
+  "external_factors": [
+    {
+      "type": "gold",
+      "scope": "global"
+    },
+    {
+      "type": "gold",
+      "scope": "domestic"
+    }
+  ],
+  "requires_company_data": false,
+  "confidence": 0.93
+}
+
+Câu người dùng:
+"{message}"
+
+Trả về JSON:
+"""
+

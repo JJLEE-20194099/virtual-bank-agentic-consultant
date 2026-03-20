@@ -30,6 +30,7 @@ async def get_history_ohlcv_by_length(
     return service.get_ohlcv_by_length(symbol, length, interval)
 
 
+
 @router.post("/ohlcv-by-symbols")
 async def get_multiple(symbols: list[str]):
     print(symbols)
