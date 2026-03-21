@@ -33,8 +33,8 @@ async def get_history_ohlcv_by_length(
     return service.get_ohlcv_by_length(symbol, length, interval)
 
 
-@router.get(("/stock/summary/{symbol}"))
-async def get_stock_summary(symbol: str):
+@router.get("/stock/summary/{userid}/{symbol}")
+async def get_stock_summary(userid: str, symbol: str):
 
     path = f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{symbol}/history_price.json"
     with open(path, "r", encoding="utf-8") as f:
@@ -67,8 +67,6 @@ async def get_stock_summary(symbol: str):
 async def get_multiple(symbols: list[str]):
     print(symbols)
     return service.get_multiple(symbols)
-
-
 
 @router.get("/exchange-rate")
 async def get_exchange_rate(date: str = Query(..., description="YYYY-MM-DD")):

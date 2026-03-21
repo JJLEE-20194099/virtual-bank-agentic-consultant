@@ -2,6 +2,9 @@ import pandas as pd
 import requests
 import json
 import os
+import asyncpg
+import asyncio
+from backend.app.clients.db import PostgresClient
 
 stocks = [
 "ACB","BCM","BID","BVH","CTG","FPT","GAS","GVR","HDB","HPG",
@@ -14,6 +17,13 @@ stocks = [
 "PVS","PVT","REE","SBT","SHB","SJS","SZC","TCH","TCM","TNG",
 "VCG","VGC","VHC","VIX","VND","VOS","YEG"
 ]
+
+db_client = PostgresClient(
+    user="swin",
+    password="swin",
+    database="vbac",
+    host="localhost"
+)
 
 
 BASE_URL = "http://localhost:8080/api/v1/market"
@@ -41,14 +51,6 @@ def fetch_realtime(symbols):
 
 realtime_prices = fetch_realtime(stocks)
 
-def load_transactions(
-        file_path = "/root/code/hackathon/virtual-bank-agentic-consultant/correct_trading_data.csv",
-        customer_id = "C001"
-    ):
-    df = pd.read_csv(file_path)
-    df["datetime"] = pd.to_datetime(df["datetime"], format="mixed")
-    df = df[df.customer_id == customer_id]
-    return df.sort_values("datetime").reset_index(drop=True)
 
 def calculate_portfolio(df, current_prices):
     portfolio = {}
@@ -118,9 +120,28 @@ def calculate_portfolio(df, current_prices):
 
     return results
 
-df = load_transactions()
-portfolio = calculate_portfolio(df, realtime_prices)
 
-os.makedirs(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/portfolio/", exist_ok=True)
-with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/portfolio/summary.json", "w", encoding="utf-8") as f:
-    json.dump(portfolio, f, ensure_ascii=False, indent=2)
+async def save_portfolio():
+    
+    await db_client.connect()
+    await db_client.init_portfolio_table()
+
+    df = pd.read_csv("/root/code/hackathon/virtual-bank-agentic-consultant/correct_trading_data.csv")
+    df["datetime"] = pd.to_datetime(df["datetime"], format="mixed")
+    user_ids = list(df.customer_id.unique())
+    for user_id in user_ids:
+        user_df = df[df.customer_id == user_id]
+        user_df = user_df.sort_values("datetime").reset_index(drop=True)
+        portfolio = calculate_portfolio(user_df, realtime_prices)
+
+        await db_client.save_portfolio(user_id, portfolio)
+
+
+    for user_id in user_ids:
+        data = await db_client.get_portfolio(user_id)
+        print(data)
+
+    await db_client.close()
+
+if __name__ == "__main__":
+    asyncio.run(save_portfolio())

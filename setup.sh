@@ -56,3 +56,12 @@ redis-cli
 keys *
 
 # Start redis => Start Kafka => Gen data & produce data => Consume data => feature_engine/job to create offline data => feast apply create features => feast materialize to push data to offline data
+
+
+docker run -d \
+  --name postgres \
+  -e POSTGRES_USER=swin \
+  -e POSTGRES_PASSWORD=swin \
+  -e POSTGRES_DB=vbac \
+  -p 5432:5432 \
+  postgres
