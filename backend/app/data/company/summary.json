@@ -1,0 +1,338 @@
+{
+  "ACB": {
+    "name": "Ngân hàng TMCP Á Châu",
+    "sector": "Banking"
+  },
+  "BCM": {
+    "name": "Tổng Công ty Đầu tư và Phát triển Công nghiệp (Becamex IDC)",
+    "sector": "Real Estate"
+  },
+  "BID": {
+    "name": "Ngân hàng TMCP Đầu tư và Phát triển Việt Nam",
+    "sector": "Banking"
+  },
+  "BVH": {
+    "name": "Tập đoàn Bảo Việt",
+    "sector": "Insurance"
+  },
+  "CTG": {
+    "name": "Ngân hàng TMCP Công Thương Việt Nam",
+    "sector": "Banking"
+  },
+  "FPT": {
+    "name": "Công ty Cổ phần FPT",
+    "sector": "Technology"
+  },
+  "GAS": {
+    "name": "Tổng Công ty Khí Việt Nam",
+    "sector": "Energy"
+  },
+  "GVR": {
+    "name": "Tập đoàn Công nghiệp Cao su Việt Nam",
+    "sector": "Basic Materials"
+  },
+  "HDB": {
+    "name": "Ngân hàng TMCP Phát triển TP.HCM",
+    "sector": "Banking"
+  },
+  "HPG": {
+    "name": "Công ty Cổ phần Tập đoàn Hòa Phát",
+    "sector": "Basic Materials"
+  },
+  "MBB": {
+    "name": "Ngân hàng TMCP Quân Đội",
+    "sector": "Banking"
+  },
+  "MSN": {
+    "name": "Công ty Cổ phần Tập đoàn Masan",
+    "sector": "Consumer Staples"
+  },
+  "MWG": {
+    "name": "Công ty Cổ phần Đầu tư Thế Giới Di Động",
+    "sector": "Retail"
+  },
+  "PLX": {
+    "name": "Tập đoàn Xăng dầu Việt Nam",
+    "sector": "Energy"
+  },
+  "POW": {
+    "name": "Tổng Công ty Điện lực Dầu khí Việt Nam",
+    "sector": "Utilities"
+  },
+  "SAB": {
+    "name": "Tổng Công ty Cổ phần Bia - Rượu - Nước giải khát Sài Gòn",
+    "sector": "Consumer Staples"
+  },
+  "SSI": {
+    "name": "Công ty Cổ phần Chứng khoán SSI",
+    "sector": "Financial Services"
+  },
+  "STB": {
+    "name": "Ngân hàng TMCP Sài Gòn Thương Tín",
+    "sector": "Banking"
+  },
+  "TCB": {
+    "name": "Ngân hàng TMCP Kỹ thương Việt Nam",
+    "sector": "Banking"
+  },
+  "TPB": {
+    "name": "Ngân hàng TMCP Tiên Phong",
+    "sector": "Banking"
+  },
+  "VCB": {
+    "name": "Ngân hàng TMCP Ngoại thương Việt Nam",
+    "sector": "Banking"
+  },
+  "VHM": {
+    "name": "Công ty Cổ phần Vinhomes",
+    "sector": "Real Estate"
+  },
+  "VIB": {
+    "name": "Ngân hàng TMCP Quốc tế Việt Nam",
+    "sector": "Banking"
+  },
+  "VIC": {
+    "name": "Tập đoàn Vingroup",
+    "sector": "Conglomerates"
+  },
+  "VJC": {
+    "name": "Công ty Cổ phần Hàng không VietJet",
+    "sector": "Industrials"
+  },
+  "VNM": {
+    "name": "Công ty Cổ phần Sữa Việt Nam",
+    "sector": "Consumer Staples"
+  },
+  "VPB": {
+    "name": "Ngân hàng TMCP Việt Nam Thịnh Vượng",
+    "sector": "Banking"
+  },
+  "VRE": {
+    "name": "Công ty Cổ phần Vincom Retail",
+    "sector": "Real Estate"
+  },
+  "AAA": {
+    "name": "Công ty Cổ phần Nhựa An Phát Xanh",
+    "sector": "Basic Materials"
+  },
+  "ANV": {
+    "name": "Công ty Cổ phần Nam Việt",
+    "sector": "Consumer Staples"
+  },
+  "ASM": {
+    "name": "Công ty Cổ phần Tập đoàn Sao Mai",
+    "sector": "Real Estate"
+  },
+  "BCG": {
+    "name": "Công ty Cổ phần Tập đoàn Bamboo Capital",
+    "sector": "Conglomerates"
+  },
+  "BSI": {
+    "name": "Công ty Cổ phần Chứng khoán BIDV",
+    "sector": "Financial Services"
+  },
+  "BMP": {
+    "name": "Công ty Cổ phần Nhựa Bình Minh",
+    "sector": "Basic Materials"
+  },
+  "CII": {
+    "name": "Công ty Cổ phần Đầu tư Hạ tầng Kỹ thuật TP.HCM",
+    "sector": "Industrials"
+  },
+  "CMG": {
+    "name": "Công ty Cổ phần Tập đoàn Công nghệ CMC",
+    "sector": "Technology"
+  },
+  "CSM": {
+    "name": "Công ty Cổ phần Công nghiệp Cao su Miền Nam",
+    "sector": "Basic Materials"
+  },
+  "CSV": {
+    "name": "Công ty Cổ phần Hóa chất Cơ bản Miền Nam",
+    "sector": "Basic Materials"
+  },
+  "DBC": {
+    "name": "Công ty Cổ phần Tập đoàn Dabaco Việt Nam",
+    "sector": "Consumer Staples"
+  },
+  "DCM": {
+    "name": "Công ty Cổ phần Phân bón Dầu khí Cà Mau",
+    "sector": "Basic Materials"
+  },
+  "DGC": {
+    "name": "Công ty Cổ phần Tập đoàn Hóa chất Đức Giang",
+    "sector": "Basic Materials"
+  },
+  "DIG": {
+    "name": "Tổng Công ty Cổ phần Đầu tư Phát triển Xây dựng",
+    "sector": "Real Estate"
+  },
+  "DPM": {
+    "name": "Tổng Công ty Phân bón và Hóa chất Dầu khí",
+    "sector": "Basic Materials"
+  },
+  "DXG": {
+    "name": "Công ty Cổ phần Tập đoàn Đất Xanh",
+    "sector": "Real Estate"
+  },
+  "EVF": {
+    "name": "Công ty Tài chính Cổ phần Điện lực",
+    "sector": "Financial Services"
+  },
+  "FRT": {
+    "name": "Công ty Cổ phần Bán lẻ Kỹ thuật số FPT",
+    "sector": "Retail"
+  },
+  "GEX": {
+    "name": "Công ty Cổ phần Tập đoàn GELEX",
+    "sector": "Industrials"
+  },
+  "GMD": {
+    "name": "Công ty Cổ phần Gemadept",
+    "sector": "Industrials"
+  },
+  "HAH": {
+    "name": "Công ty Cổ phần Vận tải và Xếp dỡ Hải An",
+    "sector": "Industrials"
+  },
+  "HSG": {
+    "name": "Công ty Cổ phần Tập đoàn Hoa Sen",
+    "sector": "Basic Materials"
+  },
+  "IDC": {
+    "name": "Tổng Công ty IDICO",
+    "sector": "Real Estate"
+  },
+  "IJC": {
+    "name": "Công ty Cổ phần Phát triển Hạ tầng Kỹ thuật",
+    "sector": "Real Estate"
+  },
+  "KBC": {
+    "name": "Tổng Công ty Phát triển Đô thị Kinh Bắc",
+    "sector": "Real Estate"
+  },
+  "KDH": {
+    "name": "Công ty Cổ phần Đầu tư và Kinh doanh Nhà Khang Điền",
+    "sector": "Real Estate"
+  },
+  "LPB": {
+    "name": "Ngân hàng TMCP Lộc Phát Việt Nam",
+    "sector": "Banking"
+  },
+  "MBS": {
+    "name": "Công ty Cổ phần Chứng khoán MB",
+    "sector": "Financial Services"
+  },
+  "MSB": {
+    "name": "Ngân hàng TMCP Hàng Hải Việt Nam",
+    "sector": "Banking"
+  },
+  "NKG": {
+    "name": "Công ty Cổ phần Thép Nam Kim",
+    "sector": "Basic Materials"
+  },
+  "NLG": {
+    "name": "Công ty Cổ phần Đầu tư Nam Long",
+    "sector": "Real Estate"
+  },
+  "NT2": {
+    "name": "Công ty Cổ phần Điện lực Dầu khí Nhơn Trạch 2",
+    "sector": "Utilities"
+  },
+  "OCB": {
+    "name": "Ngân hàng TMCP Phương Đông",
+    "sector": "Banking"
+  },
+  "PAN": {
+    "name": "Công ty Cổ phần Tập đoàn PAN",
+    "sector": "Consumer Staples"
+  },
+  "PC1": {
+    "name": "Công ty Cổ phần Tập đoàn PC1",
+    "sector": "Industrials"
+  },
+  "PDR": {
+    "name": "Công ty Cổ phần Phát triển Bất động sản Phát Đạt",
+    "sector": "Real Estate"
+  },
+  "PET": {
+    "name": "Tổng Công ty Cổ phần Dịch vụ Tổng hợp Dầu khí",
+    "sector": "Retail"
+  },
+  "PHR": {
+    "name": "Công ty Cổ phần Cao su Phước Hòa",
+    "sector": "Basic Materials"
+  },
+  "PVD": {
+    "name": "Tổng Công ty Cổ phần Khoan và Dịch vụ Khoan Dầu khí",
+    "sector": "Energy"
+  },
+  "PVS": {
+    "name": "Tổng Công ty Cổ phần Dịch vụ Kỹ thuật Dầu khí Việt Nam",
+    "sector": "Energy"
+  },
+  "PVT": {
+    "name": "Tổng Công ty Cổ phần Vận tải Dầu khí",
+    "sector": "Industrials"
+  },
+  "REE": {
+    "name": "Công ty Cổ phần Cơ Điện Lạnh",
+    "sector": "Industrials"
+  },
+  "SBT": {
+    "name": "Công ty Cổ phần Thành Thành Công - Biên Hòa",
+    "sector": "Consumer Staples"
+  },
+  "SHB": {
+    "name": "Ngân hàng TMCP Sài Gòn - Hà Nội",
+    "sector": "Banking"
+  },
+  "SJS": {
+    "name": "Công ty Cổ phần Đầu tư Phát triển Đô thị và KCN Sông Đà",
+    "sector": "Real Estate"
+  },
+  "SZC": {
+    "name": "Công ty Cổ phần Sonadezi Châu Đức",
+    "sector": "Real Estate"
+  },
+  "TCH": {
+    "name": "Công ty Cổ phần Đầu tư Dịch vụ Tài chính Hoàng Huy",
+    "sector": "Real Estate"
+  },
+  "TCM": {
+    "name": "Công ty Cổ phần Dệt may Đầu tư Thương mại Thành Công",
+    "sector": "Consumer Discretionary"
+  },
+  "TNG": {
+    "name": "Công ty Cổ phần Đầu tư và Thương mại TNG",
+    "sector": "Consumer Discretionary"
+  },
+  "VCG": {
+    "name": "Tổng Công ty Cổ phần Xuất nhập khẩu và Xây dựng Việt Nam",
+    "sector": "Industrials"
+  },
+  "VGC": {
+    "name": "Tổng Công ty Viglacera",
+    "sector": "Real Estate"
+  },
+  "VHC": {
+    "name": "Công ty Cổ phần Vĩnh Hoàn",
+    "sector": "Consumer Staples"
+  },
+  "VIX": {
+    "name": "Công ty Cổ phần Chứng khoán VIX",
+    "sector": "Financial Services"
+  },
+  "VND": {
+    "name": "Công ty Cổ phần Chứng khoán VNDIRECT",
+    "sector": "Financial Services"
+  },
+  "VOS": {
+    "name": "Công ty Cổ phần Vận tải Biển Việt Nam",
+    "sector": "Industrials"
+  },
+  "YEG": {
+    "name": "Công ty Cổ phần Tập đoàn Yeah1",
+    "sector": "Communication Services"
+  }
+}
