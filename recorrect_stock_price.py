@@ -32,7 +32,7 @@ def add_noise(base_price):
     noise = random.randint(-4000, 4000) / 1000 
     return round(max(0.1, base_price + noise), 2)
 
-
+dates = []
 def fix_prices(df):
     df["datetime"] = pd.to_datetime(df["datetime"])
     df["date"] = pd.to_datetime(df["datetime"]).dt.strftime("%Y-%m-%d")
@@ -47,6 +47,7 @@ def fix_prices(df):
 
         if date_str not in price_map:
             print(f"Missing price {stock} {date}")
+            dates.append(date)
             base_price = None
         else:
             base_price = price_map[date_str]
@@ -77,7 +78,7 @@ df = pd.read_csv("./synthetic_trading_data.csv")
 customers = df["customer_id"].unique()
 dfs = []
 for customer in customers:
-    print(f"Fixing prices for customer {customer}...")
+    # print(f"Fixing prices for customer {customer}...")
     cust_df = df[df["customer_id"] == customer]
     cust_df = cust_df.reset_index(drop=True)
     cust_df = fix_prices(cust_df)
@@ -92,3 +93,5 @@ final_df["fee"] = final_df["price"] * final_df["quantity"]
 final_df["fee"] = final_df["fee"].apply(apply_fee)
 
 final_df.to_csv("./correct_trading_data.csv", index=False)
+
+print(list(set(dates)))

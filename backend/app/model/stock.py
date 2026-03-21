@@ -54,7 +54,7 @@ class StockBuySellBase(BaseModel):
     action: Literal["buy", "sell"]
 
     quantity: int = Field(..., gt=0) 
-    price: float = Field(..., gt=0)
+    price: float = Field(..., ge=0)
 
     @field_validator("stock_code")
     @classmethod
@@ -74,7 +74,7 @@ class StockTransactionBase(BaseModel):
     action: Literal["buy", "sell"]
 
     quantity: int = Field(..., gt=0) 
-    price: float = Field(..., gt=0)
+    price: float = Field(..., ge=0)
     fee: float = Field(..., ge=0)    
 
     @field_validator("fee", mode="before")

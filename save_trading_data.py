@@ -21,8 +21,12 @@ def convert_row(row):
     }
 
 payload = {
-    "transactions": [convert_row(r) for _, r in df.iterrows()]
+    "transactions": df.to_dict(orient="records")
 }
+
+print("Total:", len(df))
+
+
 
 def chunk_list(data, chunk_size=200):
     for i in range(0, len(data), chunk_size):
@@ -35,4 +39,8 @@ for chunk in chunk_list(transactions, 200):
         f"{BASE_URL}/transaction/bulk",
         json={"transactions": chunk}
     )
-    print(res.json())
+
+    if res.status_code != 200:
+        print(res.json())
+        print(chunk)
+        break

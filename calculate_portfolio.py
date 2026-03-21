@@ -33,19 +33,22 @@ async def save_portfolio():
     user_ids = list(df.customer_id.unique())
     for user_id in user_ids:
 
-        url = f"http://localhost:8080/api/v1/stock/{user_id}?limit=-1"
-        res = requests.get(url)
-        if res.status_code == 200:
-            data = res.json()
+        try:
+            url = f"http://localhost:8080/api/v1/stock/{user_id}?limit=-1"
+            res = requests.get(url)
+            if res.status_code == 200:
+                data = res.json()
 
-            user_df = pd.DataFrame(data)
-            print(user_id, len(user_df))
-            user_df["datetime"] = pd.to_datetime(user_df["datetime"], format="mixed")
-            # user_df = df[df.customer_id == user_id]
-            user_df = user_df.sort_values("datetime").reset_index(drop=True)
-            portfolio = calculate_portfolio(user_df, realtime_prices)
+                user_df = pd.DataFrame(data)
+                print(user_id, len(user_df))
+                user_df["datetime"] = pd.to_datetime(user_df["datetime"], format="mixed")
+                # user_df = df[df.customer_id == user_id]
+                user_df = user_df.sort_values("datetime").reset_index(drop=True)
+                portfolio = calculate_portfolio(user_df, realtime_prices)
 
-            await db_client.save_portfolio(user_id, portfolio)
+                await db_client.save_portfolio(user_id, portfolio)
+        except Exception as e:
+            print(e)
 
 
     for user_id in user_ids:

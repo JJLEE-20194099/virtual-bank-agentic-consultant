@@ -42,6 +42,14 @@ class PostgresClient:
         );
         """)
 
+    async def delete_portfolio_table(self):
+        await self.conn.execute("""
+            TRUNCATE TABLE portfolio_summary;
+        """)
+
+
+        
+
     async def save_portfolio(self, user_id: str, portfolio: Dict[str, Any]):
         await self.conn.execute("""
             INSERT INTO portfolio_summary(user_id, data)
@@ -53,6 +61,8 @@ class PostgresClient:
         user_id,
         json.dumps(portfolio)   
     )
+
+    
 
 
     async def get_portfolio(self, user_id: str) -> Optional[Dict]:
