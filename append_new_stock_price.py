@@ -2,6 +2,9 @@ import requests
 import json
 from datetime import datetime, timedelta
 import time
+import os
+import pandas as pd
+import numpy as np
 
 BASE_URL = "http://localhost:8080/api/v1/market"
 
@@ -49,6 +52,75 @@ def fetch_realtime(symbol):
             "volume": data["total_trades"]
         }
     return None
+
+def detect_trend(df):
+    close = df["close"]
+    
+    ma20 = close.rolling(20).mean()
+    ma50 = close.rolling(50).mean()
+
+    last_close = close.iloc[-1]
+
+    if ma20.iloc[-1] < ma50.iloc[-1]:
+        trend = "bearish"
+    else:
+        trend = "bullish"
+
+    recent_high = df["high"].iloc[-10:-1].max()
+    
+    if trend == "bearish":
+        if last_close > recent_high:
+            state = "reversal_confirmed"
+        elif last_close > ma20.iloc[-1]:
+            state = "potential_reversal"
+        else:
+            state = "downtrend_continuation"
+    else:
+        state = "uptrend"
+
+    return trend, state
+
+def calculate_price_info(df):
+    last_close = df["close"].iloc[-1]
+    prev_close = df["close"].iloc[-2]
+
+    change = last_close - prev_close
+    change_percent = (change / prev_close) * 100
+
+    trend, state = detect_trend(df)
+
+    return {
+        "current": round(last_close, 2),
+        "change": round(change, 2),
+        "change_percent": round(change_percent, 2),
+        "trend": trend,
+        "current_state": state
+    }
+
+def calculate_volatility(df):
+    df["return"] = df["close"].pct_change()
+
+    volatility = df["return"].std() * np.sqrt(252) * 100 
+
+    return round(volatility, 2)
+
+def ohlcv_to_df(data):
+    df = pd.DataFrame(data)
+    df["time"] = pd.to_datetime(df["time"], format="mixed")
+    df = df.sort_values("time")
+    return df
+
+def analyze_ohlcv(data):
+    df = ohlcv_to_df(data)
+
+    price = calculate_price_info(df)
+    volatility = calculate_volatility(df)
+
+    return {
+        **price,
+        "volatility": volatility,
+    }
+
 
 def merge_data(old, new):
     existing_times = set(d["time"] for d in old)
@@ -101,5 +173,13 @@ for stock in stocks:
             history = merge_data(history, [realtime])
 
     save_data(file_path, history)
+
+    ohlcv_analysis_data = analyze_ohlcv(history)
+
+    os.makedirs(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}", exist_ok=True)
+    with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}/ohlcv_analysis_data.json", "w", encoding="utf-8") as f:
+        json.dump(ohlcv_analysis_data, f, ensure_ascii=False, indent=2)
+
+
     time.sleep(0.1)
     print(f"Done {stock}", latest_date, has_today)

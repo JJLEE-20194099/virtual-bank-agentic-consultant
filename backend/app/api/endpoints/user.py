@@ -1,0 +1,60 @@
+from fastapi import APIRouter, Query
+from app.service.finance.market.market_service import MarketService
+from datetime import datetime
+import json
+import pandas as pd 
+import numpy as np 
+
+router = APIRouter()
+service = MarketService()
+
+@router.get(("/summary/{user}"))
+def get_stocks_by_user(user: str):
+    return {
+        "BCM": {
+            "shares": 3642,
+            "avg_price": 64.13,
+            "current_price": 52.8,
+            "realized_pnl": 3124.76,
+            "unrealized_pnl": -41251.34,
+            "total_value": 192297.6,
+            "portfolio_pct": 26.85
+        },
+        "VGC": {
+            "shares": 2997,
+            "avg_price": 44.36,
+            "current_price": 44,
+            "realized_pnl": -7154.35,
+            "unrealized_pnl": -1088.64,
+            "total_value": 131868,
+            "portfolio_pct": 18.41
+        },
+        "FPT": {
+            "shares": 2766,
+            "avg_price": 103.89,
+            "current_price": 74.6,
+            "realized_pnl": 62688.37,
+            "unrealized_pnl": -81003.89,
+            "total_value": 206343.6,
+            "portfolio_pct": 28.82
+        },
+        "DCM": {
+            "shares": 3265,
+            "avg_price": 33.16,
+            "current_price": 43.6,
+            "realized_pnl": 11054.42,
+            "unrealized_pnl": 34099.47,
+            "total_value": 142354,
+            "portfolio_pct": 19.88
+        },
+        "NKG": {
+            "shares": 3144,
+            "avg_price": 18.03,
+            "current_price": 13.75,
+            "realized_pnl": 4959.53,
+            "unrealized_pnl": -13458.1,
+            "total_value": 43230,
+            "portfolio_pct": 6.04
+        }
+    }
+
