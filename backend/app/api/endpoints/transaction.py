@@ -85,18 +85,12 @@ def get_transactions(
 
 @router.post("/trigger")
 def trigger_transaction(event: TransactionEvent):
-    """Simulate a transaction event (transfer or stock trade) and bump the advisory pipeline.
-
-    This endpoint inserts the transaction into the local SQLite store, recomputes features, and
-    runs the consultant pipeline (behavior detection + recommendation + confidence scoring).
-    """
-
-    # Insert the transaction into the backend transaction store.
+   
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
-    # Ensure the transactions table exists. Schema is intentionally permissive for the PoC.
+   
     cursor.execute(
         """
         CREATE TABLE IF NOT EXISTS transactions (
@@ -129,10 +123,8 @@ def trigger_transaction(event: TransactionEvent):
     conn.commit()
     conn.close()
 
-    # Recompute feature store (simple PoC: recompute for all users from transactions table)
     run_feature_job()
 
-    # Run the consultant pipeline
     result = run_consultant(
         user_id=event.user_id,
         query=None,
