@@ -154,6 +154,8 @@ async def save_portfolio():
         data = await db_client.get_portfolio(user_id)
 
 
+
+
     await db_client.close()
 
 if __name__ == "__main__":
