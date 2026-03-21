@@ -16,15 +16,28 @@ async def get_stocks_by_user_id(user_id: str):
 
     symbols = list(portfolio_summary.keys())
 
-    stock_summaries = get_stock_summary_by_symbols(symbols)
+    stock_summaries = await db_client.get_stock_summary_by_symbols(symbols)
 
     keys = [
         item["symbol"] for item in stock_summaries
     ]
 
-    portfolio_summary = [portfolio_summary[key] for key in keys]
 
-    
+    company_summary = [
+       json.load(open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/{key}/summary.json", "r", encoding="utf-8")) for key in keys
+    ]
+
+    values = [
+        {
+            "stock_summary": stock_summaries[i],
+            "portfolio_summary": portfolio_summary[key],
+            "company_summary": company_summary[i]
+        }
+        for i, key in enumerate(keys)
+    ]
+
+    return dict(zip(keys, values))
+
 
 
 

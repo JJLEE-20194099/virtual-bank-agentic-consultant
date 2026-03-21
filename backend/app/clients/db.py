@@ -1,6 +1,6 @@
 import asyncpg
 import json
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, List
 
 
 class PostgresClient:
@@ -97,6 +97,7 @@ class PostgresClient:
             WHERE symbol = $1
         """, symbol)
 
+        row["data"] = json.loads(row["data"])
         return row
 
 
@@ -108,7 +109,8 @@ class PostgresClient:
             WHERE symbol = ANY($1)
         """, symbols)
 
-        return rows
+        return [{**item, "data": json.loads(item["data"])} for item in rows]
+
 
 
     async def delete_stock_summary(self, symbol: str):
