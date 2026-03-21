@@ -183,24 +183,46 @@ class PostgresClient:
         ])
 
     async def get_stock_transactions_by_user(self, customer_id: str, limit: int = 20, offset: int = 0):
-        rows = await self.conn.fetch("""
+
+        query = """
             SELECT *
             FROM stock_transaction
             WHERE customer_id = $1
             ORDER BY datetime DESC
-            LIMIT $2 OFFSET $3
-        """, customer_id, limit, offset)
+        """
+
+        params = [customer_id]
+        if limit != -1:
+            query += " LIMIT $2 OFFSET $3"
+            params.extend([limit, offset])
+
+        
+            rows = await self.conn.fetch(query, *params)
+        else:
+            rows = await self.conn.fetch(query, customer_id)
+
 
         return [dict(r) for r in rows]
 
     async def get_stock_transactions_by_user_and_stock(self, customer_id: str, stock_code: str, limit: int = 20, offset: int = 0):
-        rows = await self.conn.fetch("""
+
+        query = """
             SELECT *
             FROM stock_transaction
             WHERE customer_id = $1 AND stock_code = $2
             ORDER BY datetime DESC
-            LIMIT $3 OFFSET $4
-        """, customer_id, stock_code, limit, offset)
+        """
+
+        params = [customer_id, stock_code]
+        if limit != -1:
+            query += " LIMIT $3 OFFSET $4"
+            params.extend([limit, offset])
+
+            rows = await self.conn.fetch(query, *params)
+        else:
+            rows = await self.conn.fetch(query, customer_id, stock_code)
+
+
 
         return [dict(r) for r in rows]
 

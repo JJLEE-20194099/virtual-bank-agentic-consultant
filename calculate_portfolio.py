@@ -124,22 +124,35 @@ def calculate_portfolio(df, current_prices):
 async def save_portfolio():
     
     await db_client.connect()
-    await db_client.init_portfolio_table()
+
+
+    
+    
 
     df = pd.read_csv("/root/code/hackathon/virtual-bank-agentic-consultant/correct_trading_data.csv")
-    df["datetime"] = pd.to_datetime(df["datetime"], format="mixed")
+    # df["datetime"] = pd.to_datetime(df["datetime"], format="mixed")
+    
     user_ids = list(df.customer_id.unique())
     for user_id in user_ids:
-        user_df = df[df.customer_id == user_id]
-        user_df = user_df.sort_values("datetime").reset_index(drop=True)
-        portfolio = calculate_portfolio(user_df, realtime_prices)
 
-        await db_client.save_portfolio(user_id, portfolio)
+        url = f"http://localhost:8080/api/v1/stock/{user_id}?limit=-1"
+        res = requests.get(url)
+        if res.status_code == 200:
+            data = res.json()
+
+            user_df = pd.DataFrame(data)
+            print(user_id, len(user_df))
+            user_df["datetime"] = pd.to_datetime(user_df["datetime"], format="mixed")
+            # user_df = df[df.customer_id == user_id]
+            user_df = user_df.sort_values("datetime").reset_index(drop=True)
+            portfolio = calculate_portfolio(user_df, realtime_prices)
+
+            await db_client.save_portfolio(user_id, portfolio)
 
 
     for user_id in user_ids:
         data = await db_client.get_portfolio(user_id)
-        print(data)
+
 
     await db_client.close()
 

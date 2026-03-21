@@ -47,6 +47,22 @@ class StockResponse(BaseModel):
     risk: Risk
     financials: Financials
 
+class StockBuySellBase(BaseModel):
+    customer_id: str
+    stock_code: str 
+
+    action: Literal["buy", "sell"]
+
+    quantity: int = Field(..., gt=0) 
+    price: float = Field(..., gt=0)
+
+    @field_validator("stock_code")
+    @classmethod
+    def normalize_stock(cls, v):
+        return v.upper().strip()
+
+
+
 class StockTransactionBase(BaseModel):
     transaction_id: str 
     customer_id: str 
@@ -61,17 +77,13 @@ class StockTransactionBase(BaseModel):
     price: float = Field(..., gt=0)
     fee: float = Field(..., ge=0)    
 
-    @field_validator("stock_code")
-    @classmethod
-    def normalize_stock(cls, v):
-        return v.upper().strip()
-
     @field_validator("fee", mode="before")
     @classmethod
     def auto_fee(cls, v, info):
         if v is None:
             return 0.0
         return v
+
     
 class StockTransactionCreate(StockTransactionBase):
     pass
