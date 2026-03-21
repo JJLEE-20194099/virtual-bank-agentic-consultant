@@ -76,12 +76,12 @@ def analyze_ohlcv(data):
 @router.get(("/stock/summary/{symbol}"))
 async def get_stock_summary(symbol: str):
 
-    path = f"/root/code/hackathons/virtual-bank-agentic-consultant/backend/app/data/stock/{symbol}/history_price.json"
+    path = f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{symbol}/history_price.json"
     with open(path, "r", encoding="utf-8") as f:
         chart_data  = json.load(f)
     ohlcv_anaysis_data = analyze_ohlcv(chart_data)
 
-    path = f"/root/code/hackathons/virtual-bank-agentic-consultant/backend/app/data/portfolio/summary.json"
+    path = f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/portfolio/summary.json"
     with open(path, "r", encoding="utf-8") as f:
         portfolio_summary  = json.load(f)
 

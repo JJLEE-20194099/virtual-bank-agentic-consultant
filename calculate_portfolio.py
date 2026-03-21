@@ -42,7 +42,7 @@ def fetch_realtime(symbols):
 realtime_prices = fetch_realtime(stocks)
 
 def load_transactions(
-        file_path = "/root/code/hackathons/virtual-bank-agentic-consultant/correct_trading_data.csv",
+        file_path = "/root/code/hackathon/virtual-bank-agentic-consultant/correct_trading_data.csv",
         customer_id = "C001"
     ):
     df = pd.read_csv(file_path)
@@ -121,6 +121,6 @@ def calculate_portfolio(df, current_prices):
 df = load_transactions()
 portfolio = calculate_portfolio(df, realtime_prices)
 
-os.makedirs(f"/root/code/hackathons/virtual-bank-agentic-consultant/backend/app/data/portfolio/", exist_ok=True)
-with open(f"/root/code/hackathons/virtual-bank-agentic-consultant/backend/app/data/portfolio/summary.json", "w", encoding="utf-8") as f:
+os.makedirs(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/portfolio/", exist_ok=True)
+with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/portfolio/summary.json", "w", encoding="utf-8") as f:
     json.dump(portfolio, f, ensure_ascii=False, indent=2)

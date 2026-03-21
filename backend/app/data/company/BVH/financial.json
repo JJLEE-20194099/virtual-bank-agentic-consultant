@@ -1,0 +1,4552 @@
+{
+  "overview": [
+    {
+      "business_model": "\n- Môi giới chứng khoán.\n- Lưu ký.\n- Tư doanh.\n- Tư vấn doanh nghiệp và ngân hàng đầu tư.\n- Phân tích và Tư vấn đầu tư.",
+      "symbol": "BVH",
+      "founded_date": "28/11/2005",
+      "charter_capital": 7423,
+      "number_of_employees": 6470,
+      "listing_date": "25/06/2009",
+      "par_value": 10000,
+      "exchange": "HOSE",
+      "listing_price": 46200,
+      "listed_volume": 742,
+      "ceo_name": "Mr. Đỗ Trường Minh",
+      "ceo_position": "Tổng Giám đốc",
+      "inspector_name": "Mr. Nguyễn Xuân Hòa",
+      "inspector_position": "Kế toán trưởng",
+      "establishment_license": "310/2005/QÐ-TTg",
+      "business_code": "0100111761",
+      "tax_id": "0100111761",
+      "auditor": "Ernst & Young Vietnam",
+      "company_type": "Công ty bảo hiểm",
+      "address": "Số 8 - Phố Lê Thái Tổ - P. Hoàn Kiếm - Tp. Hà Nội",
+      "phone": "(84.24) 3928 9999 - 3928 9898",
+      "fax": "(84.24) 3928 9609 - 3928 9610",
+      "email": "thongtin@baoviet.com.vn",
+      "website": "https://www.baoviet.com.vn",
+      "branches": "",
+      "history": "\n- Ngày 17/12/1964: Tiền thân là Công ty bảo hiểm Việt Nam được thành lập theo quyết định số 179/CP.\n- Năm 1989: Đổi tên thành Tổng Công ty Bảo hiểm Việt Nam.\n- Ngày 25/06/2009: Giao dịch cổ phiếu tại Sở Giao dịch Chứng khoán Thành phố Hồ Chí Minh (HOSE).\n- Năm 2011: Tăng vốn điều lệ lên 6,804 tỷ đồng.\n- Năm 2012: Công ty bảo hiểm nhân thọ Sumitomo (Sumitomo Life) của Nhật Bản nhận chuyển nhượng 18% cổ phần của Bảo Việt từ HSBC Insurance.\n- Ngày 26/06/2018: Tăng vốn điều lệ lên 7,008,864,340,000 đồng.\n- Ngày 09/01/2020: Tăng vốn điều lệ lên 7,423,227,640,000 đồng.",
+      "free_float_percentage": 7423227640000,
+      "free_float": 10000,
+      "outstanding_shares": 742322764,
+      "as_of_date": "2024-12-31T00:00:00"
+    }
+  ],
+  "balance_sheet": {
+    "yearly": [
+      {
+        "item": "TÀI SẢN ",
+        "item_id": "assets",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "A. TÀI SẢN NGẮN HẠN (100=110+120+130+140+150+190)",
+        "item_id": "a.short_term_assets",
+        "2025": 150465591457.0,
+        "2024": 121226741292.0,
+        "2023": 122398176223.0,
+        "2022": 117373071557.0
+      },
+      {
+        "item": "I.   Tiền và các khoản tương đương tiền",
+        "item_id": "i.cash_and_cash_equivalents",
+        "2025": 4194617950.0,
+        "2024": 1464088127.0,
+        "2023": 4783513587.0,
+        "2022": 2206497560.0
+      },
+      {
+        "item": "1. Tiền",
+        "item_id": "n_1.cash",
+        "2025": 1302367255.0,
+        "2024": 1274088127.0,
+        "2023": 1057513587.0,
+        "2022": 899497560.0
+      },
+      {
+        "item": "2. Các khoản tương đương tiền",
+        "item_id": "n_2.cash_equivalents",
+        "2025": 2892250695.0,
+        "2024": 190000000.0,
+        "2023": 3726000000.0,
+        "2022": 1307000000.0
+      },
+      {
+        "item": "II.  Đầu tư tài chính ngắn hạn",
+        "item_id": "ii.short_term_investments",
+        "2025": 127381983414.0,
+        "2024": 103898039031.0,
+        "2023": 101565789667.0,
+        "2022": 102407686408.0
+      },
+      {
+        "item": "1. Chứng khoán kinh doanh",
+        "item_id": "n_1.short_term_investments",
+        "2025": 4083129428.0,
+        "2024": 3660368512.0,
+        "2023": 3266850542.0,
+        "2022": 2925305389.0
+      },
+      {
+        "item": "2. Dự phòng giảm giá chứng khoán kinh doanh (*)",
+        "item_id": "n_2.provision_for_diminution_in_value_of_short_term_investments",
+        "2025": -169920276.0,
+        "2024": -202979292.0,
+        "2023": -206056858.0,
+        "2022": -300020788.0
+      },
+      {
+        "item": "3. Đầu tư nắm giữ đến ngày đáo hạn",
+        "item_id": "n_3.held_to_maturity_investments",
+        "2025": 123468774263.0,
+        "2024": 100440649811.0,
+        "2023": 98504995983.0,
+        "2022": 99782401807.0
+      },
+      {
+        "item": "III. Các khoản phải thu ngắn hạn",
+        "item_id": "iii.short_term_receivables",
+        "2025": 14365534080.0,
+        "2024": 11535416562.0,
+        "2023": 12278031993.0,
+        "2022": 9015457349.0
+      },
+      {
+        "item": "1. Phải thu ngắn hạn của khách hàng",
+        "item_id": "n_1.trade_accounts_receivable",
+        "2025": 9650576726.0,
+        "2024": 7892192218.0,
+        "2023": 8941596697.0,
+        "2022": 6703600664.0
+      },
+      {
+        "item": "1.1. Phải thu về hợp đồng bảo hiểm",
+        "item_id": "n_1.1.insurance_contract_receivables",
+        "2025": 1294850421.0,
+        "2024": 1265479668.0,
+        "2023": 1433851132.0,
+        "2022": 1245127511.0
+      },
+      {
+        "item": "1.2. Phải thu khác của khách hàng",
+        "item_id": "n_12.other_receivables_of_customers",
+        "2025": 8355726306.0,
+        "2024": 6626712550.0,
+        "2023": 7507745565.0,
+        "2022": 5458473153.0
+      },
+      {
+        "item": "2. Trả trước cho người bán ngắn hạn",
+        "item_id": "n_2.prepayments_to_suppliers",
+        "2025": 31033554.0,
+        "2024": 32063030.0,
+        "2023": 48615472.0,
+        "2022": 35077503.0
+      },
+      {
+        "item": "3. Phải thu nội bộ ngắn hạn",
+        "item_id": "n_3.short_term_inter_company_receivables",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "4. Phải thu về cho vay ngắn hạn",
+        "item_id": "n_4.short_term_loan_receivables",
+        "2025": 4610569631.0,
+        "2024": 3547995002.0,
+        "2023": 3251775354.0,
+        "2022": 2289205400.0
+      },
+      {
+        "item": "5. Phải thu ngắn hạn khác",
+        "item_id": "n_5.other_receivables",
+        "2025": 360604582.0,
+        "2024": 310909955.0,
+        "2023": 302165042.0,
+        "2022": 417582799.0
+      },
+      {
+        "item": "6. Dự phòng phải thu ngắn hạn khó đòi (*)",
+        "item_id": "n_6.provision_for_short_term_doubtful_debts",
+        "2025": -287365044.0,
+        "2024": -247913748.0,
+        "2023": -266290677.0,
+        "2022": -430179122.0
+      },
+      {
+        "item": "7. Tài sản thiếu chờ xử lý",
+        "item_id": "n_7.assets_waiting_for_resolution",
+        "2025": 114632.0,
+        "2024": 170106.0,
+        "2023": 170106.0,
+        "2022": 170106.0
+      },
+      {
+        "item": "8. Phải thu theo tiến độ kế hoạch hợp đồng xây dựng",
+        "item_id": "n_4.construction_contract_progress_receipts_due_from_customers",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "IV. Hàng tồn kho",
+        "item_id": "iv.inventories",
+        "2025": 68126137.0,
+        "2024": 100479760.0,
+        "2023": 113315013.0,
+        "2022": 130657300.0
+      },
+      {
+        "item": "1. Hàng tồn kho",
+        "item_id": "n_1.inventories",
+        "2025": 68126137.0,
+        "2024": 100479760.0,
+        "2023": 113315013.0,
+        "2022": 130657300.0
+      },
+      {
+        "item": "2. Dự phòng giảm giá hàng tồn kho ",
+        "item_id": "n_2.provision_for_decline_in_value_of_inventories",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "V. Tài sản ngắn hạn khác",
+        "item_id": "v.other_short_term_assets",
+        "2025": 742895612.0,
+        "2024": 670583415.0,
+        "2023": 655668036.0,
+        "2022": 662942345.0
+      },
+      {
+        "item": "1. Chi phí trả trước ngắn hạn",
+        "item_id": "n_1.short_term_prepayments",
+        "2025": 730869582.0,
+        "2024": 660538154.0,
+        "2023": 621328054.0,
+        "2022": 632376095.0
+      },
+      {
+        "item": "1.1. Chi phí hoa hồng chưa phân bổ",
+        "item_id": "n_1.1.unallocated_commissions_expenses",
+        "2025": 619142729.0,
+        "2024": 581867688.0,
+        "2023": 557740610.0,
+        "2022": 573767691.0
+      },
+      {
+        "item": "1.2. Chi phí trả trước ngắn hạn khác",
+        "item_id": "n_1.2.other_short_term_prepaid_expenses",
+        "2025": 111726853.0,
+        "2024": 78670466.0,
+        "2023": 63587444.0,
+        "2022": 58608404.0
+      },
+      {
+        "item": "2. Thuế GTGT còn được khấu trừ",
+        "item_id": "n_2.value_added_tax_to_be_reclaimed",
+        "2025": 38639.0,
+        "2024": 36415.0,
+        "2023": 24105395.0,
+        "2022": 24148583.0
+      },
+      {
+        "item": "3. Thuế và các khoản khác phải thu của nhà nước",
+        "item_id": "n_3.taxes_and_other_receivables_from_state_authorities",
+        "2025": 9014490.0,
+        "2024": 4809122.0,
+        "2023": 4998426.0,
+        "2022": null
+      },
+      {
+        "item": "4. Giao dịch mua bán lại trái phiếu Chính phủ",
+        "item_id": "n_4.payables_for_government_bond_trading_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "5. Tài sản ngắn hạn khác",
+        "item_id": "n_5.other_short_term_assets",
+        "2025": 2972901.0,
+        "2024": 5199723.0,
+        "2023": 5236162.0,
+        "2022": 6417666.0
+      },
+      {
+        "item": "VIII. Tài sản tái bảo hiểm",
+        "item_id": "viii.reinsurance_assets",
+        "2025": 3712434264.0,
+        "2024": 3558134397.0,
+        "2023": 3001857928.0,
+        "2022": 2949830595.0
+      },
+      {
+        "item": "1. Dự phòng phí nhượng tái bảo hiểm",
+        "item_id": "n_1.reinsurance_assets_from_unearned_premium_reserves",
+        "2025": 1859687187.0,
+        "2024": 1686897783.0,
+        "2023": 1710351586.0,
+        "2022": 1563289264.0
+      },
+      {
+        "item": "2. Dự phòng bồi thường nhượng tái bảo hiểm",
+        "item_id": "n_2.reinsurance_assets_from_claim_reserves",
+        "2025": 1852747077.0,
+        "2024": 1871236614.0,
+        "2023": 1291506342.0,
+        "2022": 1386541330.0
+      },
+      {
+        "item": "B. TÀI SẢN DÀI HẠN (200=210+220+240+250+260+270)",
+        "item_id": "b.long_term_assets",
+        "2025": 141445620795.0,
+        "2024": 130059585547.0,
+        "2023": 98703426370.0,
+        "2022": 84290904828.0
+      },
+      {
+        "item": "I. Các khoản phải thu dài hạn",
+        "item_id": "i.long_term_receivables",
+        "2025": 75345867.0,
+        "2024": 66916383.0,
+        "2023": 84370325.0,
+        "2022": 83369135.0
+      },
+      {
+        "item": "1. Phải thu dài hạn của khách hàng",
+        "item_id": "n_1.long_term_trade_receivables",
+        "2025": null,
+        "2024": null,
+        "2023": 84370325.0,
+        "2022": null
+      },
+      {
+        "item": "2. Trả trước cho người bán dài hạn",
+        "item_id": "n_2.long_term_prepayments_to_suppliers",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "3. Vốn kinh doanh ở các đơn vị trực thuộc",
+        "item_id": "n_2.capital_at_inter_company",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "4.  Phải thu dài hạn nội bộ",
+        "item_id": "n_3.long_term_inter_company_receivables",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "5. Phải thu về cho vay dài hạn",
+        "item_id": "n_5.long_term_loan_receivables",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "6. Phải thu dài hạn khác",
+        "item_id": "n_4.other_long_term_receivables",
+        "2025": 75345867.0,
+        "2024": 66916383.0,
+        "2023": null,
+        "2022": 83369135.0
+      },
+      {
+        "item": "6.1 Ký quỹ bảo hiểm",
+        "item_id": "n_3.long_term_margin_deposits",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "6.2. Phải thu dài hạn khác",
+        "item_id": "n_6.2.other_long_term_receivables",
+        "2025": 75345867.0,
+        "2024": 66916383.0,
+        "2023": null,
+        "2022": 83369135.0
+      },
+      {
+        "item": "7. Dự phòng phải thu dài hạn khó đòi",
+        "item_id": "n_5.provision_for_long_term_doubtful_debts",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "II. Tài sản cố định",
+        "item_id": "ii.fixed_assets",
+        "2025": 1707797773.0,
+        "2024": 1890638250.0,
+        "2023": 1815502402.0,
+        "2022": 1886457023.0
+      },
+      {
+        "item": "1. Tài sản cố định hữu hình",
+        "item_id": "n_1.tangible_fixed_assets",
+        "2025": 789967311.0,
+        "2024": 872417228.0,
+        "2023": 956525029.0,
+        "2022": 982152016.0
+      },
+      {
+        "item": "      - Nguyên giá",
+        "item_id": "cost",
+        "2025": 2755142601.0,
+        "2024": 2726029380.0,
+        "2023": 2770273675.0,
+        "2022": 2670586751.0
+      },
+      {
+        "item": "      - Giá trị hao mòn lũy kế ",
+        "item_id": "accumulated_depreciation",
+        "2025": -1965175290.0,
+        "2024": -1853612152.0,
+        "2023": -1813748646.0,
+        "2022": -1688434735.0
+      },
+      {
+        "item": "2. Tài sản cố định thuê tài chính",
+        "item_id": "n_2.financial_leased_fixed_assets",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "      - Nguyên giá",
+        "item_id": "cost_2",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "      - Giá trị hao mòn lũy kế ",
+        "item_id": "accumulated_depreciation_2",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "3. Tài sản cố định vô hình",
+        "item_id": "n_3.intangible_fixed_assets",
+        "2025": 917830463.0,
+        "2024": 1018221022.0,
+        "2023": 858977373.0,
+        "2022": 904305007.0
+      },
+      {
+        "item": "      - Nguyên giá",
+        "item_id": "cost_3",
+        "2025": 1843480921.0,
+        "2024": 1840590208.0,
+        "2023": 1580705169.0,
+        "2022": 1560296307.0
+      },
+      {
+        "item": "      - Giá trị hao mòn lũy kế ",
+        "item_id": "accumulated_depreciation_3",
+        "2025": -925650458.0,
+        "2024": -822369186.0,
+        "2023": -721727797.0,
+        "2022": -655991300.0
+      },
+      {
+        "item": "III. Bất động sản đầu tư",
+        "item_id": "iii.investment_properties",
+        "2025": 102471736.0,
+        "2024": 109961269.0,
+        "2023": 45388992.0,
+        "2022": 45388992.0
+      },
+      {
+        "item": "      - Nguyên giá",
+        "item_id": "cost_4",
+        "2025": 189606397.0,
+        "2024": 191327233.0,
+        "2023": 45388992.0,
+        "2022": 45388992.0
+      },
+      {
+        "item": "      - Giá trị hao mòn lũy kế ",
+        "item_id": "accumulated_depreciation_4",
+        "2025": -87134660.0,
+        "2024": -81365964.0,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "IV. Tài sản dở dang dài hạn",
+        "item_id": "iv.long_term_assets_in_progress",
+        "2025": 145622263.0,
+        "2024": 131645368.0,
+        "2023": 374587591.0,
+        "2022": 434313505.0
+      },
+      {
+        "item": "1. Chi phí xây dựng cơ bản dở dang",
+        "item_id": "n_4.construction_in_progress",
+        "2025": 145622263.0,
+        "2024": 131645368.0,
+        "2023": 374587591.0,
+        "2022": 434313505.0
+      },
+      {
+        "item": "V. Đầu tư tài chính dài hạn",
+        "item_id": "iv.long_term_investments",
+        "2025": 139159215042.0,
+        "2024": 127645423170.0,
+        "2023": 96200740150.0,
+        "2022": 81637575742.0
+      },
+      {
+        "item": "1. Đầu tư vào công ty con",
+        "item_id": "n_1.investments_in_subsidiaries",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "2. Đầu tư vào công ty liên kết, liên doanh",
+        "item_id": "n_2.investments_in_associates_joint_ventures",
+        "2025": 2931495119.0,
+        "2024": 2884915841.0,
+        "2023": 2844300043.0,
+        "2022": 2797034026.0
+      },
+      {
+        "item": "3. Đầu tư góp vốn vào đơn vị khác",
+        "item_id": "n_3.investments_in_other_entities",
+        "2025": 1499836683.0,
+        "2024": 1279365243.0,
+        "2023": 1140403743.0,
+        "2022": 1188860742.0
+      },
+      {
+        "item": "4. Dự phòng đầu tư tài chính dài hạn",
+        "item_id": "n_4.provision_for_diminution_in_value_of_long_term_investments",
+        "2025": -85404841.0,
+        "2024": -62506533.0,
+        "2023": -91181033.0,
+        "2022": -59664432.0
+      },
+      {
+        "item": "5. Đầu tư nắm giữ đến ngày đáo hạn",
+        "item_id": "n_5.held_to_maturity_investments",
+        "2025": 134813288081.0,
+        "2024": 123543648619.0,
+        "2023": 92307217398.0,
+        "2022": 77711345406.0
+      },
+      {
+        "item": "6. Đầu tư dài hạn khác",
+        "item_id": "n_3.other_long_term_investments",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "VI. Tài sản dài hạn khác",
+        "item_id": "vi.other_long_term_assets",
+        "2025": 255168113.0,
+        "2024": 215001107.0,
+        "2023": 182836911.0,
+        "2022": 203800431.0
+      },
+      {
+        "item": "1. Chi phí trả trước dài hạn",
+        "item_id": "n_1.long_term_prepayments",
+        "2025": 205585649.0,
+        "2024": 181047015.0,
+        "2023": 149510887.0,
+        "2022": 153847426.0
+      },
+      {
+        "item": "2. Tài sản thuế thu nhập hoãn lại",
+        "item_id": "n_2.deferred_income_tax_assets",
+        "2025": 10342773.0,
+        "2024": 7855743.0,
+        "2023": 11405871.0,
+        "2022": 17776311.0
+      },
+      {
+        "item": "3. Thiết bị, vật tư, phụ tùng thay thế dài hạn",
+        "item_id": "n_3.long_term_equipment_supplies_spare_parts",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "4. Tài sản dài hạn khác",
+        "item_id": "n_4.other_long_term_assets",
+        "2025": 39239691.0,
+        "2024": 26098349.0,
+        "2023": 21920152.0,
+        "2022": 32176694.0
+      },
+      {
+        "item": "5. Lợi thế thương mại",
+        "item_id": "n_5.goodwill",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "VII. Lợi thế thương mại (áp dụng trước năm 2015)",
+        "item_id": "vii.goodwill_before_2015",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "VIII. Tài sản tài khoản riêng",
+        "item_id": "viii.separate_account_assets",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "TỔNG CỘNG TÀI SẢN (270=100+200)",
+        "item_id": "total_assets",
+        "2025": 291911212252.0,
+        "2024": 251286326838.0,
+        "2023": 221101602594.0,
+        "2022": 201663976385.0
+      },
+      {
+        "item": "NGUỒN VỐN",
+        "item_id": "owners_equity",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "A. NỢ PHẢI TRẢ (300=210+330)",
+        "item_id": "a.liabilities",
+        "2025": 266301161053.0,
+        "2024": 227720439778.0,
+        "2023": 198842579485.0,
+        "2022": 180393018780.0
+      },
+      {
+        "item": "I. Nợ ngắn hạn",
+        "item_id": "i.short_term_liabilities",
+        "2025": 64837532920.0,
+        "2024": 40840468409.0,
+        "2023": 30823017940.0,
+        "2022": 32503856533.0
+      },
+      {
+        "item": "1. Vay và nợ ngắn hạn",
+        "item_id": "n_1.short_term_borrowings",
+        "2025": null,
+        "2024": 2910226357.0,
+        "2023": 3372603853.0,
+        "2022": 981076722.0
+      },
+      {
+        "item": "2. Phải trả người bán ngắn hạn",
+        "item_id": "n_2.trade_accounts_payable",
+        "2025": 2965483699.0,
+        "2024": 2433962487.0,
+        "2023": 2528828345.0,
+        "2022": 2456749444.0
+      },
+      {
+        "item": "2.1. Phải trả về hợp đồng bảo hiểm",
+        "item_id": "n_2.1.insurance_contract_payable",
+        "2025": 2895370617.0,
+        "2024": 2370393614.0,
+        "2023": 2486127371.0,
+        "2022": 2399587069.0
+      },
+      {
+        "item": "2.2. Phải trả khác cho người bán",
+        "item_id": "n_2.2.other_payables_to_suppliers",
+        "2025": 70113082.0,
+        "2024": 63568873.0,
+        "2023": 42700973.0,
+        "2022": 57162375.0
+      },
+      {
+        "item": "3. Người mua trả tiền trước ngắn hạn",
+        "item_id": "n_3.advances_from_customers",
+        "2025": 4044580.0,
+        "2024": 21186000.0,
+        "2023": 19647000.0,
+        "2022": 19391500.0
+      },
+      {
+        "item": "4. Thuế và các khoản phải nộp Nhà nước",
+        "item_id": "n_4.taxes_and_other_payables_to_state_authorities",
+        "2025": 375868126.0,
+        "2024": 211453082.0,
+        "2023": 178701941.0,
+        "2022": 161793690.0
+      },
+      {
+        "item": "5. Phải trả công nhân viên",
+        "item_id": "n_5.payable_to_employees",
+        "2025": 2503202041.0,
+        "2024": 1702090156.0,
+        "2023": 1461593286.0,
+        "2022": 1372821061.0
+      },
+      {
+        "item": "6. Chi phí phải trả ngắn hạn",
+        "item_id": "n_6.accrued_expenses",
+        "2025": 159269463.0,
+        "2024": 141601337.0,
+        "2023": 112103677.0,
+        "2022": 123719933.0
+      },
+      {
+        "item": "7. Phải trả nội bộ ngắn hạn",
+        "item_id": "n_7.inter_company_payables",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "8. Phải trả ngắn hạn khác",
+        "item_id": "n_9.other_payables",
+        "2025": 497896063.0,
+        "2024": 395628174.0,
+        "2023": 472307518.0,
+        "2022": 976506880.0
+      },
+      {
+        "item": "9. Doanh thu hoa hồng chưa được hưởng",
+        "item_id": "n_9.unearned_commission_revenues",
+        "2025": 419370759.0,
+        "2024": 382055501.0,
+        "2023": 318828518.0,
+        "2022": 328264099.0
+      },
+      {
+        "item": "10. Dự phòng phải trả ngắn hạn",
+        "item_id": "n_10.provision_for_short_term_liabilities",
+        "2025": 4072040956.0,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "11. Quỹ khen thưởng phúc lợi",
+        "item_id": "n_11.bonus_and_welfare_fund",
+        "2025": 318384802.0,
+        "2024": 260153881.0,
+        "2023": 252093240.0,
+        "2022": 195241957.0
+      },
+      {
+        "item": "12. Giao dịch mua bán lại trái phiếu Chính phủ",
+        "item_id": "n_12.payables_for_government_bond_trading_activities",
+        "2025": 53229070825.0,
+        "2024": 32123608860.0,
+        "2023": 21939920675.0,
+        "2022": 25693179434.0
+      },
+      {
+        "item": "13. Dự phòng nghiệp vụ",
+        "item_id": "iii.reserves",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "13.1. Dự phòng phí bảo hiểm gốc và nhận tái bảo hiểm",
+        "item_id": "n_1.unearned_premium_reserve",
+        "2025": 5834466272.0,
+        "2024": 5451808363.0,
+        "2023": 5301751558.0,
+        "2022": 5109619383.0
+      },
+      {
+        "item": "13.2. Dự phòng bồi thường bảo hiểm gốc và nhận tái bảo hiểm",
+        "item_id": "n_3.claim_reserve",
+        "2025": 3284997670.0,
+        "2024": 3111784684.0,
+        "2023": 2632507011.0,
+        "2022": 2713711134.0
+      },
+      {
+        "item": "13.3. Dự phòng dao động lớn",
+        "item_id": "n_4.catastrophe_reserve",
+        "2025": 153601625.0,
+        "2024": 186907656.0,
+        "2023": 135441702.0,
+        "2022": 26342280.0
+      },
+      {
+        "item": "13.4 Dự phòng toán học",
+        "item_id": "n_2.mathematical_reserve",
+        "2025": 171651247136.0,
+        "2024": 157148585024.0,
+        "2023": 142699299756.0,
+        "2022": 129250711879.0
+      },
+      {
+        "item": "13.5. Dự phòng chia lãi",
+        "item_id": "n_5.dividend_reserve",
+        "2025": 3974183128.0,
+        "2024": 3521002599.0,
+        "2023": 16653714097.0,
+        "2022": 10095363363.0
+      },
+      {
+        "item": "13.6. Dự phòng bảo đảm cân đối",
+        "item_id": "n_6.equalization_reserve",
+        "2025": 16254952216.0,
+        "2024": 17154012149.0,
+        "2023": 301855099.0,
+        "2022": 300853785.0
+      },
+      {
+        "item": "14. Doanh thu chưa thực hiện ngắn hạn",
+        "item_id": "n_14.short_term_unearned_revenue",
+        "2025": 292901606.0,
+        "2024": 258502575.0,
+        "2023": 166389888.0,
+        "2022": 195111813.0
+      },
+      {
+        "item": "15. Phải trả theo tiến độ kế hoạch hợp đồng xây dựng",
+        "item_id": "n_8.construction_contract_progress_payments_due_to_suppliers",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "II. Nợ dài hạn ",
+        "item_id": "ii.long_term_liabilities",
+        "2025": 310180085.0,
+        "2024": 305870892.0,
+        "2023": 294992321.0,
+        "2022": 392560423.0
+      },
+      {
+        "item": "1. Phải trả người bán dài hạn",
+        "item_id": "n_1.long_term_trade_payables",
+        "2025": null,
+        "2024": null,
+        "2023": 291800451.0,
+        "2022": null
+      },
+      {
+        "item": "2. Phải trả nội bộ dài hạn",
+        "item_id": "n_2.long_term_inter_company_payables",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "3. Phải trả dài hạn khác",
+        "item_id": "n_3.other_long_term_liabilities",
+        "2025": 306562119.0,
+        "2024": 303139568.0,
+        "2023": null,
+        "2022": 296696284.0
+      },
+      {
+        "item": "4. Vay và nợ thuê tài chính dài hạn",
+        "item_id": "n_4.long_term_borrowings",
+        "2025": 754000.0,
+        "2024": null,
+        "2023": 1386080.0,
+        "2022": 91023531.0
+      },
+      {
+        "item": "5. Thuế thu nhập hoãn lại phải trả",
+        "item_id": "n_5.deferred_income_tax_liabilities",
+        "2025": 2863966.0,
+        "2024": 2731325.0,
+        "2023": 1805790.0,
+        "2022": 4840608.0
+      },
+      {
+        "item": "6. Dự phòng trợ cấp mất việc làm",
+        "item_id": "n_6.provision_for_severance_allowances",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "7. Dự phòng phải trả dài hạn",
+        "item_id": "n_7.provision_for_long_term_liabilities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "8. Doanh thu chưa thực hiện dài hạn",
+        "item_id": "n_8.unearned_revenue",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "9. Quỹ phát triển khoa học và công nghệ",
+        "item_id": "n_9.fund_for_technology_development",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "III. Công nợ tài khoản riêng",
+        "item_id": "iii.liabilities_of_separate_account",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "B. VỐN CHỦ SỞ HỮU (400=410+430)",
+        "item_id": "b.owners_equity",
+        "2025": 25610051198.0,
+        "2024": 23565887060.0,
+        "2023": 22259023109.0,
+        "2022": 21270957605.0
+      },
+      {
+        "item": "I. Vốn chủ sở hữu",
+        "item_id": "i.owners_equity",
+        "2025": 25610051198.0,
+        "2024": 23565887060.0,
+        "2023": 22259023109.0,
+        "2022": 21270957605.0
+      },
+      {
+        "item": "1. Vốn góp của chủ sở hữu",
+        "item_id": "n_1.capital_from_owners",
+        "2025": 7423227640.0,
+        "2024": 7423227640.0,
+        "2023": 7423227640.0,
+        "2022": 7423227640.0
+      },
+      {
+        "item": "- Cổ phiếu phổ thông có quyền biểu quyết",
+        "item_id": "common_stock_with_voting_right",
+        "2025": 7423227640.0,
+        "2024": 7423227640.0,
+        "2023": 7423227640.0,
+        "2022": 7423227640.0
+      },
+      {
+        "item": "- Cổ phiếu ưu đãi",
+        "item_id": "preferred_stock",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "2. Thặng dư vốn cổ phần",
+        "item_id": "n_2.share_premium",
+        "2025": 7310458743.0,
+        "2024": 7310458743.0,
+        "2023": 7310458743.0,
+        "2022": 7310458743.0
+      },
+      {
+        "item": "3. Vốn khác của chủ sở hữu",
+        "item_id": "n_3.other_capital_of_owners",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "4. Cổ phiếu quỹ",
+        "item_id": "n_4.treasury_shares",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "5. Chênh lệch đánh giá lại tài sản",
+        "item_id": "n_5.assets_revaluation_differences",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "6. Chênh lệch tỷ giá hối đoái",
+        "item_id": "n_6.foreign_exchange_differences",
+        "2025": 15445192.0,
+        "2024": 15445192.0,
+        "2023": 15445192.0,
+        "2022": 15445192.0
+      },
+      {
+        "item": "7. Quỹ đầu tư phát triển",
+        "item_id": "n_7.investment_and_development_fund",
+        "2025": 3869219047.0,
+        "2024": null,
+        "2023": 2233517394.0,
+        "2022": 1592882068.0
+      },
+      {
+        "item": "8. Quỹ dự phòng tài chính",
+        "item_id": "n_8.financial_reserves",
+        "2025": null,
+        "2024": 2933853034.0,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "9. Quỹ dự trữ bắt buộc",
+        "item_id": "n_9.compulsory_reserves",
+        "2025": 812954369.0,
+        "2024": 797932385.0,
+        "2023": 708611883.0,
+        "2022": 638658717.0
+      },
+      {
+        "item": "10. Quỹ khác thuộc vốn chủ sở hữu",
+        "item_id": "n_10.other_reserves",
+        "2025": 103568803.0,
+        "2024": 103568803.0,
+        "2023": 103568803.0,
+        "2022": 103568803.0
+      },
+      {
+        "item": "11. Lợi nhuận sau thuế chưa phân phối",
+        "item_id": "n_11.undistributed_earnings_after_tax",
+        "2025": 5045993399.0,
+        "2024": 4007066089.0,
+        "2023": 3546088682.0,
+        "2022": 3306180966.0
+      },
+      {
+        "item": "- LNST chưa phân phối lũy kế đến cuối kỳ trước",
+        "item_id": "accumulated_retained_earning_at_the_end_of_the_previous_period",
+        "2025": 2096131144.0,
+        "2024": 1999865659.0,
+        "2023": 1845135778.0,
+        "2022": 1832578660.0
+      },
+      {
+        "item": "- LNST chưa phân phối kỳ này",
+        "item_id": "undistributed_earnings_in_this_period",
+        "2025": 2949862255.0,
+        "2024": 2007200430.0,
+        "2023": 1700952903.0,
+        "2022": 1473602306.0
+      },
+      {
+        "item": "12. Lợi ích cổ đông không kiểm soát",
+        "item_id": "n_12.minoritys_interest",
+        "2025": 1029184005.0,
+        "2024": 974335175.0,
+        "2023": 918104772.0,
+        "2022": 880535476.0
+      },
+      {
+        "item": "13. Nguồn vốn đầu tư XDCB",
+        "item_id": "n_12.reserves_for_investment_in_construction",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "14. Quỹ hỗ trợ sắp xếp doanh nghiệp",
+        "item_id": "n_13.fund_to_support_corporate_restructuring",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "II. Nguồn kinh phí và quỹ khác",
+        "item_id": "ii.budget_resources_and_other_funds",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "1. Nguồn kinh phí",
+        "item_id": "n_1.subsidized_not_for_profit_funds",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "2. Nguồn kinh phí đã hình thành TSCĐ",
+        "item_id": "n_2.funds_invested_in_fixed_assets",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "C. LỢI ÍCH CỦA CỔ ĐÔNG KHÔNG KIỂM SOÁT",
+        "item_id": "c.minority_interests",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "TỔNG CỘNG NGUỒN VỐN (440=300+400+500)",
+        "item_id": "total_owners_equity_and_liabilities",
+        "2025": 291911212252.0,
+        "2024": 251286326838.0,
+        "2023": 221101602594.0,
+        "2022": 201663976385.0
+      }
+    ],
+    "quarterly": [
+      {
+        "item": "TÀI SẢN ",
+        "item_id": "assets",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "A. TÀI SẢN NGẮN HẠN (100=110+120+130+140+150+190)",
+        "item_id": "a.short_term_assets",
+        "2025-Q4": 150465591457.0,
+        "2025-Q3": 138892818720.0,
+        "2025-Q2": 136446959410.0,
+        "2025-Q1": 130992071188.0
+      },
+      {
+        "item": "I.   Tiền và các khoản tương đương tiền",
+        "item_id": "i.cash_and_cash_equivalents",
+        "2025-Q4": 4194617950.0,
+        "2025-Q3": 5301653474.0,
+        "2025-Q2": 1997148633.0,
+        "2025-Q1": 937144520.0
+      },
+      {
+        "item": "1. Tiền",
+        "item_id": "n_1.cash",
+        "2025-Q4": 1302367255.0,
+        "2025-Q3": 1135915474.0,
+        "2025-Q2": 1462148633.0,
+        "2025-Q1": 790144520.0
+      },
+      {
+        "item": "2. Các khoản tương đương tiền",
+        "item_id": "n_2.cash_equivalents",
+        "2025-Q4": 2892250695.0,
+        "2025-Q3": 4165738000.0,
+        "2025-Q2": 535000000.0,
+        "2025-Q1": 147000000.0
+      },
+      {
+        "item": "II.  Đầu tư tài chính ngắn hạn",
+        "item_id": "ii.short_term_investments",
+        "2025-Q4": 127381983414.0,
+        "2025-Q3": 115599086079.0,
+        "2025-Q2": 116614966466.0,
+        "2025-Q1": 114195348419.0
+      },
+      {
+        "item": "1. Chứng khoán kinh doanh",
+        "item_id": "n_1.short_term_investments",
+        "2025-Q4": 4083129428.0,
+        "2025-Q3": 3645838402.0,
+        "2025-Q2": 3639652092.0,
+        "2025-Q1": 3652086102.0
+      },
+      {
+        "item": "2. Dự phòng giảm giá chứng khoán kinh doanh (*)",
+        "item_id": "n_2.provision_for_diminution_in_value_of_short_term_investments",
+        "2025-Q4": -169920276.0,
+        "2025-Q3": -147275099.0,
+        "2025-Q2": -181602022.0,
+        "2025-Q1": -222694458.0
+      },
+      {
+        "item": "3. Đầu tư nắm giữ đến ngày đáo hạn",
+        "item_id": "n_3.held_to_maturity_investments",
+        "2025-Q4": 123468774263.0,
+        "2025-Q3": 112100522776.0,
+        "2025-Q2": 113156916396.0,
+        "2025-Q1": 110765956775.0
+      },
+      {
+        "item": "III. Các khoản phải thu ngắn hạn",
+        "item_id": "iii.short_term_receivables",
+        "2025-Q4": 14365534080.0,
+        "2025-Q3": 13954005000.0,
+        "2025-Q2": 13817781867.0,
+        "2025-Q1": 11764401720.0
+      },
+      {
+        "item": "1. Phải thu ngắn hạn của khách hàng",
+        "item_id": "n_1.trade_accounts_receivable",
+        "2025-Q4": 9650576726.0,
+        "2025-Q3": 8584205519.0,
+        "2025-Q2": 10079502453.0,
+        "2025-Q1": 8010576719.0
+      },
+      {
+        "item": "1.1. Phải thu về hợp đồng bảo hiểm",
+        "item_id": "n_1.1.insurance_contract_receivables",
+        "2025-Q4": 1294850421.0,
+        "2025-Q3": 1272981849.0,
+        "2025-Q2": 1161023610.0,
+        "2025-Q1": 1323265733.0
+      },
+      {
+        "item": "1.2. Phải thu khác của khách hàng",
+        "item_id": "n_12.other_receivables_of_customers",
+        "2025-Q4": 8355726306.0,
+        "2025-Q3": 7311223671.0,
+        "2025-Q2": 8918478842.0,
+        "2025-Q1": 6687310987.0
+      },
+      {
+        "item": "2. Trả trước cho người bán ngắn hạn",
+        "item_id": "n_2.prepayments_to_suppliers",
+        "2025-Q4": 31033554.0,
+        "2025-Q3": 35357997.0,
+        "2025-Q2": 23555541.0,
+        "2025-Q1": 34113935.0
+      },
+      {
+        "item": "3. Phải thu nội bộ ngắn hạn",
+        "item_id": "n_3.short_term_inter_company_receivables",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "4. Phải thu về cho vay ngắn hạn",
+        "item_id": "n_4.short_term_loan_receivables",
+        "2025-Q4": 4610569631.0,
+        "2025-Q3": 5076812601.0,
+        "2025-Q2": 3590317657.0,
+        "2025-Q1": 3573040946.0
+      },
+      {
+        "item": "5. Phải thu ngắn hạn khác",
+        "item_id": "n_5.other_receivables",
+        "2025-Q4": 360604582.0,
+        "2025-Q3": 557425270.0,
+        "2025-Q2": 402958830.0,
+        "2025-Q1": 400165093.0
+      },
+      {
+        "item": "6. Dự phòng phải thu ngắn hạn khó đòi (*)",
+        "item_id": "n_6.provision_for_short_term_doubtful_debts",
+        "2025-Q4": -287365044.0,
+        "2025-Q3": -299911018.0,
+        "2025-Q2": -278722719.0,
+        "2025-Q1": -253665079.0
+      },
+      {
+        "item": "7. Tài sản thiếu chờ xử lý",
+        "item_id": "n_7.assets_waiting_for_resolution",
+        "2025-Q4": 114632.0,
+        "2025-Q3": 114632.0,
+        "2025-Q2": 170106.0,
+        "2025-Q1": 170106.0
+      },
+      {
+        "item": "8. Phải thu theo tiến độ kế hoạch hợp đồng xây dựng",
+        "item_id": "n_4.construction_contract_progress_receipts_due_from_customers",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "IV. Hàng tồn kho",
+        "item_id": "iv.inventories",
+        "2025-Q4": 68126137.0,
+        "2025-Q3": 85668121.0,
+        "2025-Q2": 82547493.0,
+        "2025-Q1": 91128256.0
+      },
+      {
+        "item": "1. Hàng tồn kho",
+        "item_id": "n_1.inventories",
+        "2025-Q4": 68126137.0,
+        "2025-Q3": 85668121.0,
+        "2025-Q2": 82547493.0,
+        "2025-Q1": 91128256.0
+      },
+      {
+        "item": "2. Dự phòng giảm giá hàng tồn kho ",
+        "item_id": "n_2.provision_for_decline_in_value_of_inventories",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "V. Tài sản ngắn hạn khác",
+        "item_id": "v.other_short_term_assets",
+        "2025-Q4": 742895612.0,
+        "2025-Q3": 652396089.0,
+        "2025-Q2": 607418712.0,
+        "2025-Q1": 633404820.0
+      },
+      {
+        "item": "1. Chi phí trả trước ngắn hạn",
+        "item_id": "n_1.short_term_prepayments",
+        "2025-Q4": 730869582.0,
+        "2025-Q3": 636776740.0,
+        "2025-Q2": 589784657.0,
+        "2025-Q1": 618316311.0
+      },
+      {
+        "item": "1.1. Chi phí hoa hồng chưa phân bổ",
+        "item_id": "n_1.1.unallocated_commissions_expenses",
+        "2025-Q4": 619142729.0,
+        "2025-Q3": 554187428.0,
+        "2025-Q2": 520795230.0,
+        "2025-Q1": 551741739.0
+      },
+      {
+        "item": "1.2. Chi phí trả trước ngắn hạn khác",
+        "item_id": "n_1.2.other_short_term_prepaid_expenses",
+        "2025-Q4": 111726853.0,
+        "2025-Q3": 82589312.0,
+        "2025-Q2": 68989427.0,
+        "2025-Q1": 66574573.0
+      },
+      {
+        "item": "2. Thuế GTGT còn được khấu trừ",
+        "item_id": "n_2.value_added_tax_to_be_reclaimed",
+        "2025-Q4": 38639.0,
+        "2025-Q3": 237626.0,
+        "2025-Q2": 779738.0,
+        "2025-Q1": 453175.0
+      },
+      {
+        "item": "3. Thuế và các khoản khác phải thu của nhà nước",
+        "item_id": "n_3.taxes_and_other_receivables_from_state_authorities",
+        "2025-Q4": 9014490.0,
+        "2025-Q3": 4932284.0,
+        "2025-Q2": 4801184.0,
+        "2025-Q1": 4857270.0
+      },
+      {
+        "item": "4. Giao dịch mua bán lại trái phiếu Chính phủ",
+        "item_id": "n_4.payables_for_government_bond_trading_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "5. Tài sản ngắn hạn khác",
+        "item_id": "n_5.other_short_term_assets",
+        "2025-Q4": 2972901.0,
+        "2025-Q3": 10449439.0,
+        "2025-Q2": 12053133.0,
+        "2025-Q1": 9778064.0
+      },
+      {
+        "item": "VIII. Tài sản tái bảo hiểm",
+        "item_id": "viii.reinsurance_assets",
+        "2025-Q4": 3712434264.0,
+        "2025-Q3": 3300009957.0,
+        "2025-Q2": 3327096239.0,
+        "2025-Q1": 3370643453.0
+      },
+      {
+        "item": "1. Dự phòng phí nhượng tái bảo hiểm",
+        "item_id": "n_1.reinsurance_assets_from_unearned_premium_reserves",
+        "2025-Q4": 1859687187.0,
+        "2025-Q3": 1817189180.0,
+        "2025-Q2": 1722569140.0,
+        "2025-Q1": 1745182334.0
+      },
+      {
+        "item": "2. Dự phòng bồi thường nhượng tái bảo hiểm",
+        "item_id": "n_2.reinsurance_assets_from_claim_reserves",
+        "2025-Q4": 1852747077.0,
+        "2025-Q3": 1482820777.0,
+        "2025-Q2": 1604527099.0,
+        "2025-Q1": 1625461119.0
+      },
+      {
+        "item": "B. TÀI SẢN DÀI HẠN (200=210+220+240+250+260+270)",
+        "item_id": "b.long_term_assets",
+        "2025-Q4": 141445620795.0,
+        "2025-Q3": 133908633991.0,
+        "2025-Q2": 127676946928.0,
+        "2025-Q1": 124800182729.0
+      },
+      {
+        "item": "I. Các khoản phải thu dài hạn",
+        "item_id": "i.long_term_receivables",
+        "2025-Q4": 75345867.0,
+        "2025-Q3": 73881302.0,
+        "2025-Q2": 72308528.0,
+        "2025-Q1": 71241442.0
+      },
+      {
+        "item": "1. Phải thu dài hạn của khách hàng",
+        "item_id": "n_1.long_term_trade_receivables",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "2. Trả trước cho người bán dài hạn",
+        "item_id": "n_2.long_term_prepayments_to_suppliers",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "3. Vốn kinh doanh ở các đơn vị trực thuộc",
+        "item_id": "n_2.capital_at_inter_company",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "4.  Phải thu dài hạn nội bộ",
+        "item_id": "n_3.long_term_inter_company_receivables",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "5. Phải thu về cho vay dài hạn",
+        "item_id": "n_5.long_term_loan_receivables",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "6. Phải thu dài hạn khác",
+        "item_id": "n_4.other_long_term_receivables",
+        "2025-Q4": 75345867.0,
+        "2025-Q3": 73881302.0,
+        "2025-Q2": 72308528.0,
+        "2025-Q1": 71241442.0
+      },
+      {
+        "item": "6.1 Ký quỹ bảo hiểm",
+        "item_id": "n_3.long_term_margin_deposits",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "6.2. Phải thu dài hạn khác",
+        "item_id": "n_6.2.other_long_term_receivables",
+        "2025-Q4": 75345867.0,
+        "2025-Q3": 73881302.0,
+        "2025-Q2": 72308528.0,
+        "2025-Q1": 71241442.0
+      },
+      {
+        "item": "7. Dự phòng phải thu dài hạn khó đòi",
+        "item_id": "n_5.provision_for_long_term_doubtful_debts",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "II. Tài sản cố định",
+        "item_id": "ii.fixed_assets",
+        "2025-Q4": 1707797773.0,
+        "2025-Q3": 1756248439.0,
+        "2025-Q2": 1802911773.0,
+        "2025-Q1": 1848942067.0
+      },
+      {
+        "item": "1. Tài sản cố định hữu hình",
+        "item_id": "n_1.tangible_fixed_assets",
+        "2025-Q4": 789967311.0,
+        "2025-Q3": 813490355.0,
+        "2025-Q2": 835113589.0,
+        "2025-Q1": 856432923.0
+      },
+      {
+        "item": "      - Nguyên giá",
+        "item_id": "cost",
+        "2025-Q4": 2755142601.0,
+        "2025-Q3": 2754942728.0,
+        "2025-Q2": 2749197038.0,
+        "2025-Q1": 2740620499.0
+      },
+      {
+        "item": "      - Giá trị hao mòn lũy kế ",
+        "item_id": "accumulated_depreciation",
+        "2025-Q4": -1965175290.0,
+        "2025-Q3": -1941452373.0,
+        "2025-Q2": -1914083449.0,
+        "2025-Q1": -1884187576.0
+      },
+      {
+        "item": "2. Tài sản cố định thuê tài chính",
+        "item_id": "n_2.financial_leased_fixed_assets",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "      - Nguyên giá",
+        "item_id": "cost_2",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "      - Giá trị hao mòn lũy kế ",
+        "item_id": "accumulated_depreciation_2",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "3. Tài sản cố định vô hình",
+        "item_id": "n_3.intangible_fixed_assets",
+        "2025-Q4": 917830463.0,
+        "2025-Q3": 942758084.0,
+        "2025-Q2": 967798184.0,
+        "2025-Q1": 992509144.0
+      },
+      {
+        "item": "      - Nguyên giá",
+        "item_id": "cost_3",
+        "2025-Q4": 1843480921.0,
+        "2025-Q3": 1842726353.0,
+        "2025-Q2": 1842062953.0,
+        "2025-Q1": 1841047953.0
+      },
+      {
+        "item": "      - Giá trị hao mòn lũy kế ",
+        "item_id": "accumulated_depreciation_3",
+        "2025-Q4": -925650458.0,
+        "2025-Q3": -899968269.0,
+        "2025-Q2": -874264769.0,
+        "2025-Q1": -848538809.0
+      },
+      {
+        "item": "III. Bất động sản đầu tư",
+        "item_id": "iii.investment_properties",
+        "2025-Q4": 102471736.0,
+        "2025-Q3": 103913910.0,
+        "2025-Q2": 107042504.0,
+        "2025-Q1": 108501887.0
+      },
+      {
+        "item": "      - Nguyên giá",
+        "item_id": "cost_4",
+        "2025-Q4": 189606397.0,
+        "2025-Q3": 189606397.0,
+        "2025-Q2": 191327233.0,
+        "2025-Q1": 191327233.0
+      },
+      {
+        "item": "      - Giá trị hao mòn lũy kế ",
+        "item_id": "accumulated_depreciation_4",
+        "2025-Q4": -87134660.0,
+        "2025-Q3": -85692486.0,
+        "2025-Q2": -84284729.0,
+        "2025-Q1": -82825346.0
+      },
+      {
+        "item": "IV. Tài sản dở dang dài hạn",
+        "item_id": "iv.long_term_assets_in_progress",
+        "2025-Q4": 145622263.0,
+        "2025-Q3": 145644240.0,
+        "2025-Q2": 139046133.0,
+        "2025-Q1": 137655685.0
+      },
+      {
+        "item": "1. Chi phí xây dựng cơ bản dở dang",
+        "item_id": "n_4.construction_in_progress",
+        "2025-Q4": 145622263.0,
+        "2025-Q3": 145644240.0,
+        "2025-Q2": 139046133.0,
+        "2025-Q1": 137655685.0
+      },
+      {
+        "item": "V. Đầu tư tài chính dài hạn",
+        "item_id": "iv.long_term_investments",
+        "2025-Q4": 139159215042.0,
+        "2025-Q3": 131577022973.0,
+        "2025-Q2": 125298863712.0,
+        "2025-Q1": 122407896160.0
+      },
+      {
+        "item": "1. Đầu tư vào công ty con",
+        "item_id": "n_1.investments_in_subsidiaries",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "2. Đầu tư vào công ty liên kết, liên doanh",
+        "item_id": "n_2.investments_in_associates_joint_ventures",
+        "2025-Q4": 2931495119.0,
+        "2025-Q3": 2899253385.0,
+        "2025-Q2": 2869968858.0,
+        "2025-Q1": 2844186329.0
+      },
+      {
+        "item": "3. Đầu tư góp vốn vào đơn vị khác",
+        "item_id": "n_3.investments_in_other_entities",
+        "2025-Q4": 1499836683.0,
+        "2025-Q3": 1499427836.0,
+        "2025-Q2": 1335821059.0,
+        "2025-Q1": 1279365243.0
+      },
+      {
+        "item": "4. Dự phòng đầu tư tài chính dài hạn",
+        "item_id": "n_4.provision_for_diminution_in_value_of_long_term_investments",
+        "2025-Q4": -85404841.0,
+        "2025-Q3": -34318765.0,
+        "2025-Q2": -65074021.0,
+        "2025-Q1": -61660855.0
+      },
+      {
+        "item": "5. Đầu tư nắm giữ đến ngày đáo hạn",
+        "item_id": "n_5.held_to_maturity_investments",
+        "2025-Q4": 134813288081.0,
+        "2025-Q3": 127212660517.0,
+        "2025-Q2": 121158147816.0,
+        "2025-Q1": 118346005443.0
+      },
+      {
+        "item": "6. Đầu tư dài hạn khác",
+        "item_id": "n_3.other_long_term_investments",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "VI. Tài sản dài hạn khác",
+        "item_id": "vi.other_long_term_assets",
+        "2025-Q4": 255168113.0,
+        "2025-Q3": 251923127.0,
+        "2025-Q2": 256774278.0,
+        "2025-Q1": 225945489.0
+      },
+      {
+        "item": "1. Chi phí trả trước dài hạn",
+        "item_id": "n_1.long_term_prepayments",
+        "2025-Q4": 205585649.0,
+        "2025-Q3": 199661352.0,
+        "2025-Q2": 205132136.0,
+        "2025-Q1": 189379524.0
+      },
+      {
+        "item": "2. Tài sản thuế thu nhập hoãn lại",
+        "item_id": "n_2.deferred_income_tax_assets",
+        "2025-Q4": 10342773.0,
+        "2025-Q3": 9366890.0,
+        "2025-Q2": 10055162.0,
+        "2025-Q1": 8688496.0
+      },
+      {
+        "item": "3. Thiết bị, vật tư, phụ tùng thay thế dài hạn",
+        "item_id": "n_3.long_term_equipment_supplies_spare_parts",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "4. Tài sản dài hạn khác",
+        "item_id": "n_4.other_long_term_assets",
+        "2025-Q4": 39239691.0,
+        "2025-Q3": 42894884.0,
+        "2025-Q2": 41586981.0,
+        "2025-Q1": 27877470.0
+      },
+      {
+        "item": "5. Lợi thế thương mại",
+        "item_id": "n_5.goodwill",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "VII. Lợi thế thương mại (áp dụng trước năm 2015)",
+        "item_id": "vii.goodwill_before_2015",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "VIII. Tài sản tài khoản riêng",
+        "item_id": "viii.separate_account_assets",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "TỔNG CỘNG TÀI SẢN (270=100+200)",
+        "item_id": "total_assets",
+        "2025-Q4": 291911212252.0,
+        "2025-Q3": 272801452711.0,
+        "2025-Q2": 264123906338.0,
+        "2025-Q1": 255792253917.0
+      },
+      {
+        "item": "NGUỒN VỐN",
+        "item_id": "owners_equity",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "A. NỢ PHẢI TRẢ (300=210+330)",
+        "item_id": "a.liabilities",
+        "2025-Q4": 266301161053.0,
+        "2025-Q3": 247243627277.0,
+        "2025-Q2": 239321481548.0,
+        "2025-Q1": 231539612383.0
+      },
+      {
+        "item": "I. Nợ ngắn hạn",
+        "item_id": "i.short_term_liabilities",
+        "2025-Q4": 64837532920.0,
+        "2025-Q3": 49498254221.0,
+        "2025-Q2": 44856941974.0,
+        "2025-Q1": 40623719807.0
+      },
+      {
+        "item": "1. Vay và nợ ngắn hạn",
+        "item_id": "n_1.short_term_borrowings",
+        "2025-Q4": null,
+        "2025-Q3": 4320774314.0,
+        "2025-Q2": 3493685053.0,
+        "2025-Q1": 3235875618.0
+      },
+      {
+        "item": "2. Phải trả người bán ngắn hạn",
+        "item_id": "n_2.trade_accounts_payable",
+        "2025-Q4": 2965483699.0,
+        "2025-Q3": 2918176350.0,
+        "2025-Q2": 2972117384.0,
+        "2025-Q1": 2784688940.0
+      },
+      {
+        "item": "2.1. Phải trả về hợp đồng bảo hiểm",
+        "item_id": "n_2.1.insurance_contract_payable",
+        "2025-Q4": 2895370617.0,
+        "2025-Q3": 2814074221.0,
+        "2025-Q2": 2903834740.0,
+        "2025-Q1": 2737649831.0
+      },
+      {
+        "item": "2.2. Phải trả khác cho người bán",
+        "item_id": "n_2.2.other_payables_to_suppliers",
+        "2025-Q4": 70113082.0,
+        "2025-Q3": 104102129.0,
+        "2025-Q2": 68282645.0,
+        "2025-Q1": 47039109.0
+      },
+      {
+        "item": "3. Người mua trả tiền trước ngắn hạn",
+        "item_id": "n_3.advances_from_customers",
+        "2025-Q4": 4044580.0,
+        "2025-Q3": 4486080.0,
+        "2025-Q2": 4161080.0,
+        "2025-Q1": 23076000.0
+      },
+      {
+        "item": "4. Thuế và các khoản phải nộp Nhà nước",
+        "item_id": "n_4.taxes_and_other_payables_to_state_authorities",
+        "2025-Q4": 375868126.0,
+        "2025-Q3": 249575915.0,
+        "2025-Q2": 225869587.0,
+        "2025-Q1": 357071473.0
+      },
+      {
+        "item": "5. Phải trả công nhân viên",
+        "item_id": "n_5.payable_to_employees",
+        "2025-Q4": 2503202041.0,
+        "2025-Q3": 2054520180.0,
+        "2025-Q2": 1427453156.0,
+        "2025-Q1": 881655248.0
+      },
+      {
+        "item": "6. Chi phí phải trả ngắn hạn",
+        "item_id": "n_6.accrued_expenses",
+        "2025-Q4": 159269463.0,
+        "2025-Q3": 249076847.0,
+        "2025-Q2": 209320194.0,
+        "2025-Q1": 166710457.0
+      },
+      {
+        "item": "7. Phải trả nội bộ ngắn hạn",
+        "item_id": "n_7.inter_company_payables",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "8. Phải trả ngắn hạn khác",
+        "item_id": "n_9.other_payables",
+        "2025-Q4": 497896063.0,
+        "2025-Q3": 909721174.0,
+        "2025-Q2": 750599111.0,
+        "2025-Q1": 601476421.0
+      },
+      {
+        "item": "9. Doanh thu hoa hồng chưa được hưởng",
+        "item_id": "n_9.unearned_commission_revenues",
+        "2025-Q4": 419370759.0,
+        "2025-Q3": 377325880.0,
+        "2025-Q2": 381279356.0,
+        "2025-Q1": 382714692.0
+      },
+      {
+        "item": "10. Dự phòng phải trả ngắn hạn",
+        "item_id": "n_10.provision_for_short_term_liabilities",
+        "2025-Q4": 4072040956.0,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "11. Quỹ khen thưởng phúc lợi",
+        "item_id": "n_11.bonus_and_welfare_fund",
+        "2025-Q4": 318384802.0,
+        "2025-Q3": 327570853.0,
+        "2025-Q2": 309283595.0,
+        "2025-Q1": 179508867.0
+      },
+      {
+        "item": "12. Giao dịch mua bán lại trái phiếu Chính phủ",
+        "item_id": "n_12.payables_for_government_bond_trading_activities",
+        "2025-Q4": 53229070825.0,
+        "2025-Q3": 37934403944.0,
+        "2025-Q2": 34821912070.0,
+        "2025-Q1": 31868512030.0
+      },
+      {
+        "item": "13. Dự phòng nghiệp vụ",
+        "item_id": "iii.reserves",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "13.1. Dự phòng phí bảo hiểm gốc và nhận tái bảo hiểm",
+        "item_id": "n_1.unearned_premium_reserve",
+        "2025-Q4": 5834466272.0,
+        "2025-Q3": 5712595382.0,
+        "2025-Q2": 5472607634.0,
+        "2025-Q1": 5575021479.0
+      },
+      {
+        "item": "13.2. Dự phòng bồi thường bảo hiểm gốc và nhận tái bảo hiểm",
+        "item_id": "n_3.claim_reserve",
+        "2025-Q4": 3284997670.0,
+        "2025-Q3": 2796831372.0,
+        "2025-Q2": 2882969680.0,
+        "2025-Q1": 2846177775.0
+      },
+      {
+        "item": "13.3. Dự phòng dao động lớn",
+        "item_id": "n_4.catastrophe_reserve",
+        "2025-Q4": 153601625.0,
+        "2025-Q3": 227678022.0,
+        "2025-Q2": 215870975.0,
+        "2025-Q1": 201065710.0
+      },
+      {
+        "item": "13.4 Dự phòng toán học",
+        "item_id": "n_2.mathematical_reserve",
+        "2025-Q4": 171651247136.0,
+        "2025-Q3": 168277749214.0,
+        "2025-Q2": 165293141131.0,
+        "2025-Q1": 161499810629.0
+      },
+      {
+        "item": "13.5. Dự phòng chia lãi",
+        "item_id": "n_5.dividend_reserve",
+        "2025-Q4": 3974183128.0,
+        "2025-Q3": 3925131154.0,
+        "2025-Q2": 3683875295.0,
+        "2025-Q1": 3532030625.0
+      },
+      {
+        "item": "13.6. Dự phòng bảo đảm cân đối",
+        "item_id": "n_6.equalization_reserve",
+        "2025-Q4": 16254952216.0,
+        "2025-Q3": 16493110131.0,
+        "2025-Q2": 16606986383.0,
+        "2025-Q1": 16955496867.0
+      },
+      {
+        "item": "14. Doanh thu chưa thực hiện ngắn hạn",
+        "item_id": "n_14.short_term_unearned_revenue",
+        "2025-Q4": 292901606.0,
+        "2025-Q3": 152622684.0,
+        "2025-Q2": 261261389.0,
+        "2025-Q1": 142430062.0
+      },
+      {
+        "item": "15. Phải trả theo tiến độ kế hoạch hợp đồng xây dựng",
+        "item_id": "n_8.construction_contract_progress_payments_due_to_suppliers",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "II. Nợ dài hạn ",
+        "item_id": "ii.long_term_liabilities",
+        "2025-Q4": 310180085.0,
+        "2025-Q3": 312277780.0,
+        "2025-Q2": 309088477.0,
+        "2025-Q1": 306289490.0
+      },
+      {
+        "item": "1. Phải trả người bán dài hạn",
+        "item_id": "n_1.long_term_trade_payables",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "2. Phải trả nội bộ dài hạn",
+        "item_id": "n_2.long_term_inter_company_payables",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "3. Phải trả dài hạn khác",
+        "item_id": "n_3.other_long_term_liabilities",
+        "2025-Q4": 306562119.0,
+        "2025-Q3": 307881158.0,
+        "2025-Q2": 304620297.0,
+        "2025-Q1": 303333954.0
+      },
+      {
+        "item": "4. Vay và nợ thuê tài chính dài hạn",
+        "item_id": "n_4.long_term_borrowings",
+        "2025-Q4": 754000.0,
+        "2025-Q3": 922000.0,
+        "2025-Q2": 1000000.0,
+        "2025-Q1": null
+      },
+      {
+        "item": "5. Thuế thu nhập hoãn lại phải trả",
+        "item_id": "n_5.deferred_income_tax_liabilities",
+        "2025-Q4": 2863966.0,
+        "2025-Q3": 3474623.0,
+        "2025-Q2": 3468180.0,
+        "2025-Q1": 2955536.0
+      },
+      {
+        "item": "6. Dự phòng trợ cấp mất việc làm",
+        "item_id": "n_6.provision_for_severance_allowances",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "7. Dự phòng phải trả dài hạn",
+        "item_id": "n_7.provision_for_long_term_liabilities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "8. Doanh thu chưa thực hiện dài hạn",
+        "item_id": "n_8.unearned_revenue",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "9. Quỹ phát triển khoa học và công nghệ",
+        "item_id": "n_9.fund_for_technology_development",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "III. Công nợ tài khoản riêng",
+        "item_id": "iii.liabilities_of_separate_account",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "B. VỐN CHỦ SỞ HỮU (400=410+430)",
+        "item_id": "b.owners_equity",
+        "2025-Q4": 25610051198.0,
+        "2025-Q3": 25557825434.0,
+        "2025-Q2": 24802424790.0,
+        "2025-Q1": 24252641534.0
+      },
+      {
+        "item": "I. Vốn chủ sở hữu",
+        "item_id": "i.owners_equity",
+        "2025-Q4": 25610051198.0,
+        "2025-Q3": 25557825434.0,
+        "2025-Q2": 24802424790.0,
+        "2025-Q1": 24252641534.0
+      },
+      {
+        "item": "1. Vốn góp của chủ sở hữu",
+        "item_id": "n_1.capital_from_owners",
+        "2025-Q4": 7423227640.0,
+        "2025-Q3": 7423227640.0,
+        "2025-Q2": 7423227640.0,
+        "2025-Q1": 7423227640.0
+      },
+      {
+        "item": "- Cổ phiếu phổ thông có quyền biểu quyết",
+        "item_id": "common_stock_with_voting_right",
+        "2025-Q4": 7423227640.0,
+        "2025-Q3": 7423227640.0,
+        "2025-Q2": 7423227640.0,
+        "2025-Q1": 7423227640.0
+      },
+      {
+        "item": "- Cổ phiếu ưu đãi",
+        "item_id": "preferred_stock",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "2. Thặng dư vốn cổ phần",
+        "item_id": "n_2.share_premium",
+        "2025-Q4": 7310458743.0,
+        "2025-Q3": 7310458743.0,
+        "2025-Q2": 7310458743.0,
+        "2025-Q1": 7310458743.0
+      },
+      {
+        "item": "3. Vốn khác của chủ sở hữu",
+        "item_id": "n_3.other_capital_of_owners",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "4. Cổ phiếu quỹ",
+        "item_id": "n_4.treasury_shares",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "5. Chênh lệch đánh giá lại tài sản",
+        "item_id": "n_5.assets_revaluation_differences",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "6. Chênh lệch tỷ giá hối đoái",
+        "item_id": "n_6.foreign_exchange_differences",
+        "2025-Q4": 15445192.0,
+        "2025-Q3": 15445192.0,
+        "2025-Q2": 15445192.0,
+        "2025-Q1": 15445192.0
+      },
+      {
+        "item": "7. Quỹ đầu tư phát triển",
+        "item_id": "n_7.investment_and_development_fund",
+        "2025-Q4": 3869219047.0,
+        "2025-Q3": 3870269047.0,
+        "2025-Q2": 3870269047.0,
+        "2025-Q1": 2933853034.0
+      },
+      {
+        "item": "8. Quỹ dự phòng tài chính",
+        "item_id": "n_8.financial_reserves",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "9. Quỹ dự trữ bắt buộc",
+        "item_id": "n_9.compulsory_reserves",
+        "2025-Q4": 812954369.0,
+        "2025-Q3": 807884044.0,
+        "2025-Q2": 806117773.0,
+        "2025-Q1": 802908180.0
+      },
+      {
+        "item": "10. Quỹ khác thuộc vốn chủ sở hữu",
+        "item_id": "n_10.other_reserves",
+        "2025-Q4": 103568803.0,
+        "2025-Q3": 103568803.0,
+        "2025-Q2": 103568803.0,
+        "2025-Q1": 103568803.0
+      },
+      {
+        "item": "11. Lợi nhuận sau thuế chưa phân phối",
+        "item_id": "n_11.undistributed_earnings_after_tax",
+        "2025-Q4": 5045993399.0,
+        "2025-Q3": 4988636685.0,
+        "2025-Q2": 4262016732.0,
+        "2025-Q1": 4673971201.0
+      },
+      {
+        "item": "- LNST chưa phân phối lũy kế đến cuối kỳ trước",
+        "item_id": "accumulated_retained_earning_at_the_end_of_the_previous_period",
+        "2025-Q4": 2096131144.0,
+        "2025-Q3": 2879355892.0,
+        "2025-Q2": 2921098570.0,
+        "2025-Q1": 4007066089.0
+      },
+      {
+        "item": "- LNST chưa phân phối kỳ này",
+        "item_id": "undistributed_earnings_in_this_period",
+        "2025-Q4": 2949862255.0,
+        "2025-Q3": 2109280793.0,
+        "2025-Q2": 1340918162.0,
+        "2025-Q1": 666905112.0
+      },
+      {
+        "item": "12. Lợi ích cổ đông không kiểm soát",
+        "item_id": "n_12.minoritys_interest",
+        "2025-Q4": 1029184005.0,
+        "2025-Q3": 1038335280.0,
+        "2025-Q2": 1011320859.0,
+        "2025-Q1": 989208742.0
+      },
+      {
+        "item": "13. Nguồn vốn đầu tư XDCB",
+        "item_id": "n_12.reserves_for_investment_in_construction",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "14. Quỹ hỗ trợ sắp xếp doanh nghiệp",
+        "item_id": "n_13.fund_to_support_corporate_restructuring",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "II. Nguồn kinh phí và quỹ khác",
+        "item_id": "ii.budget_resources_and_other_funds",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "1. Nguồn kinh phí",
+        "item_id": "n_1.subsidized_not_for_profit_funds",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "2. Nguồn kinh phí đã hình thành TSCĐ",
+        "item_id": "n_2.funds_invested_in_fixed_assets",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "C. LỢI ÍCH CỦA CỔ ĐÔNG KHÔNG KIỂM SOÁT",
+        "item_id": "c.minority_interests",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "TỔNG CỘNG NGUỒN VỐN (440=300+400+500)",
+        "item_id": "total_owners_equity_and_liabilities",
+        "2025-Q4": 291911212252.0,
+        "2025-Q3": 272801452711.0,
+        "2025-Q2": 264123906338.0,
+        "2025-Q1": 255792253917.0
+      }
+    ]
+  },
+  "income_statement": {
+    "yearly": [
+      {
+        "item": "1. Doanh thu phí bảo hiểm (01= (01.1+01.2-01.3)",
+        "item_id": "n_1.insurance_premium_01_01_1_01_2_01_3",
+        "2025": 43733496771.0,
+        "2024": 42669681560.0,
+        "2023": 42659877832.0,
+        "2022": 42650508302.0
+      },
+      {
+        "item": "- Thu phí bảo hiểm gốc",
+        "item_id": "n_1.gross_written_premium",
+        "2025": 43716183433.0,
+        "2024": 42591775980.0,
+        "2023": 42637147156.0,
+        "2022": 42961317756.0
+      },
+      {
+        "item": "- Thu phí nhận tái bảo hiểm",
+        "item_id": "n_2.reinsurance_premium_assumed",
+        "2025": 399971248.0,
+        "2024": 217571102.0,
+        "2023": 214862851.0,
+        "2022": 159740171.0
+      },
+      {
+        "item": "- Tăng (giảm) dự phòng phí bảo hiểm gốc và nhận tái bảo hiểm",
+        "item_id": "increase_decrese_in_gross_unearned_premium_reserve",
+        "2025": 382657909.0,
+        "2024": 139665522.0,
+        "2023": 192132175.0,
+        "2022": 470549625.0
+      },
+      {
+        "item": "2. Phí nhượng tái bảo hiểm",
+        "item_id": "n_2.reinsurance_premium_ceded",
+        "2025": 3600192999.0,
+        "2024": 3543497881.0,
+        "2023": 3316257547.0,
+        "2022": 2742934498.0
+      },
+      {
+        "item": "- Phí nhượng tái bảo hiểm",
+        "item_id": "reinsurance_premium_ceded",
+        "2025": 3772982403.0,
+        "2024": 3512320193.0,
+        "2023": 3463319868.0,
+        "2022": 3274165119.0
+      },
+      {
+        "item": "- Tăng (giảm) dự phòng phí nhượng tái bảo hiểm",
+        "item_id": "increase_decrease_in_ceded_unearned_premium_reserve",
+        "2025": 172789404.0,
+        "2024": -31177688.0,
+        "2023": 147062321.0,
+        "2022": 531230620.0
+      },
+      {
+        "item": "Các khoản giảm trừ",
+        "item_id": "n_3.deductions",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "- Giảm phí Bảo hiểm",
+        "item_id": "premium_deduction",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "- Hoàn phí Bảo hiểm",
+        "item_id": "premium_returns",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "- Các khoản giảm trừ khác",
+        "item_id": "others",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "Tăng (giảm) dự phòng phí, dự phòng toán học",
+        "item_id": "n_4.increase_decrease_in_unearned_premium_reserve_and_technical_reserve",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "3. Doanh thu phí bảo hiểm thuần (03=01-02)",
+        "item_id": "n_3.net_insurance_premium_03_01_02",
+        "2025": 40133303773.0,
+        "2024": 39126183679.0,
+        "2023": 39343620285.0,
+        "2022": 39907573804.0
+      },
+      {
+        "item": "4. Hoa hồng nhượng tái bảo hiểm và doanh thu khác HĐKDBH (04=04.1+04.2)",
+        "item_id": "n_4.commission_on_reinsurance_ceded_and_other_insurance_income_04_04_1_04_2",
+        "2025": 800711272.0,
+        "2024": 696992005.0,
+        "2023": 736859901.0,
+        "2022": 780673271.0
+      },
+      {
+        "item": "- Thu hoa hồng nhượng tái Bảo hiểm",
+        "item_id": "n_5.commissions_on_reinsurance_ceded",
+        "2025": 800711272.0,
+        "2024": 696992005.0,
+        "2023": 736859901.0,
+        "2022": 780673271.0
+      },
+      {
+        "item": "- Thu khác hoạt động kinh doanh Bảo hiểm",
+        "item_id": "n_6.other_income",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "+ Thu khác nhận tái Bảo hiểm",
+        "item_id": "income_on_reinsurance_assumed",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "+ Thu khác nhượng tái bảo hiểm",
+        "item_id": "income_on_reinsurance_ceded",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "+ Thu khác (giám định, đại lý,…)",
+        "item_id": "income_from_other_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "5. Doanh thu thuần HĐKD BH (10=03+04)",
+        "item_id": "n_7.total_net_revenue_from_insurance_business",
+        "2025": 40934015044.0,
+        "2024": 39823175684.0,
+        "2023": 40080480186.0,
+        "2022": 40688247075.0
+      },
+      {
+        "item": "5.1. Doanh thuần BH và CCDV",
+        "item_id": "n_7.1.revenue",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "6. Chi bồi thường",
+        "item_id": "n_11.claim_expenses_on_retained_risks",
+        "2025": 21979442964.0,
+        "2024": 19778434746.0,
+        "2023": 19681649814.0,
+        "2022": 15510028776.0
+      },
+      {
+        "item": "- Tổng chi bồi thường",
+        "item_id": "total_claim_expenses",
+        "2025": 21980353362.0,
+        "2024": 19780646560.0,
+        "2023": 19682896645.0,
+        "2022": 15513012582.0
+      },
+      {
+        "item": "+ Chi bồi thường bảo hiểm gốc, trả tiền bảo hiểm",
+        "item_id": "n_8.claim_and_maturity_payment_expenses",
+        "2025": 21923364934.0,
+        "2024": 19714375555.0,
+        "2023": 19601479751.0,
+        "2022": 15387989684.0
+      },
+      {
+        "item": "+ Chi bồi thường nhận tái bảo hiểm, trả tiền bảo hiểm",
+        "item_id": "n_9.claim_expenses_for_reinsurance_assumed",
+        "2025": 56988428.0,
+        "2024": 66271004.0,
+        "2023": 81416894.0,
+        "2022": 125022898.0
+      },
+      {
+        "item": "- Các khoản giảm trừ",
+        "item_id": "n_10.deductions",
+        "2025": 910398.0,
+        "2024": 2211813.0,
+        "2023": 1246831.0,
+        "2022": 2983806.0
+      },
+      {
+        "item": "+ Thu đòi người thứ ba bồi hoàn",
+        "item_id": "subrogation_recoveries",
+        "2025": 735581.0,
+        "2024": 969977.0,
+        "2023": 783287.0,
+        "2022": 1798199.0
+      },
+      {
+        "item": "+ Thu hàng đã xử lý bồi thường 100%",
+        "item_id": "salvages",
+        "2025": 174817.0,
+        "2024": 1241836.0,
+        "2023": 463544.0,
+        "2022": 1185607.0
+      },
+      {
+        "item": "7. Thu bồi thường nhượng tái bảo hiểm",
+        "item_id": "recoveries_from_reinsurance_ceded",
+        "2025": 1415383448.0,
+        "2024": 1185989940.0,
+        "2023": 1273429765.0,
+        "2022": 899565139.0
+      },
+      {
+        "item": "Tăng (giảm) dự phòng toán học (dành riêng BVH)",
+        "item_id": "increase_decrease_in_mathematical_reserve",
+        "2025": 14056782708.0,
+        "2024": 18168730821.0,
+        "2023": 20007939926.0,
+        "2022": 21527866248.0
+      },
+      {
+        "item": "8. Tăng (giảm) dự phòng bồi thường bảo hiểm gốc và nhận tái bảo hiểm",
+        "item_id": "n_8.increase_decrease_in_claim_reserves_for_direct_insurance_and_reinsurance_assumed",
+        "2025": 173212986.0,
+        "2024": 480900162.0,
+        "2023": -81204123.0,
+        "2022": 309157850.0
+      },
+      {
+        "item": "9. Tăng (giảm) dự phòng bồi thường nhượng tái bảo hiểm",
+        "item_id": "n_9.increase_decrease_in_claim_reserves_related_to_reinsurance_ceded",
+        "2025": -18489537.0,
+        "2024": 580130152.0,
+        "2023": -95034989.0,
+        "2022": 270729004.0
+      },
+      {
+        "item": "9.1. Tăng (giảm) dự phòng bồi thường",
+        "item_id": "n_13.increase_in_claim_reserve",
+        "2025": 191702523.0,
+        "2024": -99229991.0,
+        "2023": 13830866.0,
+        "2022": 38428846.0
+      },
+      {
+        "item": "10. Tổng chi bồi thường bảo hiểm (15=11-12+13-14)",
+        "item_id": "total_claim_insurance_expenses",
+        "2025": 34812544746.0,
+        "2024": 36661945637.0,
+        "2023": 38429990841.0,
+        "2022": 36176758731.0
+      },
+      {
+        "item": "11. Tăng (giảm) dự phòng dao động lớn",
+        "item_id": "n_14.provision_for_catastrophe_reserve",
+        "2025": -33306031.0,
+        "2024": 51325478.0,
+        "2023": 109099422.0,
+        "2022": -28293816.0
+      },
+      {
+        "item": "Chi bồi thường từ dự phòng dao động lớn",
+        "item_id": "n_12.claim_expenses_using_catastrophe_reserve",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "12. Chi khác hoạt động kinh doanh bảo hiểm",
+        "item_id": "n_15.other_insurance_operating_expenses",
+        "2025": 6176428178.0,
+        "2024": 5425816248.0,
+        "2023": 5174434569.0,
+        "2022": 6716836349.0
+      },
+      {
+        "item": "- Chi hoa hồng bảo hiểm",
+        "item_id": "commission",
+        "2025": 2867431162.0,
+        "2024": 2489113009.0,
+        "2023": 2517413587.0,
+        "2022": 2811768411.0
+      },
+      {
+        "item": "- Chi phí khác hoạt động kinh doanh bảo hiểm",
+        "item_id": "other_insurance_operating_expenses",
+        "2025": 6176428178.0,
+        "2024": 5425816248.0,
+        "2023": 5174434569.0,
+        "2022": 6716836349.0
+      },
+      {
+        "item": "+ Chi khác hoạt động kinh doanh bảo hiểm gốc",
+        "item_id": "other_underwriting_expenses",
+        "2025": 6176428178.0,
+        "2024": 5425816248.0,
+        "2023": 5174434569.0,
+        "2022": 6716836349.0
+      },
+      {
+        "item": "• Chi giám định tổn thất",
+        "item_id": "damage_assessment_expenses",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "• Chi đòi người thứ 3",
+        "item_id": "subrogation_recovery_expenses",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "• Chi xử lý hàng bồi thường 100%",
+        "item_id": "salvage_expenses",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "• Chi đánh giá rủi ro của đối tượng bảo hiểm",
+        "item_id": "loss_adjusting_fee_risk_assessment",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "• Chi đề phòng hạn chế rủi ro, tổn thất",
+        "item_id": "risk_minimization_expenses",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "• Chi khác",
+        "item_id": "others_2",
+        "2025": 1655988038.0,
+        "2024": 1589904428.0,
+        "2023": 1562994903.0,
+        "2022": 1623162565.0
+      },
+      {
+        "item": "+ Chi khác hoạt động kinh doanh nhận tái bảo hiểm",
+        "item_id": "other_reinsurance_assumed_expenses",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "• Chi hoa hồng nhận tái bảo hiểm",
+        "item_id": "commission_2",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "• Chi đánh giá rủi ro của đối tượng bảo hiểm",
+        "item_id": "loss_adjusting_fee_risk_assessment_2",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "• Chi khác",
+        "item_id": "others_3",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "+ Chi hoạt động nhượng tái bảo hiểm",
+        "item_id": "other_reinsurance_ceded_expenses",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "+ Chi phí trực tiếp kinh doanh hoạt động khác",
+        "item_id": "other_direct_operating_expenses",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "13. Tổng chi phí hoạt động kinh doanh bảo hiểm",
+        "item_id": "n_16.total_direct_insurance_operating_expenses",
+        "2025": 40955666893.0,
+        "2024": 42139087363.0,
+        "2023": 43713524831.0,
+        "2022": 42865301263.0
+      },
+      {
+        "item": "13.1. Giá vốn cung cấp hàng hóa, dịch vụ khác",
+        "item_id": "n_13.1.cost_of_providing_other_goods_and_services",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "14. Lợi nhuận gộp hoạt động kinh doanh bảo hiểm",
+        "item_id": "n_17.gross_insurance_operating_profit",
+        "2025": -21651849.0,
+        "2024": -2315911679.0,
+        "2023": -3633044646.0,
+        "2022": -2177054188.0
+      },
+      {
+        "item": "14.1. Lợi nhuận gộp cung cấp hàng hóa, dịch vụ khác",
+        "item_id": "n_14.1.gross_profit_of_providing_other_goods_and_services",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "14.2. Lợi nhuận thuần hoạt động kinh doanh bảo hiểm",
+        "item_id": "n_20.profit_from_insurance_operating",
+        "2025": -21651849.0,
+        "2024": -2315911679.0,
+        "2023": -8601430220.0,
+        "2022": -2177054188.0
+      },
+      {
+        "item": "15. Doanh thu kinh doanh bất động sản đầu tư",
+        "item_id": "n_15.revenue_from_properties_investment",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "16. Giá vốn bất động sản đầu tư",
+        "item_id": "n_16.cost_of_properties_investment",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "17. Lợi nhuận từ hoạt động đầu tư bất động sản (22=20-21)",
+        "item_id": "n_17.profit_from_properties_investment_22_20_21",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "18. Doanh thu hoạt động tài chính",
+        "item_id": "n_21.revenue_from_financial_activities",
+        "2025": 14040017768.0,
+        "2024": 12689327096.0,
+        "2023": 13543366344.0,
+        "2022": 9922384517.0
+      },
+      {
+        "item": "19. Chi hoạt động tài chính",
+        "item_id": "n_22.expenses_on_financial_activities",
+        "2025": 2920456665.0,
+        "2024": 2115731390.0,
+        "2023": 2826923434.0,
+        "2022": 1840260685.0
+      },
+      {
+        "item": "- Dự phòng toán học trích lãi từ đầu tư",
+        "item_id": "mathematical_reserve_for_investment_profit_sharing",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "   - Dự phòng chia lãi",
+        "item_id": "dividend_reserve",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "   - Chi khác hoạt động tài chính",
+        "item_id": "others_4",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "20. Lợi nhuận gộp hoạt động tài chính",
+        "item_id": "n_23.profit_form_financial_activities",
+        "2025": 11119561103.0,
+        "2024": 10573595706.0,
+        "2023": 10716442910.0,
+        "2022": 8082123831.0
+      },
+      {
+        "item": "Chi phí bán hàng",
+        "item_id": "n_18.selling_expenses",
+        "2025": 1653008979.0,
+        "2024": 1346798811.0,
+        "2023": 1094026079.0,
+        "2022": 2281905372.0
+      },
+      {
+        "item": "21. Chi phí quản lý doanh nghiệp",
+        "item_id": "n_19.administrative_expenses",
+        "2025": 7480825078.0,
+        "2024": 5724600399.0,
+        "2023": 4968385574.0,
+        "2022": 4019572408.0
+      },
+      {
+        "item": "22. Lợi nhuận thuần từ hoạt động kinh doanh",
+        "item_id": "n_22.operating_profit",
+        "2025": 1964075197.0,
+        "2024": 1186284816.0,
+        "2023": 1020986611.0,
+        "2022": -396408137.0
+      },
+      {
+        "item": "23. Thu nhập khác",
+        "item_id": "n_24.other_incomes",
+        "2025": 617510733.0,
+        "2024": 585711040.0,
+        "2023": 636753139.0,
+        "2022": 629262665.0
+      },
+      {
+        "item": "24. Chi phí  khác",
+        "item_id": "n_25.other_expenses",
+        "2025": 629154520.0,
+        "2024": 549708237.0,
+        "2023": 617516073.0,
+        "2022": 591048044.0
+      },
+      {
+        "item": "25. Lợi nhuận khác",
+        "item_id": "n_26.other_profits",
+        "2025": -11643787.0,
+        "2024": 36002803.0,
+        "2023": 19237065.0,
+        "2022": 38214621.0
+      },
+      {
+        "item": "Phần lợi nhuận/lỗ từ công ty liên kết liên doanh",
+        "item_id": "n_27.share_of_profitin_associates_and_joint_ventures",
+        "2025": 109729612.0,
+        "2024": 94085047.0,
+        "2023": 102048945.0,
+        "2022": 86451708.0
+      },
+      {
+        "item": "26. Tổng lợi nhuận kế toán trước thuế",
+        "item_id": "n_27.total_profit",
+        "2025": 3715170001.0,
+        "2024": 2663171477.0,
+        "2023": 2236298700.0,
+        "2022": 2010163564.0
+      },
+      {
+        "item": "Các khoản điều chỉnh tăng (+) hoặc giảm (-) lợi nhuận để xác định lợi nhuận chịu thuế TNDN",
+        "item_id": "n_28.increasing_or_decreasing_adjustments_to_define_taxable_profit",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "Tổng lợi nhuận trước thuế thu nhập doanh nghiệp",
+        "item_id": "n_29.total_profit_before_tax",
+        "2025": 3715170001.0,
+        "2024": 2663171477.0,
+        "2023": 2236298700.0,
+        "2022": 2010163564.0
+      },
+      {
+        "item": "Dự phòng đảm bảo cân đối",
+        "item_id": "n_30.equalization_reserve",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "Lợi nhuận chịu thuế thu nhập doanh nghiệp",
+        "item_id": "n_31.taxable_profit",
+        "2025": 3715170001.0,
+        "2024": 2663171477.0,
+        "2023": 2236298700.0,
+        "2022": 2010163564.0
+      },
+      {
+        "item": "27. Chi phí thuế thu nhập hiện hành",
+        "item_id": "n_32.current_corporate_income_tax_expenses",
+        "2025": 666242887.0,
+        "2024": 464527211.0,
+        "2023": 372973835.0,
+        "2022": 383042078.0
+      },
+      {
+        "item": "28. Chi phí thuế thu nhập hoãn lại",
+        "item_id": "n_33.deferred_income_tax_expenses",
+        "2025": -2354389.0,
+        "2024": 4475663.0,
+        "2023": 3335621.0,
+        "2022": 1515105.0
+      },
+      {
+        "item": "29. Lợi nhuận sau thuế thu nhập doanh nghiệp",
+        "item_id": "n_34.profit_after_tax",
+        "2025": 3051281503.0,
+        "2024": 2194168603.0,
+        "2023": 1859989244.0,
+        "2022": 1625606380.0
+      },
+      {
+        "item": "30. Lợi ích của cổ đông thiểu số",
+        "item_id": "n_35.minority_interest",
+        "2025": 84972523.0,
+        "2024": 83671677.0,
+        "2023": 75128203.0,
+        "2022": 74612191.0
+      },
+      {
+        "item": "31. Lợi nhuận sau thuế của cổ đông của Công ty mẹ",
+        "item_id": "n_36.profit_after_tax_for_shareholders_of_the_parent_company",
+        "2025": 2966308980.0,
+        "2024": 2110496927.0,
+        "2023": 1784861041.0,
+        "2022": 1550994189.0
+      },
+      {
+        "item": "32. Lãi cơ bản trên cổ phiếu. (VNÐ)",
+        "item_id": "n_37.1_earning_per_share_vnd",
+        "2025": 3996.0,
+        "2024": 2843.0,
+        "2023": 2404.0,
+        "2022": 2089.0
+      }
+    ],
+    "quarterly": [
+      {
+        "item": "1. Doanh thu phí bảo hiểm (01= (01.1+01.2-01.3)",
+        "item_id": "n_1.insurance_premium_01_01_1_01_2_01_3",
+        "2025-Q4": 11244569817.0,
+        "2025-Q3": 10448267258.0,
+        "2025-Q2": 11364910984.0,
+        "2025-Q1": 10675751901.0
+      },
+      {
+        "item": "- Thu phí bảo hiểm gốc",
+        "item_id": "n_1.gross_written_premium",
+        "2025-Q4": 11291140319.0,
+        "2025-Q3": 10447061080.0,
+        "2025-Q2": 11226452795.0,
+        "2025-Q1": 10751532427.0
+      },
+      {
+        "item": "- Thu phí nhận tái bảo hiểm",
+        "item_id": "n_2.reinsurance_premium_assumed",
+        "2025-Q4": 75300388.0,
+        "2025-Q3": 241193926.0,
+        "2025-Q2": 36044344.0,
+        "2025-Q1": 47432590.0
+      },
+      {
+        "item": "- Tăng (giảm) dự phòng phí bảo hiểm gốc và nhận tái bảo hiểm",
+        "item_id": "increase_decrese_in_gross_unearned_premium_reserve",
+        "2025-Q4": 121870890.0,
+        "2025-Q3": 239987748.0,
+        "2025-Q2": -102413845.0,
+        "2025-Q1": 123213116.0
+      },
+      {
+        "item": "2. Phí nhượng tái bảo hiểm",
+        "item_id": "n_2.reinsurance_premium_ceded",
+        "2025-Q4": 912365989.0,
+        "2025-Q3": 898854332.0,
+        "2025-Q2": 898456166.0,
+        "2025-Q1": 890516513.0
+      },
+      {
+        "item": "- Phí nhượng tái bảo hiểm",
+        "item_id": "reinsurance_premium_ceded",
+        "2025-Q4": 954863996.0,
+        "2025-Q3": 993474372.0,
+        "2025-Q2": 875842971.0,
+        "2025-Q1": 948801064.0
+      },
+      {
+        "item": "- Tăng (giảm) dự phòng phí nhượng tái bảo hiểm",
+        "item_id": "increase_decrease_in_ceded_unearned_premium_reserve",
+        "2025-Q4": 42498007.0,
+        "2025-Q3": 94620040.0,
+        "2025-Q2": -22613194.0,
+        "2025-Q1": 58284551.0
+      },
+      {
+        "item": "Các khoản giảm trừ",
+        "item_id": "n_3.deductions",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "- Giảm phí Bảo hiểm",
+        "item_id": "premium_deduction",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "- Hoàn phí Bảo hiểm",
+        "item_id": "premium_returns",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "- Các khoản giảm trừ khác",
+        "item_id": "others",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "Tăng (giảm) dự phòng phí, dự phòng toán học",
+        "item_id": "n_4.increase_decrease_in_unearned_premium_reserve_and_technical_reserve",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "3. Doanh thu phí bảo hiểm thuần (03=01-02)",
+        "item_id": "n_3.net_insurance_premium_03_01_02",
+        "2025-Q4": 10332203828.0,
+        "2025-Q3": 9549412926.0,
+        "2025-Q2": 10466454818.0,
+        "2025-Q1": 9785235388.0
+      },
+      {
+        "item": "4. Hoa hồng nhượng tái bảo hiểm và doanh thu khác HĐKDBH (04=04.1+04.2)",
+        "item_id": "n_4.commission_on_reinsurance_ceded_and_other_insurance_income_04_04_1_04_2",
+        "2025-Q4": 217398047.0,
+        "2025-Q3": 200178162.0,
+        "2025-Q2": 194342486.0,
+        "2025-Q1": 188792576.0
+      },
+      {
+        "item": "- Thu hoa hồng nhượng tái Bảo hiểm",
+        "item_id": "n_5.commissions_on_reinsurance_ceded",
+        "2025-Q4": 217398047.0,
+        "2025-Q3": 200178162.0,
+        "2025-Q2": 194342486.0,
+        "2025-Q1": 188792576.0
+      },
+      {
+        "item": "- Thu khác hoạt động kinh doanh Bảo hiểm",
+        "item_id": "n_6.other_income",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "+ Thu khác nhận tái Bảo hiểm",
+        "item_id": "income_on_reinsurance_assumed",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "+ Thu khác nhượng tái bảo hiểm",
+        "item_id": "income_on_reinsurance_ceded",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "+ Thu khác (giám định, đại lý,…)",
+        "item_id": "income_from_other_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "5. Doanh thu thuần HĐKD BH (10=03+04)",
+        "item_id": "n_7.total_net_revenue_from_insurance_business",
+        "2025-Q4": 10549601875.0,
+        "2025-Q3": 9749591088.0,
+        "2025-Q2": 10660797305.0,
+        "2025-Q1": 9974027964.0
+      },
+      {
+        "item": "5.1. Doanh thuần BH và CCDV",
+        "item_id": "n_7.1.revenue",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "6. Chi bồi thường",
+        "item_id": "n_11.claim_expenses_on_retained_risks",
+        "2025-Q4": 6375109644.0,
+        "2025-Q3": 5560884276.0,
+        "2025-Q2": 5588398269.0,
+        "2025-Q1": 4455050775.0
+      },
+      {
+        "item": "- Tổng chi bồi thường",
+        "item_id": "total_claim_expenses",
+        "2025-Q4": 6375919284.0,
+        "2025-Q3": 5560930023.0,
+        "2025-Q2": 5588433453.0,
+        "2025-Q1": 4455070601.0
+      },
+      {
+        "item": "+ Chi bồi thường bảo hiểm gốc, trả tiền bảo hiểm",
+        "item_id": "n_8.claim_and_maturity_payment_expenses",
+        "2025-Q4": 6355240038.0,
+        "2025-Q3": 5544460261.0,
+        "2025-Q2": 5578313081.0,
+        "2025-Q1": 4445351554.0
+      },
+      {
+        "item": "+ Chi bồi thường nhận tái bảo hiểm, trả tiền bảo hiểm",
+        "item_id": "n_9.claim_expenses_for_reinsurance_assumed",
+        "2025-Q4": 20679246.0,
+        "2025-Q3": 16469762.0,
+        "2025-Q2": 10120372.0,
+        "2025-Q1": 9719047.0
+      },
+      {
+        "item": "- Các khoản giảm trừ",
+        "item_id": "n_10.deductions",
+        "2025-Q4": 809640.0,
+        "2025-Q3": 45748.0,
+        "2025-Q2": 35184.0,
+        "2025-Q1": 19826.0
+      },
+      {
+        "item": "+ Thu đòi người thứ ba bồi hoàn",
+        "item_id": "subrogation_recoveries",
+        "2025-Q4": 719301.0,
+        "2025-Q3": null,
+        "2025-Q2": 16280.0,
+        "2025-Q1": null
+      },
+      {
+        "item": "+ Thu hàng đã xử lý bồi thường 100%",
+        "item_id": "salvages",
+        "2025-Q4": 90339.0,
+        "2025-Q3": 45748.0,
+        "2025-Q2": 18904.0,
+        "2025-Q1": 19826.0
+      },
+      {
+        "item": "7. Thu bồi thường nhượng tái bảo hiểm",
+        "item_id": "recoveries_from_reinsurance_ceded",
+        "2025-Q4": 349285740.0,
+        "2025-Q3": 411590234.0,
+        "2025-Q2": 351314845.0,
+        "2025-Q1": 303192629.0
+      },
+      {
+        "item": "Tăng (giảm) dự phòng toán học (dành riêng BVH)",
+        "item_id": "increase_decrease_in_mathematical_reserve",
+        "2025-Q4": 3184391982.0,
+        "2025-Q3": 3111987690.0,
+        "2025-Q2": 3596664687.0,
+        "2025-Q1": 4163738348.0
+      },
+      {
+        "item": "8. Tăng (giảm) dự phòng bồi thường bảo hiểm gốc và nhận tái bảo hiểm",
+        "item_id": "n_8.increase_decrease_in_claim_reserves_for_direct_insurance_and_reinsurance_assumed",
+        "2025-Q4": 488166298.0,
+        "2025-Q3": -86138308.0,
+        "2025-Q2": 36791904.0,
+        "2025-Q1": -265606909.0
+      },
+      {
+        "item": "9. Tăng (giảm) dự phòng bồi thường nhượng tái bảo hiểm",
+        "item_id": "n_9.increase_decrease_in_claim_reserves_related_to_reinsurance_ceded",
+        "2025-Q4": 369926300.0,
+        "2025-Q3": -121706321.0,
+        "2025-Q2": -20934020.0,
+        "2025-Q1": -245775495.0
+      },
+      {
+        "item": "9.1. Tăng (giảm) dự phòng bồi thường",
+        "item_id": "n_13.increase_in_claim_reserve",
+        "2025-Q4": 118239998.0,
+        "2025-Q3": 35568014.0,
+        "2025-Q2": 57725925.0,
+        "2025-Q1": -19831414.0
+      },
+      {
+        "item": "10. Tổng chi bồi thường bảo hiểm (15=11-12+13-14)",
+        "item_id": "total_claim_insurance_expenses",
+        "2025-Q4": 9328455883.0,
+        "2025-Q3": 8296849746.0,
+        "2025-Q2": 8891474036.0,
+        "2025-Q1": 8295765081.0
+      },
+      {
+        "item": "11. Tăng (giảm) dự phòng dao động lớn",
+        "item_id": "n_14.provision_for_catastrophe_reserve",
+        "2025-Q4": -74076397.0,
+        "2025-Q3": 11807047.0,
+        "2025-Q2": 14805266.0,
+        "2025-Q1": 14158054.0
+      },
+      {
+        "item": "Chi bồi thường từ dự phòng dao động lớn",
+        "item_id": "n_12.claim_expenses_using_catastrophe_reserve",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "12. Chi khác hoạt động kinh doanh bảo hiểm",
+        "item_id": "n_15.other_insurance_operating_expenses",
+        "2025-Q4": 1322131652.0,
+        "2025-Q3": 1552175508.0,
+        "2025-Q2": 1704457806.0,
+        "2025-Q1": 1086881865.0
+      },
+      {
+        "item": "- Chi hoa hồng bảo hiểm",
+        "item_id": "commission",
+        "2025-Q4": 673357673.0,
+        "2025-Q3": 769435643.0,
+        "2025-Q2": 764774458.0,
+        "2025-Q1": 659863387.0
+      },
+      {
+        "item": "- Chi phí khác hoạt động kinh doanh bảo hiểm",
+        "item_id": "other_insurance_operating_expenses",
+        "2025-Q4": 1322131652.0,
+        "2025-Q3": 1552175508.0,
+        "2025-Q2": 1704457806.0,
+        "2025-Q1": 1086881865.0
+      },
+      {
+        "item": "+ Chi khác hoạt động kinh doanh bảo hiểm gốc",
+        "item_id": "other_underwriting_expenses",
+        "2025-Q4": 1322131652.0,
+        "2025-Q3": 1552175508.0,
+        "2025-Q2": 1704457806.0,
+        "2025-Q1": 1086881865.0
+      },
+      {
+        "item": "• Chi giám định tổn thất",
+        "item_id": "damage_assessment_expenses",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "• Chi đòi người thứ 3",
+        "item_id": "subrogation_recovery_expenses",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "• Chi xử lý hàng bồi thường 100%",
+        "item_id": "salvage_expenses",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "• Chi đánh giá rủi ro của đối tượng bảo hiểm",
+        "item_id": "loss_adjusting_fee_risk_assessment",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "• Chi đề phòng hạn chế rủi ro, tổn thất",
+        "item_id": "risk_minimization_expenses",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "• Chi khác",
+        "item_id": "others_2",
+        "2025-Q4": 405167029.0,
+        "2025-Q3": 426660490.0,
+        "2025-Q2": 397165363.0,
+        "2025-Q1": 427018477.0
+      },
+      {
+        "item": "+ Chi khác hoạt động kinh doanh nhận tái bảo hiểm",
+        "item_id": "other_reinsurance_assumed_expenses",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "• Chi hoa hồng nhận tái bảo hiểm",
+        "item_id": "commission_2",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "• Chi đánh giá rủi ro của đối tượng bảo hiểm",
+        "item_id": "loss_adjusting_fee_risk_assessment_2",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "• Chi khác",
+        "item_id": "others_3",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "+ Chi hoạt động nhượng tái bảo hiểm",
+        "item_id": "other_reinsurance_ceded_expenses",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "+ Chi phí trực tiếp kinh doanh hoạt động khác",
+        "item_id": "other_direct_operating_expenses",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "13. Tổng chi phí hoạt động kinh doanh bảo hiểm",
+        "item_id": "n_16.total_direct_insurance_operating_expenses",
+        "2025-Q4": 10576511139.0,
+        "2025-Q3": 9860832300.0,
+        "2025-Q2": 10610737107.0,
+        "2025-Q1": 9396804999.0
+      },
+      {
+        "item": "13.1. Giá vốn cung cấp hàng hóa, dịch vụ khác",
+        "item_id": "n_13.1.cost_of_providing_other_goods_and_services",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "14. Lợi nhuận gộp hoạt động kinh doanh bảo hiểm",
+        "item_id": "n_17.gross_insurance_operating_profit",
+        "2025-Q4": -26909264.0,
+        "2025-Q3": -111241212.0,
+        "2025-Q2": 50060197.0,
+        "2025-Q1": 577222965.0
+      },
+      {
+        "item": "14.1. Lợi nhuận gộp cung cấp hàng hóa, dịch vụ khác",
+        "item_id": "n_14.1.gross_profit_of_providing_other_goods_and_services",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "14.2. Lợi nhuận thuần hoạt động kinh doanh bảo hiểm",
+        "item_id": "n_20.profit_from_insurance_operating",
+        "2025-Q4": -26909264.0,
+        "2025-Q3": -111241212.0,
+        "2025-Q2": 50060197.0,
+        "2025-Q1": 577222965.0
+      },
+      {
+        "item": "15. Doanh thu kinh doanh bất động sản đầu tư",
+        "item_id": "n_15.revenue_from_properties_investment",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "16. Giá vốn bất động sản đầu tư",
+        "item_id": "n_16.cost_of_properties_investment",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "17. Lợi nhuận từ hoạt động đầu tư bất động sản (22=20-21)",
+        "item_id": "n_17.profit_from_properties_investment_22_20_21",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "18. Doanh thu hoạt động tài chính",
+        "item_id": "n_21.revenue_from_financial_activities",
+        "2025-Q4": 3791413369.0,
+        "2025-Q3": 3585078999.0,
+        "2025-Q2": 3431750858.0,
+        "2025-Q1": 3231774543.0
+      },
+      {
+        "item": "19. Chi hoạt động tài chính",
+        "item_id": "n_22.expenses_on_financial_activities",
+        "2025-Q4": 872092216.0,
+        "2025-Q3": 669277152.0,
+        "2025-Q2": 728468006.0,
+        "2025-Q1": 669175522.0
+      },
+      {
+        "item": "- Dự phòng toán học trích lãi từ đầu tư",
+        "item_id": "mathematical_reserve_for_investment_profit_sharing",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "   - Dự phòng chia lãi",
+        "item_id": "dividend_reserve",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "   - Chi khác hoạt động tài chính",
+        "item_id": "others_4",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "20. Lợi nhuận gộp hoạt động tài chính",
+        "item_id": "n_23.profit_form_financial_activities",
+        "2025-Q4": 2919321153.0,
+        "2025-Q3": 2915801847.0,
+        "2025-Q2": 2703282851.0,
+        "2025-Q1": 2562599021.0
+      },
+      {
+        "item": "Chi phí bán hàng",
+        "item_id": "n_18.selling_expenses",
+        "2025-Q4": 243606950.0,
+        "2025-Q3": 356079375.0,
+        "2025-Q2": 542517985.0,
+        "2025-Q1": 510804669.0
+      },
+      {
+        "item": "21. Chi phí quản lý doanh nghiệp",
+        "item_id": "n_19.administrative_expenses",
+        "2025-Q4": 1842206060.0,
+        "2025-Q3": 1858906019.0,
+        "2025-Q2": 1948452374.0,
+        "2025-Q1": 2328032494.0
+      },
+      {
+        "item": "22. Lợi nhuận thuần từ hoạt động kinh doanh",
+        "item_id": "n_22.operating_profit",
+        "2025-Q4": 806598879.0,
+        "2025-Q3": 589575241.0,
+        "2025-Q2": 262372690.0,
+        "2025-Q1": 811789493.0
+      },
+      {
+        "item": "23. Thu nhập khác",
+        "item_id": "n_24.other_incomes",
+        "2025-Q4": 169496823.0,
+        "2025-Q3": 191356372.0,
+        "2025-Q2": 146858413.0,
+        "2025-Q1": 113841757.0
+      },
+      {
+        "item": "24. Chi phí  khác",
+        "item_id": "n_25.other_expenses",
+        "2025-Q4": 190125315.0,
+        "2025-Q3": 203318035.0,
+        "2025-Q2": 134811854.0,
+        "2025-Q1": 100852846.0
+      },
+      {
+        "item": "25. Lợi nhuận khác",
+        "item_id": "n_26.other_profits",
+        "2025-Q4": -20628492.0,
+        "2025-Q3": -11961663.0,
+        "2025-Q2": 12046559.0,
+        "2025-Q1": 12988911.0
+      },
+      {
+        "item": "Phần lợi nhuận/lỗ từ công ty liên kết liên doanh",
+        "item_id": "n_27.share_of_profitin_associates_and_joint_ventures",
+        "2025-Q4": 32241734.0,
+        "2025-Q3": 29284526.0,
+        "2025-Q2": 25782529.0,
+        "2025-Q1": 22420823.0
+      },
+      {
+        "item": "26. Tổng lợi nhuận kế toán trước thuế",
+        "item_id": "n_27.total_profit",
+        "2025-Q4": 1061819071.0,
+        "2025-Q3": 962977480.0,
+        "2025-Q2": 842719762.0,
+        "2025-Q1": 847199227.0
+      },
+      {
+        "item": "Các khoản điều chỉnh tăng (+) hoặc giảm (-) lợi nhuận để xác định lợi nhuận chịu thuế TNDN",
+        "item_id": "n_28.increasing_or_decreasing_adjustments_to_define_taxable_profit",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "Tổng lợi nhuận trước thuế thu nhập doanh nghiệp",
+        "item_id": "n_29.total_profit_before_tax",
+        "2025-Q4": 1061819071.0,
+        "2025-Q3": 962977480.0,
+        "2025-Q2": 842719762.0,
+        "2025-Q1": 847199227.0
+      },
+      {
+        "item": "Dự phòng đảm bảo cân đối",
+        "item_id": "n_30.equalization_reserve",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "Lợi nhuận chịu thuế thu nhập doanh nghiệp",
+        "item_id": "n_31.taxable_profit",
+        "2025-Q4": 1061819071.0,
+        "2025-Q3": 962977480.0,
+        "2025-Q2": 842719762.0,
+        "2025-Q1": 847199227.0
+      },
+      {
+        "item": "27. Chi phí thuế thu nhập hiện hành",
+        "item_id": "n_32.current_corporate_income_tax_expenses",
+        "2025-Q4": 189298150.0,
+        "2025-Q3": 164517836.0,
+        "2025-Q2": 138814581.0,
+        "2025-Q1": 161053294.0
+      },
+      {
+        "item": "28. Chi phí thuế thu nhập hoãn lại",
+        "item_id": "n_33.deferred_income_tax_expenses",
+        "2025-Q4": -1586540.0,
+        "2025-Q3": 694714.0,
+        "2025-Q2": -854022.0,
+        "2025-Q1": -608541.0
+      },
+      {
+        "item": "29. Lợi nhuận sau thuế thu nhập doanh nghiệp",
+        "item_id": "n_34.profit_after_tax",
+        "2025-Q4": 874107461.0,
+        "2025-Q3": 797764930.0,
+        "2025-Q2": 704759204.0,
+        "2025-Q1": 686754474.0
+      },
+      {
+        "item": "30. Lợi ích của cổ đông thiểu số",
+        "item_id": "n_35.minority_interest",
+        "2025-Q4": 15587163.0,
+        "2025-Q3": 26989621.0,
+        "2025-Q2": 27536559.0,
+        "2025-Q1": 14873567.0
+      },
+      {
+        "item": "31. Lợi nhuận sau thuế của cổ đông của Công ty mẹ",
+        "item_id": "n_36.profit_after_tax_for_shareholders_of_the_parent_company",
+        "2025-Q4": 858520298.0,
+        "2025-Q3": 770775309.0,
+        "2025-Q2": 677222644.0,
+        "2025-Q1": 671880907.0
+      },
+      {
+        "item": "32. Lãi cơ bản trên cổ phiếu. (VNÐ)",
+        "item_id": "n_37.1_earning_per_share_vnd",
+        "2025-Q4": 1157.0,
+        "2025-Q3": 1038.0,
+        "2025-Q2": 912.0,
+        "2025-Q1": 905.0
+      }
+    ]
+  },
+  "cash_flow": {
+    "yearly": [
+      {
+        "item": "I. Lưu chuyển tiền từ hoạt động kinh doanh",
+        "item_id": "i.cash_flows_from_operating_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "1. Lợi nhuận trước thuế",
+        "item_id": "n_1.profit_before_tax",
+        "2025": 3715170001.0,
+        "2024": 2663171477.0,
+        "2023": 2236298700.0,
+        "2022": 2010163564.0
+      },
+      {
+        "item": "2. Điều chỉnh cho các khoản:",
+        "item_id": "n_2_adjustments_for",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "Khấu hao tài sản cố định",
+        "item_id": "depreciation_and_amortization",
+        "2025": 239029866.0,
+        "2024": 361656741.0,
+        "2023": 203390740.0,
+        "2022": 211803974.0
+      },
+      {
+        "item": "Các khoản dự phòng",
+        "item_id": "reversal_of_provisions_provisions",
+        "2025": 14608638159.0,
+        "2024": 18799414855.0,
+        "2023": 20001631625.0,
+        "2022": 22567116333.0
+      },
+      {
+        "item": "Lãi, lỗ chênh lệch tỷ giá hối đoái chưa thực hiện",
+        "item_id": "unrealized_foreign_exchange_gain_loss",
+        "2025": 13264127.0,
+        "2024": 13928156.0,
+        "2023": 16099744.0,
+        "2022": 16219103.0
+      },
+      {
+        "item": "Lãi, lỗ từ hoạt động đầu tư",
+        "item_id": "loss_profit_from_investment_activities",
+        "2025": -14125670581.0,
+        "2024": -12757295261.0,
+        "2023": -13624967435.0,
+        "2022": -9987399223.0
+      },
+      {
+        "item": "Chi phí lãi vay",
+        "item_id": "interest_expense",
+        "2025": 1741975802.0,
+        "2024": 1031797975.0,
+        "2023": 1777742465.0,
+        "2022": 732426110.0
+      },
+      {
+        "item": "Khác",
+        "item_id": "others",
+        "2025": -1050000.0,
+        "2024": null,
+        "2023": null,
+        "2022": -1073000.0
+      },
+      {
+        "item": "3. Lợi nhuận từ hoạt động kinh doanh trước thay đổi vốn lưu động",
+        "item_id": "n_3_operating_profit_before_changes_in_working_capital",
+        "2025": 6191357375.0,
+        "2024": 10112673943.0,
+        "2023": 10610195839.0,
+        "2022": 15549256860.0
+      },
+      {
+        "item": "Tăng, giảm các khoản phải thu",
+        "item_id": "n_1_increase_decrease_in_receivables",
+        "2025": 836289120.0,
+        "2024": 1160577326.0,
+        "2023": 1705439520.0,
+        "2022": -4346443102.0
+      },
+      {
+        "item": "Tăng, giảm hàng tồn kho",
+        "item_id": "n_2_increase_decrease_in_inventories",
+        "2025": 32353623.0,
+        "2024": 12868554.0,
+        "2023": 17342286.0,
+        "2022": 10995924.0
+      },
+      {
+        "item": "Tăng, giảm các khoản phải trả (không kể lãi vay phải trả, thuế thu nhập phải nộp)",
+        "item_id": "n_3_increase_decrease_in_payables_other_than_interest_corporate_income_tax",
+        "2025": 1705996964.0,
+        "2024": -1222998763.0,
+        "2023": -1175877607.0,
+        "2022": -133150831.0
+      },
+      {
+        "item": "Tăng, giảm chi phí trả trước",
+        "item_id": "n_4_increase_decrease_in_prepaid_expenses",
+        "2025": -267659466.0,
+        "2024": -33806613.0,
+        "2023": -131677741.0,
+        "2022": -665529009.0
+      },
+      {
+        "item": "Tăng, giảm chứng khoán kinh doanh",
+        "item_id": "increase_decrease_in_held_for_trading_securities",
+        "2025": -422760916.0,
+        "2024": -393517970.0,
+        "2023": -341545153.0,
+        "2022": -82855959.0
+      },
+      {
+        "item": "Tiền lãi vay đã trả",
+        "item_id": "n_5_interest_paid",
+        "2025": -1536696582.0,
+        "2024": -670960935.0,
+        "2023": -1787160299.0,
+        "2022": -688972801.0
+      },
+      {
+        "item": "Thuế thu nhập doanh nghiệp đã nộp",
+        "item_id": "n_6_income_tax_paid",
+        "2025": -535127300.0,
+        "2024": -432410465.0,
+        "2023": -360202939.0,
+        "2022": -426509931.0
+      },
+      {
+        "item": "Tiền thu khác từ hoạt động kinh doanh",
+        "item_id": "n_7_other_receipts_from_operating_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "Tiền chi khác từ hoạt động kinh doanh",
+        "item_id": "n_8_other_payments_for_operating_activities",
+        "2025": -91802649.0,
+        "2024": -113228871.0,
+        "2023": -59665234.0,
+        "2022": -115074831.0
+      },
+      {
+        "item": "Lưu chuyển tiền thuần từ hoạt động kinh doanh",
+        "item_id": "net_cash_flows_from_operating_activities",
+        "2025": 5911950169.0,
+        "2024": 8419196206.0,
+        "2023": 8476848672.0,
+        "2022": 9101716320.0
+      },
+      {
+        "item": "II. Lưu chuyển tiền từ hoạt động đầu tư",
+        "item_id": "ii.cash_flows_from_investing_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "1. Tiền chi để mua sắm, xây dựng TSCĐ và các tài sản dài hạn khác",
+        "item_id": "n_1_payment_for_fixed_assets_constructions_and_other_long_term_assets",
+        "2025": -119773989.0,
+        "2024": -135267945.0,
+        "2023": -179223610.0,
+        "2022": -163378387.0
+      },
+      {
+        "item": "2. Tiền thu từ thanh lý, nhượng bán TSCĐ và các tài sản dài hạn khác",
+        "item_id": "n_2_receipts_from_disposal_of_fixed_assets_and_other_long_term_assets",
+        "2025": 1724432.0,
+        "2024": 750785.0,
+        "2023": 1056681.0,
+        "2022": 2489491.0
+      },
+      {
+        "item": "3. Tiền chi cho vay, mua các công cụ nợ của đơn vị khác",
+        "item_id": "n_3_loans_purchases_of_other_entities_debt_instruments",
+        "2025": -184282620071.0,
+        "2024": -178867829680.0,
+        "2023": -163901811301.0,
+        "2022": -157948793058.0
+      },
+      {
+        "item": "4. Tiền thu hồi cho vay, bán lại các công cụ nợ của đơn vị khác",
+        "item_id": "n_4_receipts_from_loan_repayments_sale_of_other_entities_debt_instruments",
+        "2025": 150198592040.0,
+        "2024": 143899182196.0,
+        "2023": 147964399044.0,
+        "2022": 128988459811.0
+      },
+      {
+        "item": "5. Tiền chi đầu tư góp vốn vào đơn vị khác",
+        "item_id": "n_5_payments_for_investment_in_other_entities",
+        "2025": -387151435.0,
+        "2024": -245308.0,
+        "2023": -559065.0,
+        "2022": -250000.0
+      },
+      {
+        "item": "6. Tiền thu hồi đầu tư góp vốn vào đơn vị khác",
+        "item_id": "n_6_collections_on_investment_in_other_entities",
+        "2025": 102562395.0,
+        "2024": null,
+        "2023": null,
+        "2022": 6559843.0
+      },
+      {
+        "item": "7. Tiền thu lãi cho vay, cổ tức và lợi nhuận được  chia",
+        "item_id": "n_7_dividends_interest_and_profit_received",
+        "2025": 10218496172.0,
+        "2024": 13470307040.0,
+        "2023": 11552755197.0,
+        "2022": 8370940521.0
+      },
+      {
+        "item": "8. Tiền thu khác từ hoạt động đầu tư",
+        "item_id": "n_6.other_receipts_from_investing_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "9. Tiền chi khác từ hoat động đầu tư",
+        "item_id": "n_7.other_payments_for_investing_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "Lưu chuyển tiền thuần từ hoạt động đầu tư",
+        "item_id": "net_cash_flows_from_investing_activities",
+        "2025": -24268170455.0,
+        "2024": -21633102912.0,
+        "2023": -4563383054.0,
+        "2022": -20743971779.0
+      },
+      {
+        "item": "III. Lưu chuyển tiền từ hoạt động tài chính",
+        "item_id": "iii.cash_flows_from_financing_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "1. Tiền thu từ phát hành cổ phiếu, nhận vốn góp của chủ sở hữu",
+        "item_id": "n_1_receipts_from_equity_issue_and_owners_capital_contribution",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "2. Tiền chi trả vốn góp cho các chủ sở hữu, mua lại cổ phiếu của doanh nghiệp đã phát hành",
+        "item_id": "n_2_payment_for_share_repurchases",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "3. Tiền vay ngắn hạn, dài hạn nhận được",
+        "item_id": "n_3_short_term_and_long_term_borrowings",
+        "2025": 95733106069.0,
+        "2024": 68026767032.0,
+        "2023": 78332986285.0,
+        "2022": 85591616583.0
+      },
+      {
+        "item": "4. Tiền chi trả nợ gốc vay",
+        "item_id": "n_4_principal_repayments",
+        "2025": -73842865567.0,
+        "2024": -57365924453.0,
+        "2023": -78936505708.0,
+        "2022": -74823926864.0
+      },
+      {
+        "item": "5. Tiền chi trả nợ thuê tài chính",
+        "item_id": "n_5_payments_to_settle_finance_leases",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "6. Cổ tức, lợi nhuận đã trả cho chủ sở hữu ",
+        "item_id": "n_6_dividends_paid_profits_distributed_to_owners",
+        "2025": -805206061.0,
+        "2024": -767081436.0,
+        "2023": -734102405.0,
+        "2022": -2268458776.0
+      },
+      {
+        "item": "7. Tiền thu khác từ hoạt động tài chính",
+        "item_id": "n_7_other_receipts_from_financing_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "8. Tiền chi khác từ hoạt động tài chính",
+        "item_id": "n_8_other_payments_for_financing_activities",
+        "2025": null,
+        "2024": null,
+        "2023": null,
+        "2022": null
+      },
+      {
+        "item": "Lưu chuyển tiền thuần từ hoạt động tài chính",
+        "item_id": "net_cash_flows_from_financing_activities",
+        "2025": 21085034441.0,
+        "2024": 9893761144.0,
+        "2023": -1337621828.0,
+        "2022": 8499230943.0
+      },
+      {
+        "item": "Lưu chuyển tiền thuần trong kỳ",
+        "item_id": "net_cash_flows_during_the_period",
+        "2025": 2728814155.0,
+        "2024": -3320145562.0,
+        "2023": 2575843791.0,
+        "2022": -3143024516.0
+      },
+      {
+        "item": "Tiền và tương đương tiền đầu kỳ",
+        "item_id": "cash_and_cash_equivalents_at_beginning_of_the_period",
+        "2025": 1464088127.0,
+        "2024": 4783513587.0,
+        "2023": 2206497560.0,
+        "2022": 5354092026.0
+      },
+      {
+        "item": "Ảnh hưởng của thay đổi tỷ giá hối đoái quy đổi ngoại tệ",
+        "item_id": "exchange_difference_due_to_re_valuation_of_ending_balances",
+        "2025": 1715668.0,
+        "2024": 720102.0,
+        "2023": 1172236.0,
+        "2022": -4569950.0
+      },
+      {
+        "item": "Tiền và tương đương tiền cuối kỳ",
+        "item_id": "cash_and_cash_equivalents_at_end_of_the_period",
+        "2025": 4194617950.0,
+        "2024": 1464088127.0,
+        "2023": 4783513587.0,
+        "2022": 2206497560.0
+      }
+    ],
+    "quarterly": [
+      {
+        "item": "I. Lưu chuyển tiền từ hoạt động kinh doanh",
+        "item_id": "i.cash_flows_from_operating_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "1. Lợi nhuận trước thuế",
+        "item_id": "n_1.profit_before_tax",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 847199227.0
+      },
+      {
+        "item": "2. Điều chỉnh cho các khoản:",
+        "item_id": "n_2_adjustments_for",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "Khấu hao tài sản cố định",
+        "item_id": "depreciation_and_amortization",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 60175460.0
+      },
+      {
+        "item": "Các khoản dự phòng",
+        "item_id": "reversal_of_provisions_provisions",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 4060123427.0
+      },
+      {
+        "item": "Lãi, lỗ chênh lệch tỷ giá hối đoái chưa thực hiện",
+        "item_id": "unrealized_foreign_exchange_gain_loss",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 4063440.0
+      },
+      {
+        "item": "Lãi, lỗ từ hoạt động đầu tư",
+        "item_id": "loss_profit_from_investment_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -3248641904.0
+      },
+      {
+        "item": "Chi phí lãi vay",
+        "item_id": "interest_expense",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 378323554.0
+      },
+      {
+        "item": "Khác",
+        "item_id": "others",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "3. Lợi nhuận từ hoạt động kinh doanh trước thay đổi vốn lưu động",
+        "item_id": "n_3_operating_profit_before_changes_in_working_capital",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 2101243204.0
+      },
+      {
+        "item": "Tăng, giảm các khoản phải thu",
+        "item_id": "n_1_increase_decrease_in_receivables",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -213182156.0
+      },
+      {
+        "item": "Tăng, giảm hàng tồn kho",
+        "item_id": "n_2_increase_decrease_in_inventories",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 9351504.0
+      },
+      {
+        "item": "Tăng, giảm các khoản phải trả (không kể lãi vay phải trả, thuế thu nhập phải nộp)",
+        "item_id": "n_3_increase_decrease_in_payables_other_than_interest_corporate_income_tax",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -179505984.0
+      },
+      {
+        "item": "Tăng, giảm chi phí trả trước",
+        "item_id": "n_4_increase_decrease_in_prepaid_expenses",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -24395217.0
+      },
+      {
+        "item": "Tăng, giảm chứng khoán kinh doanh",
+        "item_id": "increase_decrease_in_held_for_trading_securities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 8282410.0
+      },
+      {
+        "item": "Tiền lãi vay đã trả",
+        "item_id": "n_5_interest_paid",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -483072879.0
+      },
+      {
+        "item": "Thuế thu nhập doanh nghiệp đã nộp",
+        "item_id": "n_6_income_tax_paid",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -143950472.0
+      },
+      {
+        "item": "Tiền thu khác từ hoạt động kinh doanh",
+        "item_id": "n_7_other_receipts_from_operating_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "Tiền chi khác từ hoạt động kinh doanh",
+        "item_id": "n_8_other_payments_for_operating_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -80645014.0
+      },
+      {
+        "item": "Lưu chuyển tiền thuần từ hoạt động kinh doanh",
+        "item_id": "net_cash_flows_from_operating_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 994125396.0
+      },
+      {
+        "item": "II. Lưu chuyển tiền từ hoạt động đầu tư",
+        "item_id": "ii.cash_flows_from_investing_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "1. Tiền chi để mua sắm, xây dựng TSCĐ và các tài sản dài hạn khác",
+        "item_id": "n_1_payment_for_fixed_assets_constructions_and_other_long_term_assets",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -26385223.0
+      },
+      {
+        "item": "2. Tiền thu từ thanh lý, nhượng bán TSCĐ và các tài sản dài hạn khác",
+        "item_id": "n_2_receipts_from_disposal_of_fixed_assets_and_other_long_term_assets",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 597935.0
+      },
+      {
+        "item": "3. Tiền chi cho vay, mua các công cụ nợ của đơn vị khác",
+        "item_id": "n_3_loans_purchases_of_other_entities_debt_instruments",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -36013952919.0
+      },
+      {
+        "item": "4. Tiền thu hồi cho vay, bán lại các công cụ nợ của đơn vị khác",
+        "item_id": "n_4_receipts_from_loan_repayments_sale_of_other_entities_debt_instruments",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 31413006788.0
+      },
+      {
+        "item": "5. Tiền chi đầu tư góp vốn vào đơn vị khác",
+        "item_id": "n_5_payments_for_investment_in_other_entities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "6. Tiền thu hồi đầu tư góp vốn vào đơn vị khác",
+        "item_id": "n_6_collections_on_investment_in_other_entities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "7. Tiền thu lãi cho vay, cổ tức và lợi nhuận được  chia",
+        "item_id": "n_7_dividends_interest_and_profit_received",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 2974400406.0
+      },
+      {
+        "item": "8. Tiền thu khác từ hoạt động đầu tư",
+        "item_id": "n_6.other_receipts_from_investing_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "9. Tiền chi khác từ hoat động đầu tư",
+        "item_id": "n_7.other_payments_for_investing_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "Lưu chuyển tiền thuần từ hoạt động đầu tư",
+        "item_id": "net_cash_flows_from_investing_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -1652333012.0
+      },
+      {
+        "item": "III. Lưu chuyển tiền từ hoạt động tài chính",
+        "item_id": "iii.cash_flows_from_financing_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "1. Tiền thu từ phát hành cổ phiếu, nhận vốn góp của chủ sở hữu",
+        "item_id": "n_1_receipts_from_equity_issue_and_owners_capital_contribution",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "2. Tiền chi trả vốn góp cho các chủ sở hữu, mua lại cổ phiếu của doanh nghiệp đã phát hành",
+        "item_id": "n_2_payment_for_share_repurchases",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "3. Tiền vay ngắn hạn, dài hạn nhận được",
+        "item_id": "n_3_short_term_and_long_term_borrowings",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 23275403653.0
+      },
+      {
+        "item": "4. Tiền chi trả nợ gốc vay",
+        "item_id": "n_4_principal_repayments",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -23143760099.0
+      },
+      {
+        "item": "5. Tiền chi trả nợ thuê tài chính",
+        "item_id": "n_5_payments_to_settle_finance_leases",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "6. Cổ tức, lợi nhuận đã trả cho chủ sở hữu ",
+        "item_id": "n_6_dividends_paid_profits_distributed_to_owners",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "7. Tiền thu khác từ hoạt động tài chính",
+        "item_id": "n_7_other_receipts_from_financing_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "8. Tiền chi khác từ hoạt động tài chính",
+        "item_id": "n_8_other_payments_for_financing_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": null
+      },
+      {
+        "item": "Lưu chuyển tiền thuần từ hoạt động tài chính",
+        "item_id": "net_cash_flows_from_financing_activities",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 131643555.0
+      },
+      {
+        "item": "Lưu chuyển tiền thuần trong kỳ",
+        "item_id": "net_cash_flows_during_the_period",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -526564062.0
+      },
+      {
+        "item": "Tiền và tương đương tiền đầu kỳ",
+        "item_id": "cash_and_cash_equivalents_at_beginning_of_the_period",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 1464088127.0
+      },
+      {
+        "item": "Ảnh hưởng của thay đổi tỷ giá hối đoái quy đổi ngoại tệ",
+        "item_id": "exchange_difference_due_to_re_valuation_of_ending_balances",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": -379545.0
+      },
+      {
+        "item": "Tiền và tương đương tiền cuối kỳ",
+        "item_id": "cash_and_cash_equivalents_at_end_of_the_period",
+        "2025-Q4": null,
+        "2025-Q3": null,
+        "2025-Q2": null,
+        "2025-Q1": 937144520.0
+      }
+    ]
+  },
+  "finance_idx": [
+    {
+      "item": "Thu nhập trên mỗi cổ phần của 4 quý gần nhất (EPS)",
+      "item_id": "trailing_eps",
+      "2025": 3995.98,
+      "2024": 2843.1,
+      "2023": 2404.43,
+      "2022": 2089.38
+    },
+    {
+      "item": "Giá trị sổ sách của cổ phiếu (BVPS)",
+      "item_id": "book_value_per_share_bvps",
+      "2025": 34499.89,
+      "2024": 31746.15,
+      "2023": 29985.64,
+      "2022": 28654.59
+    },
+    {
+      "item": "Chỉ số giá thị trường trên thu nhập (P/E)",
+      "item_id": "p_e",
+      "2025": 14.21,
+      "2024": 17.83,
+      "2023": 16.43,
+      "2022": 22.3
+    },
+    {
+      "item": "Chỉ số giá thị trường trên giá trị sổ sách (P/B)",
+      "item_id": "p_b",
+      "2025": 1.65,
+      "2024": 1.6,
+      "2023": 1.32,
+      "2022": 1.63
+    },
+    {
+      "item": "Chỉ số giá thị trường trên doanh thu thuần (P/S)",
+      "item_id": "p_s",
+      "2025": 1.03,
+      "2024": 0.95,
+      "2023": 0.73,
+      "2022": 0.85
+    },
+    {
+      "item": "Tỷ suất cổ tức",
+      "item_id": "dividend_yield",
+      "2025": 0.02,
+      "2024": 0.02,
+      "2023": 0.02,
+      "2022": 0.06
+    },
+    {
+      "item": "Beta",
+      "item_id": "beta",
+      "2025": 0.9,
+      "2024": 0.76,
+      "2023": 0.83,
+      "2022": 1.03
+    },
+    {
+      "item": "Giá trị doanh nghiệp trên lợi nhuận trước thuế và lãi vay (EV/EBIT)",
+      "item_id": "ev_ebit",
+      "2025": 0.0,
+      "2024": 0.0,
+      "2023": 12.89,
+      "2022": 17.08
+    },
+    {
+      "item": "Giá trị doanh nghiệp trên lợi nhuận trước thuế, khấu hao và lãi vay (EV/EBITDA)",
+      "item_id": "ev_ebitda",
+      "2025": 0.0,
+      "2024": 0.0,
+      "2023": 11.82,
+      "2022": 15.45
+    },
+    {
+      "item": "Tỷ suất lợi nhuận gộp biên",
+      "item_id": "gross_profit_margin",
+      "2025": -0.05,
+      "2024": -5.82,
+      "2023": -9.06,
+      "2022": -5.35
+    },
+    {
+      "item": "Tỷ suất sinh lợi trên doanh thu thuần",
+      "item_id": "net_profit_margin",
+      "2025": 7.45,
+      "2024": 5.51,
+      "2023": 4.64,
+      "2022": 4.0
+    },
+    {
+      "item": "Tỷ suất lợi nhuận trên vốn chủ sở hữu bình quân (ROEA)",
+      "item_id": "roe",
+      "2025": 12.41,
+      "2024": 9.58,
+      "2023": 8.55,
+      "2022": 7.51
+    },
+    {
+      "item": "Tỷ suất sinh lợi trên tổng tài sản bình quân (ROAA)",
+      "item_id": "roa",
+      "2025": 1.09,
+      "2024": 0.89,
+      "2023": 0.84,
+      "2022": 0.84
+    },
+    {
+      "item": "ROE bình quân 4 quý gần nhất",
+      "item_id": "roe_trailling",
+      "2025": 0.0,
+      "2024": 0.0,
+      "2023": 0.0,
+      "2022": 0.0
+    },
+    {
+      "item": "ROA bình quân 4 quý gần nhất",
+      "item_id": "roa_trailling",
+      "2025": 0.0,
+      "2024": 0.0,
+      "2023": 0.0,
+      "2022": 0.0
+    },
+    {
+      "item": "Tăng trưởng  doanh thu thuần",
+      "item_id": "net_revenue",
+      "2025": 2.79,
+      "2024": -0.64,
+      "2023": -1.49,
+      "2022": 10.48
+    },
+    {
+      "item": "Tăng trưởng  lợi nhuận gộp",
+      "item_id": "gross_profit",
+      "2025": -100.93,
+      "2024": -163.75,
+      "2023": -266.88,
+      "2022": -230.92
+    },
+    {
+      "item": "Tăng trưởng lợi nhuận trước thuế ",
+      "item_id": "profit_before_tax",
+      "2025": 39.5,
+      "2024": 19.09,
+      "2023": 11.25,
+      "2022": -15.41
+    },
+    {
+      "item": "Tăng trưởng lợi nhuận sau thuế của CĐ công ty mẹ",
+      "item_id": "profit_after_tax_for_shareholders_of_the_parent_company",
+      "2025": 40.55,
+      "2024": 18.24,
+      "2023": 15.08,
+      "2022": -18.23
+    },
+    {
+      "item": "Tăng trưởng tổng tài sản",
+      "item_id": "total_assets",
+      "2025": 16.17,
+      "2024": 13.65,
+      "2023": 9.64,
+      "2022": 18.97
+    },
+    {
+      "item": "Tăng trưởng nợ dài hạn",
+      "item_id": "long_term_liabilities",
+      "2025": 1.41,
+      "2024": 3.69,
+      "2023": -24.85,
+      "2022": -27.52
+    },
+    {
+      "item": "Tăng trưởng nợ phải trả",
+      "item_id": "liabilities",
+      "2025": 16.94,
+      "2024": 14.52,
+      "2023": 10.23,
+      "2022": 22.32
+    },
+    {
+      "item": "Tăng trưởng vốn chủ sở hữu",
+      "item_id": "owners_equity",
+      "2025": 8.67,
+      "2024": 5.87,
+      "2023": 4.65,
+      "2022": -3.43
+    },
+    {
+      "item": "Tăng trưởng vốn điều lệ",
+      "item_id": "charter_capital",
+      "2025": 0.0,
+      "2024": 0.0,
+      "2023": 0.0,
+      "2022": 0.0
+    },
+    {
+      "item": "Tỷ số thanh toán bằng tiền mặt",
+      "item_id": "cash_ratio",
+      "2025": 0.06,
+      "2024": 0.04,
+      "2023": 0.16,
+      "2022": 0.07
+    },
+    {
+      "item": "Tỷ số thanh toán nhanh",
+      "item_id": "quick_ratio",
+      "2025": 2.32,
+      "2024": 2.97,
+      "2023": 3.97,
+      "2022": 3.61
+    },
+    {
+      "item": "Tỷ số thanh toán nhanh  (Đã loại trừ HTK, Phải thu ngắn hạn - Tham khảo)",
+      "item_id": "quick_ratio_except_inventories_short_term_receivables_reference",
+      "2025": 2.03,
+      "2024": 2.58,
+      "2023": 3.45,
+      "2022": 3.22
+    },
+    {
+      "item": "Tỷ số thanh toán hiện hành (ngắn hạn)",
+      "item_id": "short_term_ratio",
+      "2025": 2.32,
+      "2024": 2.97,
+      "2023": 3.97,
+      "2022": 3.61
+    }
+  ]
+}
