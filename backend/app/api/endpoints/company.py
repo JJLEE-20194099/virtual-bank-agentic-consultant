@@ -25,6 +25,11 @@ def get_company_info_summary(
         
     data = get_company_info(company)
 
+    os.makedirs(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/{company}", exist_ok=True)
+
+    with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/{company}/financial.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
     overview = data["overview"][0]
     outstanding_shares = overview["outstanding_shares"]
     listing_price = overview["listing_price"]
@@ -34,7 +39,10 @@ def get_company_info_summary(
         records = data[category][section]
         for item in records:
             if item_id in item["item_id"]:
-                return item[year]
+                try:
+                    return item[year]
+                except:
+                    return item["2024"]
         return None
 
 
@@ -48,7 +56,10 @@ def get_company_info_summary(
     def get_index_value(item_id, year="2025"):
         for item in finance_idx:
             if  item_id in item["item_id"]:
-                return item[year]
+                try:
+                    return item[year]
+                except:
+                    return item["2024"]
         return None
 
 
@@ -72,13 +83,10 @@ def get_company_info_summary(
         "sector": company_dict[company]["sector"]
     }
 
-    os.makedirs(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/{company}", exist_ok=True)
     with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/{company}/summary.json", "w", encoding="utf-8") as f:
         json.dump(company_info_summary, f, ensure_ascii=False, indent=2)
 
-    with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/{company}/financial.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-
+    
     return company_info_summary
 
 
