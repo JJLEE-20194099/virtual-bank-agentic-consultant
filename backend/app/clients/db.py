@@ -118,3 +118,95 @@ class PostgresClient:
             DELETE FROM stock_summary
             WHERE symbol = $1
         """, symbol)
+
+
+    async def init_stock_transactions_table(self):
+        await self.conn.execute("""
+        CREATE TABLE IF NOT EXISTS stock_transaction 
+        (
+            id SERIAL PRIMARY KEY,
+            transaction_id TEXT UNIQUE,
+            customer_id TEXT NOT NULL,
+
+            datetime TIMESTAMP NOT NULL,
+            stock_code TEXT NOT NULL,
+
+            action TEXT CHECK (action IN ('buy', 'sell')),
+
+            quantity INT NOT NULL,
+            price NUMERIC NOT NULL,
+            fee NUMERIC NOT NULL
+        );
+        """)
+
+        await self.conn.execute("""
+        CREATE INDEX IF NOT EXISTS idx_transactions_customer_time
+        ON stock_transaction(customer_id, datetime);
+        """)
+    
+        await self.conn.execute("""
+        CREATE INDEX IF NOT EXISTS idx_transactions_stock
+        ON stock_transaction(stock_code);
+        """)
+
+        await self.conn.execute("""
+        CREATE INDEX IF NOT EXISTS idx_transactions_user_stock
+        ON stock_transaction(customer_id, stock_code);
+        """)
+
+    async def insert_stock_transactions(self, transactions: List):
+        await self.conn.executemany("""
+            INSERT INTO stock_transaction(
+                transaction_id,
+                customer_id,
+                datetime,
+                stock_code,
+                action,
+                quantity,
+                price,
+                fee
+            )
+            VALUES($1,$2,$3,$4,$5,$6,$7,$8)
+            ON CONFLICT (transaction_id) DO NOTHING
+        """, [
+            (
+                t["transaction_id"],
+                t["customer_id"],
+                t["datetime"],
+                t["stock_code"],
+                t["action"],
+                t["quantity"],
+                t["price"],
+                t["fee"]
+            )
+            for t in transactions
+        ])
+
+    async def get_stock_transactions_by_user(self, customer_id: str, limit: int = 20, offset: int = 0):
+        rows = await self.conn.fetch("""
+            SELECT *
+            FROM stock_transaction
+            WHERE customer_id = $1
+            ORDER BY datetime DESC
+            LIMIT $2 OFFSET $3
+        """, customer_id, limit, offset)
+
+        return [dict(r) for r in rows]
+
+    async def get_stock_transactions_by_user_and_stock(self, customer_id: str, stock_code: str, limit: int = 20, offset: int = 0):
+        rows = await self.conn.fetch("""
+            SELECT *
+            FROM stock_transaction
+            WHERE customer_id = $1 AND stock_code = $2
+            ORDER BY datetime DESC
+            LIMIT $3 OFFSET $4
+        """, customer_id, stock_code, limit, offset)
+
+        return [dict(r) for r in rows]
+
+
+    async def delete_stock_transaction(self, transaction_id: str):
+        await self.conn.execute("""
+            DELETE FROM stock_transaction
+            WHERE transaction_id = $1
+        """, transaction_id)

@@ -9,6 +9,7 @@ from contextlib import asynccontextmanager
 async def lifespan(app: FastAPI):
     await db_client.connect()
     await db_client.init_portfolio_table()
+    await db_client.init_stock_transactions_table()
 
     print("DB CONNECTED")
 

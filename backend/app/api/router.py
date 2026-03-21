@@ -1,8 +1,15 @@
 """API router configuration."""
 from fastapi import APIRouter
-from app.api.endpoints import transaction, conversation, market, company, user
+from app.api.endpoints import transaction, conversation, market, company, user, stock_transaction
 
 api_router = APIRouter()
+
+
+api_router.include_router(
+    stock_transaction.router,
+    prefix="/stock",
+    tags=["stock"]
+)
 
 
 api_router.include_router(

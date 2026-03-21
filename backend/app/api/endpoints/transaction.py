@@ -15,16 +15,13 @@ from app.agents.ai_orchestrator_agent.orchestrator import run_consultant
 
 router = APIRouter()
 
-def fetch_from_postgres(user_id):
-    return None
-
 DATA_PATH = "app/data/raw/transactions.csv"
 DB_PATH = "app/storage/transactions.db"
 
 
 class TransactionEvent(BaseModel):
     user_id: str
-    type: str  # e.g., transfer, stock_trade
+    type: str 
     amount: float
     category: Optional[str] = None
     description: Optional[str] = None
