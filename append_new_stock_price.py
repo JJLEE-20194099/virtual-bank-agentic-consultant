@@ -5,6 +5,8 @@ import time
 import os
 import pandas as pd
 import numpy as np
+import asyncio
+from backend.app.clients.db import PostgresClient
 
 BASE_URL = "http://localhost:8080/api/v1/market"
 
@@ -142,44 +144,60 @@ stocks = [
 "VCG","VGC","VHC","VIX","VND","VOS","YEG"
 ]
 
+db_client = PostgresClient(
+    user="swin",
+    password="swin",
+    database="vbac",
+    host="localhost"
+)
 
-for stock in stocks:
+async def run():
 
-    file_path = f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}/history_price.json"
-    history = load_data(file_path)
+    await db_client.connect()
+    await db_client.init_stock_summary_table()
 
-    today = datetime.now().date()
+    for stock in stocks:
 
-    latest = get_latest_date(history)
+        file_path = f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}/history_price.json"
+        history = load_data(file_path)
 
-    if latest:
-        latest_date = latest.date()
-        if latest_date < today - timedelta(days=1):
-            print(f"Missing history from {latest_date}")
-            missing_data = fetch_missing_history(stock, latest_date + timedelta(days=1))
-            history = merge_data(history, missing_data)
-    else:
-        print("No data, skip or fetch full")
+        today = datetime.now().date()
 
-    has_today = any(
-        datetime.fromisoformat(d["time"]).date() == today
-        for d in history
-    )
+        latest = get_latest_date(history)
 
-    if not has_today:
-        print("Fetch realtime today")
-        realtime = fetch_realtime(stock)
-        if realtime:
-            history = merge_data(history, [realtime])
+        if latest:
+            latest_date = latest.date()
+            if latest_date < today - timedelta(days=1):
+                print(f"Missing history from {latest_date}")
+                missing_data = fetch_missing_history(stock, latest_date + timedelta(days=1))
+                history = merge_data(history, missing_data)
+        else:
+            print("No data, skip or fetch full")
 
-    save_data(file_path, history)
+        has_today = any(
+            datetime.fromisoformat(d["time"]).date() == today
+            for d in history
+        )
 
-    ohlcv_analysis_data = analyze_ohlcv(history)
+        if not has_today:
+            print("Fetch realtime today")
+            realtime = fetch_realtime(stock)
+            if realtime:
+                history = merge_data(history, [realtime])
 
-    os.makedirs(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}", exist_ok=True)
-    with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}/ohlcv_analysis_data.json", "w", encoding="utf-8") as f:
-        json.dump(ohlcv_analysis_data, f, ensure_ascii=False, indent=2)
+        save_data(file_path, history)
+        ohlcv_analysis_data = analyze_ohlcv(history)
+
+        os.makedirs(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}", exist_ok=True)
+        with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}/ohlcv_analysis_data.json", "w", encoding="utf-8") as f:
+            json.dump(ohlcv_analysis_data, f, ensure_ascii=False, indent=2)
+
+        await db_client.save_stock_summary(stock, ohlcv_analysis_data)
+
+        time.sleep(0.1)
+        print(f"Done {stock}", latest_date, has_today)
 
 
-    time.sleep(0.1)
-    print(f"Done {stock}", latest_date, has_today)
+
+if __name__ == "__main__":
+    asyncio.run(run())

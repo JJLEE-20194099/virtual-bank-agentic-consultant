@@ -63,3 +63,56 @@ class PostgresClient:
             DELETE FROM portfolio_summary
             WHERE user_id = $1
         """, user_id)
+
+    
+
+    async def init_stock_summary_table(self):
+        await self.conn.execute("""
+        CREATE TABLE IF NOT EXISTS stock_summary (
+            symbol TEXT PRIMARY KEY,
+            company TEXT NOT NULL,
+            data JSONB NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)
+
+    async def save_stock_summary(self, symbol: str, stock_summary: Dict[str, Any]):
+        await self.conn.execute("""
+            INSERT INTO stock_summary(symbol, company, data)
+            VALUES($1, $2, $3)
+            ON CONFLICT (symbol)
+            DO UPDATE SET data = EXCLUDED.data,
+                          created_at = CURRENT_TIMESTAMP
+        """,
+        symbol,
+        symbol,
+        json.dumps(stock_summary)   
+    )
+
+
+    async def get_stock_summary(self, symbol: str) -> Optional[Dict]:
+        row = await self.conn.fetchrow("""
+            SELECT *
+            FROM stock_summary
+            WHERE symbol = $1
+        """, symbol)
+
+        return row
+
+
+
+    async def get_stock_summary_by_symbols(self, symbols: List[str]):
+        rows = await self.conn.fetch("""
+            SELECT *
+            FROM stock_summary
+            WHERE symbol = ANY($1)
+        """, symbols)
+
+        return rows
+
+
+    async def delete_stock_summary(self, symbol: str):
+        await self.conn.execute("""
+            DELETE FROM stock_summary
+            WHERE symbol = $1
+        """, symbol)

@@ -12,5 +12,22 @@ service = MarketService()
 
 @router.get(("/summary/{user_id}"))
 async def get_stocks_by_user_id(user_id: str):
-    return await db_client.get_portfolio(user_id)
+    portfolio_summary = await db_client.get_portfolio(user_id)
+
+    symbols = list(portfolio_summary.keys())
+
+    stock_summaries = get_stock_summary_by_symbols(symbols)
+
+    keys = [
+        item["symbol"] for item in stock_summaries
+    ]
+
+    portfolio_summary = [portfolio_summary[key] for key in keys]
+
+    
+
+
+
+
+
 
