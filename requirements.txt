@@ -19,3 +19,5 @@ fastparquet
 python-dotenv
 vnstock
 asyncpg
+celery
+redis

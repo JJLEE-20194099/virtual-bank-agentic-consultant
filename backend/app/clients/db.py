@@ -21,6 +21,13 @@ class PostgresClient:
             port=self.port
         )
 
+    def _normalize(self, record):
+        from decimal import Decimal
+        return {
+            k: float(v) if isinstance(v, Decimal) else v
+            for k, v in record.items()
+        }
+
     async def close(self):
         if self.conn:
             await self.conn.close()
@@ -202,7 +209,7 @@ class PostgresClient:
             rows = await self.conn.fetch(query, customer_id)
 
 
-        return [dict(r) for r in rows]
+        return [self._normalize(dict(r)) for r in rows]
 
     async def get_stock_transactions_by_user_and_stock(self, customer_id: str, stock_code: str, limit: int = 20, offset: int = 0):
 
@@ -224,7 +231,7 @@ class PostgresClient:
 
 
 
-        return [dict(r) for r in rows]
+        return [self._normalize(dict(r)) for r in rows]
 
 
     async def delete_stock_transaction(self, transaction_id: str):

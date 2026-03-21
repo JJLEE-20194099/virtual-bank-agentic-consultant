@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, BackgroundTasks
 from app.service.finance.market.market_service import MarketService
 import json
 import pandas as pd 
@@ -9,7 +9,7 @@ import uuid
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import random
-
+from tasks import update_portfolio
 
 router = APIRouter()
 service = MarketService()
@@ -42,6 +42,9 @@ async def buysell_stock(payload: StockBuySellBase):
     }
 
     await db_client.insert_stock_transactions([transaction])
+
+    update_portfolio.delay(payload.customer_id)
+    
     return {"status": "ok", "transaction_id": transaction_id}
     
 
