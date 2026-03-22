@@ -64,6 +64,7 @@ def calculate_portfolio(df, current_prices):
 
         s = state[symbol]
 
+
         if side == "buy":
             total_cost = s["avg_price"] * s["shares"] + price * qty
             s["shares"] += qty
@@ -82,7 +83,10 @@ def calculate_portfolio(df, current_prices):
     total_portfolio_value = 0
 
     for symbol, s in state.items():
-        current_price = current_prices[f"price:{symbol}"]["close_price"]
+        current_price = current_prices[f"price:{symbol}"]["close_price"] / 1000
+
+        if s["shares"] == 0:
+            continue
 
         unrealized = (current_price - s["avg_price"]) * s["shares"]
         total_value = current_price * s["shares"]
@@ -91,11 +95,11 @@ def calculate_portfolio(df, current_prices):
 
         results[symbol] = {
             "shares": s["shares"],
-            "avg_price": round(s["avg_price"], 2),
-            "current_price": current_price,
             "realized_pnl": round(s["realized_pnl"], 2),
             "unrealized_pnl": round(unrealized, 2),
-            "total_value": round(total_value, 2)
+            "total_value": round(total_value, 2),
+            "avg_price": round(s["avg_price"], 2),
+            "current_price": current_price
         }
 
     for symbol in results:
