@@ -21,3 +21,5 @@ vnstock
 asyncpg
 celery
 redis
+notebook
+jupyterlab
