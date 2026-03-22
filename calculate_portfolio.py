@@ -5,8 +5,9 @@ import os
 import asyncpg
 import asyncio
 from backend.app.clients.db import PostgresClient
-from backend.app.utils.portfolio import calculate_portfolio, fetch_realtime, stocks
+from backend.app.utils.portfolio import calculate_portfolio, stocks
 
+from backend.app.clients.cache import RedisClient
 
 db_client = PostgresClient(
     user="swin",
@@ -15,17 +16,12 @@ db_client = PostgresClient(
     host="localhost"
 )
 
-    
-
-realtime_prices = fetch_realtime(stocks)
-
+redis_client = RedisClient()    
+realtime_prices =  redis_client.get("realtime_prices:all")
 
 async def save_portfolio():
     
     await db_client.connect()
-
-
-    
 
     df = pd.read_csv("/root/code/hackathon/virtual-bank-agentic-consultant/correct_trading_data.csv")
     # df["datetime"] = pd.to_datetime(df["datetime"], format="mixed")

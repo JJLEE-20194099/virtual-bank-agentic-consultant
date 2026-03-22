@@ -23,7 +23,7 @@ redis_client = RedisClient()
 
 async def _update_portfolio_async(user_id: str):
 
-    realtime_prices = fetch_realtime(stocks)
+    realtime_prices = redis_client.get("realtime_prices:all")
 
     await db_client.connect()
     data = await db_client.get_stock_transactions_by_user(customer_id = user_id, limit=-1)
@@ -78,10 +78,10 @@ async def _update_realtime_price_async():
     redis_client.set(
         "realtime_prices:all",
         json.dumps(data),
-        ex=300
+        ex=60 * 60 * 24
     )
 
-    redis_client.set_many(data, ex=300)
+    redis_client.set_many(data, ex=60 * 60 * 24)
 
     sample = realtime_prices[0]
 

@@ -8,7 +8,13 @@ import numpy as np
 import asyncio
 from backend.app.clients.db import PostgresClient
 
+from backend.app.clients.cache import RedisClient
+
 BASE_URL = "http://localhost:8080/api/v1/market"
+
+
+redis_client = RedisClient()    
+realtime_prices =  redis_client.get("realtime_prices:all")
 
 def load_data(file_path):
     try:
@@ -39,21 +45,17 @@ def fetch_missing_history(symbol, start_date):
         return res.json()
     return []
 
-def fetch_realtime(symbol):
-    url = f"{BASE_URL}/ohlcv-by-symbols"
-    res = requests.post(url, json=[symbol])
-    if res.status_code == 200:
-        data = res.json()[0]
-
-        return {
-            "time": datetime.fromtimestamp(data["time"]/1000).isoformat(),
-            "open": data["open_price"] / 1000,
-            "high": data["high_price"] / 1000,
-            "low": data["low_price"] / 1000,
-            "close": data["close_price"] / 1000,
-            "volume": data["total_trades"]
+def format_realtime_data(data):
+    
+    return {
+        "time": datetime.fromtimestamp(data["time"]/1000).isoformat(),
+        "open": data["open_price"] / 1000,
+        "high": data["high_price"] / 1000,
+        "low": data["low_price"] / 1000,
+        "close": data["close_price"] / 1000,
+        "volume": data["total_trades"]
         }
-    return None
+
 
 def detect_trend(df):
     close = df["close"]
@@ -181,7 +183,9 @@ async def run():
 
         if not has_today:
             print("Fetch realtime today")
-            realtime = fetch_realtime(stock)
+
+            realtime = format_realtime_data(realtime_prices[f"price:{stock}"])
+
             if realtime:
                 history = merge_data(history, [realtime])
 

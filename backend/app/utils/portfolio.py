@@ -82,7 +82,7 @@ def calculate_portfolio(df, current_prices):
     total_portfolio_value = 0
 
     for symbol, s in state.items():
-        current_price = current_prices[symbol]
+        current_price = current_prices[f"price:{symbol}"]["close_price"]
 
         unrealized = (current_price - s["avg_price"]) * s["shares"]
         total_value = current_price * s["shares"]

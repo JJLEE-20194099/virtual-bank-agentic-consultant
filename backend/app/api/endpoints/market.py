@@ -88,7 +88,7 @@ async def get_domestic_gold_price():
 @router.get("/global-gold-price")
 async def get_global_gold_price():
     return service.get_global_gold_price()
-
+                            
 @router.get("/global-oil-price")
 async def get_global_oil_price():
     return service.get_global_oil_price()
