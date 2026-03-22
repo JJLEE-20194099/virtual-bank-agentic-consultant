@@ -70,8 +70,10 @@ docker run -d --name redis -p 6379:6379 redis
 
 docker run -d -p 8081:8080 adminer
 
-docker rename compassionate_kowalevski adminer
+docker rename gracious_blackwell adminer
 docker network create swinnet
 docker network connect swinnet postgres
 docker network connect swinnet redis
 docker network connect swinnet adminer
+
+uvicorn main:app --reload --host 0.0.0.0 --port 8080

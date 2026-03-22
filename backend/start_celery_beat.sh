@@ -1,0 +1,1 @@
+celery -A celery_worker.celery_app beat --loglevel=info

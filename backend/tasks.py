@@ -1,9 +1,15 @@
 from celery_worker import celery_app
 import asyncio
-
 from app.clients.db import PostgresClient
+from app.clients.cache import RedisClient
 from app.utils.portfolio import calculate_portfolio, fetch_realtime, stocks
+from app.service.finance.market.market_service import MarketService
 import pandas as pd
+import json
+from datetime import datetime
+
+
+service = MarketService()
 
 db_client = PostgresClient(
     user="swin",
@@ -12,6 +18,7 @@ db_client = PostgresClient(
     host="localhost"
 )
 
+redis_client = RedisClient()
 
 
 async def _update_portfolio_async(user_id: str):
@@ -32,3 +39,58 @@ async def _update_portfolio_async(user_id: str):
 @celery_app.task(name="tasks.update_portfolio")
 def update_portfolio(user_id: str):
     asyncio.run(_update_portfolio_async(user_id))
+
+
+async def fetch_batch(batch):
+    return service.get_multiple(batch)
+
+
+async def fetch_all(stocks):
+    tasks = []
+    batch_size = 10
+    for i in range(0, len(stocks), batch_size):
+        tasks.append(fetch_batch(stocks[i:i+batch_size]))
+    results = await asyncio.gather(*tasks)
+    return [item for sublist in results for item in sublist]
+
+async def _update_realtime_price_async():
+    stocks = [
+        "ACB","BCM","BID","BVH","CTG","FPT","GAS","GVR","HDB","HPG",
+        "MBB","MSN","MWG","PLX","POW","SAB","SSI","STB","TCB","TPB",
+        "VCB","VHM","VIB","VIC","VJC","VNM","VPB","VRE",
+        "AAA","ANV","ASM","BCG","BSI","BMP","CII","CMG","CSM",
+        "CSV","DBC","DCM","DGC","DIG","DPM","DXG","EVF","FRT","GEX",
+        "GMD","HAH","HSG","IDC","IJC","KBC","KDH","LPB","MBS","MSB",
+        "NKG","NLG","NT2","OCB","PAN","PC1","PDR","PET","PHR","PVD",
+        "PVS","PVT","REE","SBT","SHB","SJS","SZC","TCH","TCM","TNG",
+        "VCG","VGC","VHC","VIX","VND","VOS","YEG"
+        ]
+
+
+    realtime_prices = await fetch_all(stocks)
+
+    data = {
+        f"price:{item['symbol']}": item
+        for item in realtime_prices
+    }
+
+    
+    redis_client.set(
+        "realtime_prices:all",
+        json.dumps(data),
+        ex=300
+    )
+
+    redis_client.set_many(data, ex=300)
+
+    sample = realtime_prices[0]
+
+    print(sample["symbol"], sample["close_price"], datetime.fromtimestamp(sample["time"] / 1000))
+
+    return "Cache Realtime Prices price:symbol & realtime_prices:all"
+
+@celery_app.task(name="tasks.update_realtime_price")
+def update_realtime_price():
+    asyncio.run(_update_realtime_price_async())
+
+

@@ -1,13 +1,14 @@
 from fastapi import APIRouter, Query
 from app.service.finance.market.market_service import MarketService
 from datetime import datetime
+from app.clients.cache import RedisClient
 import json
 import pandas as pd 
 import numpy as np 
 
 router = APIRouter()
 service = MarketService()
-
+redis_client = RedisClient()
 
 @router.get("/ohlcv-by-date/{symbol}")
 async def get_ohlcv_by_date(
@@ -65,8 +66,12 @@ async def get_stock_summary(userid: str, symbol: str):
 
 @router.post("/ohlcv-by-symbols")
 async def get_multiple(symbols: list[str]):
-    print(symbols)
-    return service.get_multiple(symbols)
+
+    if len(symbols) == 1:
+        return redis_client.get(f"price:{symbols[0]}")
+
+    realtime_prices = redis_client.get("realtime_prices:all")
+    return [realtime_prices[f"price:{symbol}"] for symbol in symbols]
 
 @router.get("/exchange-rate")
 async def get_exchange_rate(date: str = Query(..., description="YYYY-MM-DD")):
