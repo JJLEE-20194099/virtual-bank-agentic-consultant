@@ -89,7 +89,11 @@ def calculate_price_info(df):
     prev_close = df["close"].iloc[-2]
 
     change = last_close - prev_close
-    change_percent = (change / prev_close) * 100
+    if prev_close == 0 or pd.isna(prev_close):
+        change_percent = 0.0
+    else:
+        change_percent = (change / prev_close) * 100
+
 
     trend, state = detect_trend(df)
 

@@ -32,6 +32,47 @@ class PostgresClient:
         if self.conn:
             await self.conn.close()
 
+    async def init_stock_user_behaviour_table(self):
+        await self.conn.execute("""
+        CREATE TABLE IF NOT EXISTS stock_user_behaviour (
+            id SERIAL PRIMARY KEY,
+            user_id TEXT PRIMARY KEY,
+            data JSONB NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)
+
+    async def save_stock_user_behaviour(self, user_id: str, behaviour_data):
+        await self.conn.execute("""
+            INSERT INTO stock_user_behaviour(user_id, data)
+            VALUES($1, $2)
+            ON CONFLICT (user_id)
+            DO UPDATE SET data = EXCLUDED.data,
+                          created_at = CURRENT_TIMESTAMP
+        """,
+        user_id,
+        json.dumps(behaviour_data)   
+    )
+
+    async def get_stock_user_behaviour(self, user_id: str) -> Optional[Dict]:
+        row = await self.conn.fetchrow("""
+            SELECT data
+            FROM stock_user_behaviour
+            WHERE user_id = $1
+        """, user_id)
+
+        return json.loads(row["data"]) if row else None
+    
+    async def delete_stock_user_behaviour(self, user_id: str):
+        await self.conn.execute("""
+            DELETE FROM stock_user_behaviour
+            WHERE user_id = $1
+        """, user_id)
+
+    async def delete_stock_user_behaviour_table(self):
+        await self.conn.execute("""
+            TRUNCATE TABLE stock_user_behaviour;
+        """)
 
     async def init_portfolio_table(self):
         await self.conn.execute("""
@@ -41,6 +82,8 @@ class PostgresClient:
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
         """)
+
+    
 
     async def delete_portfolio_table(self):
         await self.conn.execute("""
