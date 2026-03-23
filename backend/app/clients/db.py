@@ -83,6 +83,43 @@ class PostgresClient:
         );
         """)
 
+    async def init_stock_product_recommendation_table(self):
+        await self.conn.execute("""
+        CREATE TABLE IF NOT EXISTS stock_product_recommendation (
+            user_id TEXT PRIMARY KEY,
+            data JSONB NOT NULL,
+            status TEXT CHECK (status IN ('pending', 'processing', 'done', 'failed')) DEFAULT 'pending',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)
+
+    async def get_stock_product_recommendation(self, user_id: str) -> Optional[Dict]:
+        row = await self.conn.fetchrow("""
+            SELECT *
+            FROM stock_product_recommendation
+            WHERE user_id = $1
+        """, user_id)
+
+        row = dict(row) 
+
+        row["data"] = json.loads(row["data"])
+
+        return row
+
+    async def insert_stock_product_recommendation(self, user_id: str, data: Dict[str, Any], status:str):
+        await self.conn.execute("""
+            INSERT INTO stock_product_recommendation(user_id, data, status)
+            VALUES($1, $2, $3)
+            ON CONFLICT (user_id)
+            DO UPDATE SET data = EXCLUDED.data,
+                          created_at = CURRENT_TIMESTAMP
+        """,
+        user_id,
+        json.dumps(data),
+        status
+        )
+
+
     async def get_user(self, user_id: str) -> Optional[Dict]:
         row = await self.conn.fetchrow("""
             SELECT data

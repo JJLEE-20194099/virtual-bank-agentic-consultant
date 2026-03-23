@@ -9,7 +9,7 @@ import uuid
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import random
-from tasks import update_portfolio
+from tasks import update_portfolio, update_stock_product_recommendation
 
 from app.clients.cache import RedisClient
 redis_client = RedisClient()
@@ -58,6 +58,10 @@ async def simulate_buysell_stock(payload: SimulateStockBuySellBase):
     await db_client.insert_stock_transactions([transaction])
 
     update_portfolio.delay(payload.customer_id)
+
+    update_stock_product_recommendation.delay(transaction)
+
+    # Write recommend product here
     
     return {"status": "ok", "transaction_id": transaction_id}
 
@@ -90,6 +94,8 @@ async def buysell_stock(payload: StockBuySellBase):
     await db_client.insert_stock_transactions([transaction])
 
     update_portfolio.delay(payload.customer_id)
+
+    update_stock_product_recommendation.delay(transaction)
     
     return {"status": "ok", "transaction_id": transaction_id}
     

@@ -1,5 +1,6 @@
 from celery_worker import celery_app
 import asyncio
+import requests
 from app.clients.db import PostgresClient
 from app.clients.cache import RedisClient
 from app.utils.portfolio import calculate_portfolio, fetch_realtime, stocks
@@ -12,6 +13,9 @@ from app.core.model_instance import model_client
 
 from app.core.db_instance import db_client
 from app.core.model_instance import model_client
+from app.agents.market_analysis_agent import MarketAnalysisAgent
+
+market_analysis_agent = MarketAnalysisAgent()
 
 service = MarketService()
 
@@ -82,6 +86,81 @@ async def _update_portfolio_async(user_id: str):
 @celery_app.task(name="tasks.update_portfolio")
 def update_portfolio(user_id: str):
     asyncio.run(_update_portfolio_async(user_id))
+
+
+def enrich_context(portfolio: dict) -> dict:
+    overall = portfolio["overall"]
+    detail = portfolio["detail"]
+    market = portfolio["market-news"]
+
+    max_stock = None
+    max_pct = 0
+
+    for stock, data in detail.items():
+        pct = data["portfolio_summary"]["portfolio_pct"]
+        if pct > max_pct:
+            max_pct = pct
+            max_stock = stock
+
+    worst_stock = None
+    worst_change = 0
+
+    for stock, data in detail.items():
+        change = data["stock_summary"]["data"]["change_percent"]
+        if change < worst_change:
+            worst_change = change
+            worst_stock = stock
+
+    insights = {
+        "market_condition": market["trend"],
+        "market_risk": "high" if market["trend"] == "bearish" else "medium",
+        "cash_ratio": overall["cash_ratio"],
+        "cash_status": (
+            "low" if overall["cash_ratio"] < 0.05 else
+            "high" if overall["cash_ratio"] > 0.4 else
+            "normal"
+        ),
+        "portfolio_concentration": {
+            "stock": max_stock,
+            "pct": round(max_pct, 2),
+            "is_high": max_pct > 0.4
+        },
+        "worst_stock": {
+            "stock": worst_stock,
+            "change_percent": worst_change
+        },
+        "portfolio_scale": (
+            "large" if overall["total_portfolio_value"] > 100000 else "normal"
+        )
+    }
+
+    return {
+        **portfolio,
+        "insights": insights
+    }
+
+async def _update_stock_product_recommendation_async(transaction):
+
+    await db_client.connect()
+    user_id = transaction["customer_id"]
+
+    BASE_URL = "http://localhost:8080/api/v1/user"
+
+    url = f"{BASE_URL}/summary/{user_id}"
+   
+    res = requests.get(url)
+    if res.status_code == 200:
+        user_context_data = enrich_context(res.json())
+        data = market_analysis_agent.recommend_stock_product(user_context_data)
+
+        await db_client.insert_stock_product_recommendation(user_id, data, status = "pending")
+        return data
+    return {}
+
+
+@celery_app.task(name="tasks.update_stock_product_recommendation")
+def update_stock_product_recommendation(transaction):
+    asyncio.run(_update_stock_product_recommendation_async(transaction))
 
 
 

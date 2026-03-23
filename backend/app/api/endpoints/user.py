@@ -28,6 +28,31 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
         item["symbol"] for item in stock_summaries
     ]
 
+   
+
+    data = [
+        {
+            "key": key,
+            "unrealized_pnl": portfolio_summary["portfolio_stats"][key]["unrealized_pnl"]
+        }
+        for key in keys
+    ]
+
+    df = pd.DataFrame(data)
+
+    df = df.sort_values(by="unrealized_pnl", ascending=True)
+
+    df["risk_rank"] = pd.qcut(
+        df["unrealized_pnl"],
+        10,
+        labels=range(10, 0, -1)
+    )
+
+    overall_risk = df["risk_rank"].astype(int).mean()
+
+    risk_rank = dict(zip(df["key"].values.tolist(), df["risk_rank"].astype(int).values.tolist()))
+
+    print(risk_rank)
 
     company_summary = [
        json.load(open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/{key}/summary.json", "r", encoding="utf-8")) for key in keys
@@ -35,6 +60,7 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
 
     values = [
         {
+            "risk": risk_rank[key],
             "stock_summary": stock_summaries[i],
             "portfolio_summary": portfolio_summary["portfolio_stats"][key],
             "company_summary": company_summary[i]
@@ -48,7 +74,10 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
         "market-news": market_summary[0]["data"],
         "overall": {
             **portfolio_summary,
-            **user_summary
+            **user_summary,
+            "cash_ratio": user_summary["available_cash"] / (portfolio_summary["total_portfolio_value"] + user_summary["available_cash"]),
+            "total_money": portfolio_summary["total_portfolio_value"] + user_summary["available_cash"],
+            "overall_risk": overall_risk
         },
         "detail": dict(zip(keys, values))
     }
@@ -59,6 +88,15 @@ async def get_stock_behaviour_by_user_id(user_id: str):
     stock_user_behaviour = await db_client.get_stock_user_behaviour(user_id)
 
     return stock_user_behaviour
+
+@router.get(("/recommend/{user_id}"))
+async def get_stock_product_recommendation(user_id: str):
+    data = await db_client.get_stock_product_recommendation(user_id)
+
+    return data
+
+
+
 
 @router.post(("/behaviour/create"))
 async def save_stock_behaviour(payload: StockUserBehaviourBase):
@@ -90,9 +128,3 @@ async def get_all_customer_ids():
 async def delete_user_table():
     return await db_client.delete_user_table()
     
-
-
-
-
-
-

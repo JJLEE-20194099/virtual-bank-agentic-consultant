@@ -9,7 +9,8 @@ celery_app = Celery(
 )
 
 celery_app.conf.task_routes = {
-    "tasks.update_portfolio": {"queue": "portfolio"}
+    "tasks.update_portfolio": {"queue": "portfolio"},
+    "tasks.update_stock_product_recommendation": {"queue": "recommend"},
 }
 
 

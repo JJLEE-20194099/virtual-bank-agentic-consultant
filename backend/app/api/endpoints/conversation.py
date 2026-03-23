@@ -7,6 +7,7 @@ from openai import OpenAI
 import json
 from dotenv import load_dotenv
 from app.agents.market_analysis_agent import MarketAnalysisAgent
+from fastapi.responses import StreamingResponse
 import os
 load_dotenv() 
 from datetime import datetime
@@ -74,5 +75,10 @@ def chat(req: ChatRequest):
             context["ohlcv"][symbol] = service.get_ohlcv_by_length(symbol, length=7, interval="1d")
 
     
+    def event_stream():
+        for chunk in market_analysis_agent.response_market_question(context, user_message, query_parser):
+            yield chunk
 
-    return market_analysis_agent.response_market_question(context, user_message, query_parser)
+    return StreamingResponse(event_stream(), media_type="text/plain")
+
+

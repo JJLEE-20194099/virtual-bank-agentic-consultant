@@ -1,1 +1,1 @@
-celery -A celery_worker.celery_app worker --loglevel=info -Q portfolio,realtime_price
+celery -A celery_worker.celery_app worker --loglevel=info -Q portfolio,recommend,realtime_price
