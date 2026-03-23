@@ -12,7 +12,7 @@ router = APIRouter()
 service = MarketService()
 
 @router.get(("/summary/{user_id}"))
-async def get_stocks_by_user_id(user_id: str):
+async def get_stocks_portfolio_summary_by_user_id(user_id: str):
     portfolio_summary = await db_client.get_portfolio(user_id)
 
     symbols = list(portfolio_summary.keys())

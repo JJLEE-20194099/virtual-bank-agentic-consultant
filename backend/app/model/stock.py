@@ -54,13 +54,16 @@ class StockBuySellBase(BaseModel):
     action: Literal["buy", "sell"]
 
     quantity: int = Field(..., gt=0) 
-    price: float = Field(..., ge=0)
+    price: float
 
     @field_validator("stock_code")
     @classmethod
     def normalize_stock(cls, v):
         return v.upper().strip()
 
+
+class SimulateStockBuySellBase(StockBuySellBase):
+    datetime: str
 
 
 class StockTransactionBase(BaseModel):

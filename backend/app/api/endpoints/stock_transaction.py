@@ -4,12 +4,15 @@ import json
 import pandas as pd 
 import numpy as np 
 from app.core.db_instance import db_client
-from app.model.stock import StockTransactionCreate, StockTransactionBulkCreate, StockBuySellBase
+from app.model.stock import StockTransactionCreate, StockTransactionBulkCreate, StockBuySellBase, SimulateStockBuySellBase
 import uuid
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import random
 from tasks import update_portfolio
+
+from app.clients.cache import RedisClient
+redis_client = RedisClient()
 
 router = APIRouter()
 service = MarketService()
@@ -22,11 +25,54 @@ async def get_stock_transactions_by_user_and_stock(user_id: str, symbol: str, li
 async def get_stock_transactions_by_user(user_id: str, limit: int = 20, offset: int = 0):
     return await db_client.get_stock_transactions_by_user(customer_id = user_id, limit=limit, offset=offset)
 
+
+@router.post("/buy-sell-simulation")
+async def simulate_buysell_stock(payload: SimulateStockBuySellBase):
+
+    realtime_prices = redis_client.get("realtime_prices:all")
+
+    dt_str = payload.datetime
+    simulation_date = datetime.fromisoformat(dt_str) \
+    .replace(tzinfo=ZoneInfo("Asia/Ho_Chi_Minh")) \
+    .replace(microsecond=0, tzinfo=None)
+
+    fee_rate = random.uniform(0.001, 0.005)
+
+    if payload.price == -1:
+        payload.price = realtime_prices[f"price:{payload.stock_code}"]["close_price"] / 1000
+
+    fee = payload.quantity * payload.price * fee_rate
+
+    transaction_id = f"{payload.customer_id}_{payload.stock_code}_{simulation_date.isoformat()}"
+    transaction = {
+        "transaction_id": transaction_id,
+        "customer_id": payload.customer_id,
+        "datetime": simulation_date,
+        "stock_code": payload.stock_code,
+        "action": payload.action,
+        "quantity": payload.quantity,
+        "price": payload.price,
+        "fee": fee
+    }
+
+    await db_client.insert_stock_transactions([transaction])
+
+    update_portfolio.delay(payload.customer_id)
+    
+    return {"status": "ok", "transaction_id": transaction_id}
+
+
 @router.post("/buy-sell")
 async def buysell_stock(payload: StockBuySellBase):
 
+    realtime_prices = redis_client.get("realtime_prices:all")
+
     now = datetime.now(ZoneInfo("Asia/Ho_Chi_Minh")).replace(microsecond=0, tzinfo=None)
     fee_rate = random.uniform(0.001, 0.005)
+
+    if payload.price == -1:
+        payload.price = realtime_prices[f"price:{payload.stock_code}"]["close_price"] / 1000
+
     fee = payload.quantity * payload.price * fee_rate
 
     transaction_id = f"{payload.customer_id}_{payload.stock_code}_{now.isoformat()}"

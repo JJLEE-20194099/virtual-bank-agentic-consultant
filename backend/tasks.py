@@ -7,7 +7,11 @@ from app.service.finance.market.market_service import MarketService
 import pandas as pd
 import json
 from datetime import datetime
+from app.utils.feature_engine import make_cluster_features
+from app.core.model_instance import model_client
 
+from app.core.db_instance import db_client
+from app.core.model_instance import model_client
 
 service = MarketService()
 
@@ -19,6 +23,30 @@ db_client = PostgresClient(
 )
 
 redis_client = RedisClient()
+
+async def _update_stock_user_behaviour(user_id: str):
+    data = await db_client.get_stock_transactions_by_user(customer_id = user_id, limit=-1)
+    user_df = pd.DataFrame(data)
+
+    scaled_test_features, behaviour_feature_data = make_cluster_features(user_df)
+
+
+    cluster = model_client.loaded_model.predict(scaled_test_features)[0]
+
+    behaviour_feature_data["cluster"] = cluster
+
+    insight_cluster_dict = {
+        1: "short_term",
+        0: "swing",
+        2: "long_term"
+    }
+    print("cluster:", cluster)
+    await db_client.save_stock_user_behaviour(user_id, behaviour_feature_data)
+
+    return {
+        "behaviour_insight":  insight_cluster_dict[cluster]
+        **behaviour_feature_data
+    }
 
 
 async def _update_portfolio_async(user_id: str):
@@ -33,12 +61,16 @@ async def _update_portfolio_async(user_id: str):
     portfolio = calculate_portfolio(user_df, realtime_prices)
     await db_client.save_portfolio(user_id, portfolio)
 
+    await _update_stock_user_behaviour(user_id)
+
+
     await db_client.close()
 
 
 @celery_app.task(name="tasks.update_portfolio")
 def update_portfolio(user_id: str):
     asyncio.run(_update_portfolio_async(user_id))
+
 
 
 async def fetch_batch(batch):
