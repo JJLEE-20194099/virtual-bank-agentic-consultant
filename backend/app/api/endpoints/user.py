@@ -7,6 +7,7 @@ import numpy as np
 from app.core.db_instance import db_client
 from app.model.user import StockUserBehaviourBase
 import requests
+from tasks import update_stock_product_recommendation
 from app.agents.market_analysis_agent import MarketAnalysisAgent
 
 market_analysis_agent = MarketAnalysisAgent()
@@ -89,6 +90,8 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
 
     del portfolio_summary["portfolio_stats"]
 
+    
+
     return {
         "market-news": market_summary[0]["data"],
         "overall": {
@@ -113,6 +116,12 @@ async def get_stock_product_recommendation(user_id: str):
     data = await db_client.get_stock_product_recommendation(user_id)
 
     return data
+
+@router.post(("/recommend/{user_id}"))
+async def create_recommendation(user_id: str):
+    update_stock_product_recommendation.delay({"customer_id": user_id})
+
+
 
 
 @router.get(("/analyze/{user_id}"))
