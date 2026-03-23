@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 from app.core.model_instance import model_client
 

@@ -24,29 +24,41 @@ db_client = PostgresClient(
 
 redis_client = RedisClient()
 
+with open("/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/summary.json", "r", encoding="utf-8") as f:
+    company_data = json.load(f)
+
+def match_sector(symbol):
+    return company_data[symbol]["sector"]
+
 async def _update_stock_user_behaviour(user_id: str):
     data = await db_client.get_stock_transactions_by_user(customer_id = user_id, limit=-1)
     user_df = pd.DataFrame(data)
+
+    user_df["sector"] = user_df["stock_code"].apply(match_sector)
 
     scaled_test_features, behaviour_feature_data = make_cluster_features(user_df)
 
 
     cluster = model_client.loaded_model.predict(scaled_test_features)[0]
 
-    behaviour_feature_data["cluster"] = cluster
+    behaviour_feature_data = behaviour_feature_data[0]
+
+    behaviour_feature_data["cluster"] = (int)(cluster)
 
     insight_cluster_dict = {
         1: "short_term",
         0: "swing",
         2: "long_term"
     }
-    print("cluster:", cluster)
-    await db_client.save_stock_user_behaviour(user_id, behaviour_feature_data)
 
-    return {
-        "behaviour_insight":  insight_cluster_dict[cluster]
+    behaviour_feature_data = {
+        "behaviour_insight":  insight_cluster_dict[cluster],
         **behaviour_feature_data
     }
+
+    await db_client.save_stock_user_behaviour(user_id, behaviour_feature_data)
+
+    return behaviour_feature_data
 
 
 async def _update_portfolio_async(user_id: str):
