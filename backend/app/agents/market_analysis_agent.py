@@ -116,12 +116,16 @@ class MarketAnalysisAgent(BaselineAgent):
             },
         ]
 
-        answer = self.get_completion(messages, temperature=0.25)
-        return {
-            "query_parser": query_parser,
-            "ohlcv_data": ohlcv_data,
-            "answer": answer
-        }
+        full_text = ""
+
+        for chunk in self.get_completion(messages, temperature=0.25):
+            full_text += chunk
+            yield chunk 
+        # return {
+        #     "query_parser": query_parser,
+        #     "ohlcv_data": ohlcv_data,
+        #     "answer": answer
+        # }
 
     
     def recommend_stock_product(self, user_context_data):
@@ -148,8 +152,8 @@ class MarketAnalysisAgent(BaselineAgent):
                     "Nhiệm vụ của bạn:\n"
                     "- Phân tích danh mục đầu tư của khách hàng\n"
                     "- Đánh giá điều kiện thị trường\n"
-                    "- Đồng thời gợi ý sản phẩm tài chính phù hợp (cross-sell)\n"
-                    "- Giải thích vì sao sản phẩm lại phù hợp với dữ liệu của người dùng (user context data)\n\n"
+                    "- Đồng thời gợi ý nhiều sản phẩm tài chính phù hợp (cross-sell)\n"
+                    "- Giải thích vì sao những sản phẩm lại phù hợp với dữ liệu của người dùng (user context data)\n\n"
                     "=====================\n"
                     "NGUYÊN TẮC BẮT BUỘC:\n"
                     "=====================\n"
@@ -181,11 +185,11 @@ class MarketAnalysisAgent(BaselineAgent):
                     "  \"type\": \"REBALANCE | MARGIN | IDLE_CASH | VIP_LOAN\",\n"
                     "  \"title\": \"Tiêu đề ngắn gọn, dễ hiểu cho user\",\n"
                     "  \"summary\": \"Tóm tắt nhanh tình trạng danh mục\",\n"
-                    "  \"reason\": \"Giải thích rõ vì sao đưa ra khuyến nghị này\",\n"
-                    "  \"product\": {\n"
+                    "  \"products\": Mảng nhiều sản phẩm. Hãy trả về nhiều sản phẩm nhất có thể match với user [{\n"
                     "    \"name\": \"Tên sản phẩm tài chính\",\n"
                     "    \"description\": \"Mô tả ngắn gọn lợi ích\",\n"
-                    "  },\n"
+                     "  \"reason\": \"Giải thích thuyết phục chính xác rõ vì sao đưa ra khuyến nghị này\",\n"
+                    "  }],\n"
                     "  \"confidence_score\": \"low | medium | high\"\n"
                     "}\n"
                 )
@@ -196,16 +200,11 @@ class MarketAnalysisAgent(BaselineAgent):
             },
         ]
 
+        answer = self.get_completion(messages, temperature=0.25)
+        
 
-        full_text = ""
-
-        for chunk in self.get_completion(messages, temperature=0.25):
-            full_text += chunk
-            yield chunk 
-
-        # answer = re.sub(r"```json|```", "", answer).strip()
-        # answer = json.loads(answer)
-        # return {
-        #     "user_context_data": user_context_data,
-        #     "answer": answer
-        # }
+        answer = re.sub(r"```json|```", "", answer).strip()
+        answer = json.loads(answer)
+        return {
+            "answer": answer
+        }

@@ -405,8 +405,8 @@ Hướng dẫn phân tích:
 Nhiệm vụ của bạn:
 - Phân tích danh mục đầu tư của khách hàng
 - Đánh giá điều kiện thị trường
-- Đồng thời gợi ý sản phẩm tài chính phù hợp (cross-sell)
-- Giải thích vì sao sản phẩm lại phù hợp với dữ liệu của người dùng (user context data)
+- Đồng thời gợi ý nhiều sản phẩm tài chính phù hợp (cross-sell)
+- Giải thích vì sao những sản phẩm lại phù hợp với dữ liệu của người dùng (user context data)
 
 =====================
 NGUYÊN TẮC BẮT BUỘC:
@@ -442,11 +442,12 @@ FORMAT OUTPUT:
   "type": "REBALANCE | MARGIN | IDLE_CASH | VIP_LOAN",
   "title": "Tiêu đề ngắn gọn, dễ hiểu cho user",
   "summary": "Tóm tắt nhanh tình trạng danh mục",
-  "reason": "Giải thích rõ vì sao đưa ra khuyến nghị này",
-  "product": {
+  "products": Mảng nhiều sản phẩm. Hãy trả về nhiều sản phẩm nhất có thể match với user
+  [{
     "name": "Tên sản phẩm tài chính",
-    "description": "Mô tả ngắn gọn lợi ích"
-  },
+    "description": "Mô tả ngắn gọn lợi ích",
+    "reason": "Giải thích thuyết phục chính xác rõ vì sao đưa ra khuyến nghị này"
+  }],
   "confidence_score": "low | medium | high"
 }
 """

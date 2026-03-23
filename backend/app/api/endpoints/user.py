@@ -42,17 +42,27 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
 
     df = df.sort_values(by="unrealized_pnl", ascending=True)
 
-    df["risk_rank"] = pd.qcut(
-        df["unrealized_pnl"],
-        10,
-        labels=range(10, 0, -1)
-    )
+    try:
+        df["risk_rank"] = pd.qcut(
+            df["unrealized_pnl"],
+            10,
+            labels=range(10, 0, -1)
+        )
 
-    overall_risk = df["risk_rank"].astype(int).mean()
+        overall_risk = df["risk_rank"].astype(int).mean()
 
-    risk_rank = dict(zip(df["key"].values.tolist(), df["risk_rank"].astype(int).values.tolist()))
+        risk_rank = dict(zip(df["key"].values.tolist(), df["risk_rank"].astype(int).values.tolist()))
+    except:
+        m = df["unrealized_pnl"].mean()
+        if m < 0:
+            overall_risk = 7
+            risk_rank = dict(zip(df["key"].values.tolist(), [overall_risk for _ in range(len(keys))]))
+        else:
+            overall_risk = 3
+            risk_rank = dict(zip(df["key"].values.tolist(), [overall_risk for _ in range(len(keys))]))
 
-    print(risk_rank)
+
+
 
     company_summary = [
        json.load(open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/{key}/summary.json", "r", encoding="utf-8")) for key in keys
