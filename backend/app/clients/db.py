@@ -74,6 +74,43 @@ class PostgresClient:
             TRUNCATE TABLE stock_user_behaviour;
         """)
 
+    async def init_user_table(self):
+        await self.conn.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            user_id TEXT PRIMARY KEY,
+            data JSONB NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)
+
+    async def get_user(self, user_id: str) -> Optional[Dict]:
+        row = await self.conn.fetchrow("""
+            SELECT data
+            FROM users
+            WHERE user_id = $1
+        """, user_id)
+
+        return json.loads(row["data"]) if row else None
+    
+
+    async def delete_user_table(self):
+        await self.conn.execute("""
+            TRUNCATE TABLE users;
+        """)
+
+    async def insert_user(self, user_id: str, data: Dict[str, Any]):
+        await self.conn.execute("""
+            INSERT INTO users(user_id, data)
+            VALUES($1, $2)
+            ON CONFLICT (user_id)
+            DO UPDATE SET data = EXCLUDED.data,
+                          created_at = CURRENT_TIMESTAMP
+        """,
+        user_id,
+        json.dumps(data)   
+        )
+        
+
     async def init_portfolio_table(self):
         await self.conn.execute("""
         CREATE TABLE IF NOT EXISTS portfolio_summary (
@@ -213,6 +250,12 @@ class PostgresClient:
         CREATE INDEX IF NOT EXISTS idx_transactions_user_stock
         ON stock_transaction(customer_id, stock_code);
         """)
+
+    async def get_all_customer_ids(self):
+        rows = await self.conn.fetch("""
+            SELECT DISTINCT customer_id FROM stock_transaction;
+        """)
+        return [row["customer_id"] for row in rows]
 
     async def insert_stock_transactions(self, transactions: List):
         await self.conn.executemany("""

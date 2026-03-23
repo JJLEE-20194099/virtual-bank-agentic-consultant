@@ -15,9 +15,14 @@ service = MarketService()
 async def get_stocks_portfolio_summary_by_user_id(user_id: str):
     portfolio_summary = await db_client.get_portfolio(user_id)
 
+    user_summary = await db_client.get_user(user_id)
+
     symbols = list(portfolio_summary["portfolio_stats"].keys())
 
     stock_summaries = await db_client.get_stock_summary_by_symbols(symbols)
+
+    market_summary = await db_client.get_stock_summary_by_symbols(["VN30"])
+
 
     keys = [
         item["symbol"] for item in stock_summaries
@@ -40,8 +45,10 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
     del portfolio_summary["portfolio_stats"]
 
     return {
+        "market-news": market_summary[0]["data"],
         "overall": {
-            **portfolio_summary
+            **portfolio_summary,
+            **user_summary
         },
         "detail": dict(zip(keys, values))
     }
@@ -70,6 +77,21 @@ async def delete_stock_user_behaviour_table():
 async def delete_stock_user_behaviour(user_id: str):
     await db_client.delete_stock_user_behaviour(user_id = user_id)
     return {"status": "ok"}
+
+
+
+@router.get("/list/")
+async def get_all_customer_ids():
+    return await db_client.get_all_customer_ids()
+    
+
+
+@router.post("/delete/")
+async def delete_user_table():
+    return await db_client.delete_user_table()
+    
+
+
 
 
 
