@@ -47,8 +47,13 @@ async def save_portfolio():
             print(e)
 
 
-    for user_id in user_ids:
-        data = await db_client.get_portfolio(user_id)
+    # for user_id in user_ids:
+    #     url = f"http://localhost:8080/api/v1/user/summary/{user_id}"
+    #     res = requests.get(url)
+    #     if res.status_code == 200:
+    #         data = res.json()
+
+        
 
 
 

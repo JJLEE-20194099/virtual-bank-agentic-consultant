@@ -1,6 +1,6 @@
 import os
 from app.agents.baseline_agent import BaselineAgent
-from app.config.prompt import MARKET_ANALYSIS_PROMPT, MARKET_ANALYSIS_RESPONSE_FORMAT, STOCK_PRODUCT_RECOMMENDATION_PROMPT
+from app.config.prompt import MARKET_ANALYSIS_PROMPT, MARKET_ANALYSIS_RESPONSE_FORMAT, STOCK_PRODUCT_RECOMMENDATION_PROMPT, STOCK_ANALYSIS_PROMPT
 import json 
 import re
 
@@ -205,3 +205,68 @@ class MarketAnalysisAgent(BaselineAgent):
         return {
             "answer": answer
         }
+
+    def analyze_stock_portfolio(self, user_portfolio_data):
+
+        prompt = STOCK_ANALYSIS_PROMPT.replace(
+            "{user_portfolio_data}",
+            json.dumps(user_portfolio_data, ensure_ascii=False, default=str)
+        )
+
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    "Bạn là chuyên gia phân tích cổ phiếu tại công ty chứng khoán.\n\n"
+
+                    "MỤC TIÊU:\n"
+                    "- Phân tích từng mã cổ phiếu trong danh mục\n"
+                    "- Đưa ra nhận định rõ ràng về xu hướng, rủi ro và vị trí trong portfolio\n"
+                    "- Đưa ra lời khuyên với cổ phiếu đó, có thể xem các thông tin về công ty đó để đưa ra lời khuyên cùng với xu hướng\n\n"
+
+                    "QUY TẮC BẮT BUỘC:\n"
+                    "- Luôn trả lời bằng tiếng Việt\n"
+                    "- CHỈ trả về JSON hợp lệ (không text ngoài JSON)\n"
+                    "- Phải phân tích TẤT CẢ các mã trong danh mục\n"
+                    "- Không được bỏ sót cổ phiếu nào\n"
+                    "- Phân tích phải dựa trên dữ liệu thực tế (trend, volatility, PnL, sector, weight)\n\n"
+
+                    "TIÊU CHÍ PHÂN TÍCH:\n"
+                    "- Xu hướng (bullish / bearish / downtrend / uptrend)\n"
+                    "- Rủi ro (volatility + risk score)\n"
+                    "- Vai trò trong danh mục (core / satellite / overweight)\n"
+                    "- Tỷ trọng danh mục (portfolio_pct)\n"
+                    "- Lãi/lỗ chưa thực hiện\n"
+                    "- Tính tập trung rủi ro\n\n"
+
+                    "FORMAT OUTPUT (BẮT BUỘC):\n"
+                    "{\n"
+                    "  \"MÃ_CỔ_PHIẾU\": {\n"
+                    "    \"stock_analysis\": \"Phân tích ngắn gọn về xu hướng, rủi ro, vai trò trong danh mục\",\n"
+                    "    \"stock_advice\": \"Đưa ra những ý kiến về mã cổ phiếu này ở các khía cạnh: công ty, trend, category,...\"\n"
+                    "  }\n"
+                    "}\n"
+                )
+            },
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+
+        answer = self.get_completion(messages, temperature=0.2)
+
+        answer = re.sub(r"```json|```", "", answer).strip()
+
+        try:
+            answer = json.loads(answer)
+        except Exception as e:
+            return {
+                "error": "Invalid JSON from model",
+                "raw_output": answer
+            }
+
+        return {
+            "answer": answer
+        }
+

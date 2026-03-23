@@ -497,3 +497,35 @@ FORMAT OUTPUT
   "confidence_score": "low | medium | high"
 }
 """
+
+
+STOCK_ANALYSIS_PROMPT = """
+Bạn là chuyên gia tư vấn đầu tư chứng khoán. 
+
+Dưới đây là dữ liệu thị trường và danh mục của khách hàng:
+
+{user_portfolio_data}
+
+Nhiệm vụ:
+- Phân tích từng mã cổ phiếu trong danh mục.
+- Đưa ra phân tích ngắn gọn, súc tích về trạng thái và rủi ro/lợi thế của cổ phiếu.
+- Đưa ra những ý kiến về mã cổ phiếu này ở các khía cạnh: công ty, trend, category, ....
+
+=====================
+YÊU CẦU OUTPUT
+=====================
+- Output phải là JSON hợp lệ.
+- Format phải theo mẫu sau:
+
+{{
+  "MÃ_CỔ_PHIẾU": {{
+      "stock_analysis": "Phân tích mã cổ phiếu đó, bao gồm xu hướng, rủi ro, biến động và vị trí trong danh mục.",
+      "stock_advice": "Đưa ra lời khuyên rõ ràng cho nhà đầu tư dựa trên phân tích."
+  }},
+  ...
+}}
+
+- Mỗi mã cổ phiếu trong danh mục đều phải có entry.
+- Không viết text ngoài JSON.
+- Phân tích phải dựa trên dữ liệu thực tế (giá hiện tại, biến động, tỉ trọng danh mục, lợi nhuận/lỗ, trend, volatility, sector, dividend yield).
+"""

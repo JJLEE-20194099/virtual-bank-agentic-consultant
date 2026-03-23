@@ -6,7 +6,10 @@ import pandas as pd
 import numpy as np 
 from app.core.db_instance import db_client
 from app.model.user import StockUserBehaviourBase
+import requests
+from app.agents.market_analysis_agent import MarketAnalysisAgent
 
+market_analysis_agent = MarketAnalysisAgent()
 
 router = APIRouter()
 service = MarketService()
@@ -110,6 +113,14 @@ async def get_stock_product_recommendation(user_id: str):
     data = await db_client.get_stock_product_recommendation(user_id)
 
     return data
+
+
+@router.get(("/analyze/{user_id}"))
+async def analyze_stock_portfolio(user_id: str):
+    
+    user_portfolio_data = await get_stocks_portfolio_summary_by_user_id(user_id)
+    return market_analysis_agent.analyze_stock_portfolio(user_portfolio_data)
+
 
 
 
