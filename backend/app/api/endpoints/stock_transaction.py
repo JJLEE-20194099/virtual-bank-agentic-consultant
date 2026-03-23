@@ -14,6 +14,8 @@ from tasks import update_portfolio, update_stock_product_recommendation
 from app.clients.cache import RedisClient
 redis_client = RedisClient()
 
+from celery import chain
+
 router = APIRouter()
 service = MarketService()
 
@@ -93,9 +95,11 @@ async def buysell_stock(payload: StockBuySellBase):
 
     await db_client.insert_stock_transactions([transaction])
 
-    update_portfolio.delay(payload.customer_id)
 
-    update_stock_product_recommendation.delay(transaction)
+    chain(
+        update_portfolio.ds(payload.customer_id).set(queue="portfolio"),
+        update_stock_product_recommendation.s(transaction).set(queue="recommend")
+    ).delay()
     
     return {"status": "ok", "transaction_id": transaction_id}
     

@@ -319,14 +319,18 @@ async def _update_stock_product_recommendation_async(transaction):
 
     BASE_URL = "http://localhost:8080/api/v1/user"
 
-    url = f"{BASE_URL}/behaviour/{user_id}"
+    stock_user_behaviour = await db_client.get_stock_user_behaviour(user_id)
 
-    res = requests.get(url)
-    if res.status_code != 200:
-        return {}
+    insight_cluster_dict = {
+        1: "short_term",
+        0: "swing",
+        2: "long_term"
+    }
 
-    print(res.json())
-    user_type = res.json()["behaviour_insight"]
+    try:
+        user_type = stock_user_behaviour["behaviour_insight"]
+    except:
+        user_type = insight_cluster_dict[stock_user_behaviour["cluster"]]
   
     url = f"{BASE_URL}/summary/{user_id}"
 
