@@ -128,76 +128,73 @@ class MarketAnalysisAgent(BaselineAgent):
         # }
 
     
-    def recommend_stock_product(self, user_context_data):
+    def recommend_stock_product(self, user_context_data, features, pre_products):
 
         prompt = STOCK_PRODUCT_RECOMMENDATION_PROMPT.replace(
             "{user_context_data}",
             json.dumps(user_context_data, ensure_ascii=False)
+        ).replace(
+            "{features}",
+            json.dumps(features, ensure_ascii=False)
+        ).replace(
+            "{pre_products}",
+            json.dumps(pre_products, ensure_ascii=False)
         )
 
         messages = [
             {
                 "role": "system",
                 "content": (
-                    "Bạn là một chuyên gia tư vấn đầu tư chứng khoán tại công ty chứng khoán.\n\n"
-                    "Dưới đây là dữ liệu danh mục và các tín hiệu đã được phân tích sẵn:\n\n"
-                    "Hướng dẫn phân tích:\n\n"
-                    "1. Ưu tiên sử dụng \"insights\" để đưa ra quyết định nhanh và chính xác\n"
-                    "2. Nếu \"market_risk\" = high → ưu tiên giảm rủi ro\n"
-                    "3. Nếu \"portfolio_concentration.is_high\" = true → bắt buộc đề xuất giảm tỷ trọng\n"
-                    "4. Nếu \"cash_status\" = low → gợi ý MARGIN\n"
-                    "5. Nếu \"cash_status\" = high → gợi ý IDLE_CASH\n"
-                    "6. Nếu \"portfolio_scale\" = large → gợi ý VIP_LOAN\n"
-                    "7. Nếu có \"worst_stock\" giảm mạnh → cân nhắc SELL hoặc REBALANCE\n\n"
-                    "Nhiệm vụ của bạn:\n"
-                    "- Phân tích danh mục đầu tư của khách hàng\n"
-                    "- Đánh giá điều kiện thị trường\n"
-                    "- Đồng thời gợi ý nhiều sản phẩm tài chính phù hợp (cross-sell)\n"
-                    "- Giải thích vì sao những sản phẩm lại phù hợp với dữ liệu của người dùng (user context data)\n\n"
-                    "=====================\n"
-                    "NGUYÊN TẮC BẮT BUỘC:\n"
-                    "=====================\n"
+                    "Bạn là chuyên gia tư vấn đầu tư tại công ty chứng khoán/ngân hàng.\n\n"
+
+                    "MỤC TIÊU:\n"
+                    "- Tối ưu lợi nhuận & giảm rủi ro cho khách hàng\n"
+                    "- Đồng thời tối đa hóa doanh thu từ sản phẩm tài chính\n\n"
+
+                    "QUY TẮC BẮT BUỘC:\n"
                     "- Luôn trả lời bằng tiếng Việt\n"
-                    "- Output PHẢI là JSON hợp lệ\n"
-                    "- Không giải thích ngoài JSON\n"
-                    "- Ngắn gọn, rõ ràng\n"
-                    "- Ưu tiên giảm rủi ro khi thị trường xấu\n"
-                    "- Ưu tiên tối ưu vốn khi có tiền nhàn rỗi\n\n"
-                    "=====================\n"
-                    "CÁC LOẠI KHUYẾN NGHỊ:\n"
-                    "=====================\n"
-                    "1. REBALANCE – Cơ cấu danh mục\n"
-                    "2. MARGIN – Vay margin để đầu tư\n"
-                    "3. IDLE_CASH – Tận dụng tiền nhàn rỗi (iSave, tiền gửi)\n"
-                    "4. VIP_LOAN – Vay cầm cố cổ phiếu\n\n"
-                    "=====================\n"
-                    "LOGIC GỢI Ý SẢN PHẨM:\n"
-                    "=====================\n"
-                    "- Nếu cash_ratio < 5% → gợi ý MARGIN\n"
-                    "- Nếu cash_ratio > 40% → gợi ý IDLE_CASH (iSave)\n"
-                    "- Nếu danh mục lỗ / thị trường giảm → REBALANCE\n"
-                    "- Nếu tổng tài sản lớn → VIP_LOAN\n"
-                    "- Nếu 1 mã > 40% danh mục → cảnh báo tập trung rủi ro\n\n"
-                    "=====================\n"
-                    "FORMAT OUTPUT:\n"
-                    "=====================\n"
+                    "- CHỈ trả về JSON hợp lệ (không thêm text ngoài JSON)\n"
+                    "- Phải đề xuất >= 5 sản phẩm\n"
+                    "- Phải sử dụng phần lớn sản phẩm từ pre_products\n"
+                    "- Reason phải bám sát insights (cash, risk, loss, market...)\n\n"
+
+                    "ƯU TIÊN QUYẾT ĐỊNH:\n"
+                    "- Market risk cao → ưu tiên giảm rủi ro\n"
+                    "- Có lỗ → STOP LOSS / REBALANCE\n"
+                    "- Cash cao → CASH PRODUCTS\n"
+                    "- Cash thấp → MARGIN / CREDIT\n"
+                    "- Portfolio lớn → VIP / WEALTH\n\n"
+
+                    "ƯU TIÊN DOANH THU:\n"
+                    "1. Margin / Loan\n"
+                    "2. Derivatives\n"
+                    "3. Advisory / Wealth\n"
+                    "4. Cash products\n\n"
+
+                    "FORMAT OUTPUT (BẮT BUỘC):\n"
                     "{\n"
-                    "  \"type\": \"REBALANCE | MARGIN | IDLE_CASH | VIP_LOAN\",\n"
-                    "  \"title\": \"Tiêu đề ngắn gọn, dễ hiểu cho user\",\n"
-                    "  \"summary\": \"Tóm tắt nhanh tình trạng danh mục\",\n"
-                    "  \"products\": Mảng nhiều sản phẩm. Hãy trả về nhiều sản phẩm nhất có thể match với user [{\n"
-                    "    \"name\": \"Tên sản phẩm tài chính\",\n"
-                    "    \"description\": \"Mô tả ngắn gọn lợi ích\",\n"
-                     "  \"reason\": \"Giải thích thuyết phục chính xác rõ vì sao đưa ra khuyến nghị này\",\n"
-                    "  }],\n"
+                    "  \"type\": \"MULTI_PRODUCT\",\n"
+                    "  \"title\": \"...\",\n"
+                    "  \"summary\": \"...\",\n"
+                    "  \"products\": [\n"
+                    "    {\n"
+                    "      \"name\": \"...\",\n"
+                    "      \"group\": \"TRADING | PORTFOLIO | CASH | LOAN | RISK | VIP\",\n"
+                    "      \"priority\": 1,\n"
+                    "      \"description\": \"...\",\n"
+                    "      \"reason\": \"...\",\n"
+                    "      \"expected_benefit\": \"...\",\n"
+                    "      \"revenue_driver\": \"...\"\n"
+                    "    }\n"
+                    "  ],\n"
                     "  \"confidence_score\": \"low | medium | high\"\n"
                     "}\n"
                 )
             },
             {
                 "role": "user",
-                "content": prompt,
-            },
+                "content": prompt  
+            }
         ]
 
         answer = self.get_completion(messages, temperature=0.25)

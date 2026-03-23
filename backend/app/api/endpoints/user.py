@@ -19,9 +19,15 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
 
     symbols = list(portfolio_summary["portfolio_stats"].keys())
 
-    stock_summaries = await db_client.get_stock_summary_by_symbols(symbols)
-
     market_summary = await db_client.get_stock_summary_by_symbols(["VN30"])
+
+
+    if len(symbols) == 0:
+        return {
+            "market-news": market_summary[0]["data"]
+        }
+
+    stock_summaries = await db_client.get_stock_summary_by_symbols(symbols)
 
 
     keys = [

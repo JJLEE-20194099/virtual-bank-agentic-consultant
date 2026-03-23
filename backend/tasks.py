@@ -88,10 +88,27 @@ def update_portfolio(user_id: str):
     asyncio.run(_update_portfolio_async(user_id))
 
 
-def enrich_context(portfolio: dict) -> dict:
+def enrich_context(portfolio: dict, user_type: str) -> dict:
     overall = portfolio["overall"]
     detail = portfolio["detail"]
     market = portfolio["market-news"]
+
+    market_trend = market["trend"]
+    market_volatility = market["volatility"]
+
+    market_risk = (
+        "high" if market_trend == "bearish" or market_volatility > 25
+        else "medium"
+    )
+
+    cash_ratio = overall["cash_ratio"]
+
+    cash_status = (
+        "low" if cash_ratio < 0.05
+        else "high" if cash_ratio > 0.4
+        else "normal"
+    )
+
 
     max_stock = None
     max_pct = 0
@@ -102,6 +119,9 @@ def enrich_context(portfolio: dict) -> dict:
             max_pct = pct
             max_stock = stock
 
+    concentration_high = max_pct > 0.4
+
+
     worst_stock = None
     worst_change = 0
 
@@ -111,33 +131,186 @@ def enrich_context(portfolio: dict) -> dict:
             worst_change = change
             worst_stock = stock
 
+
+    loss_stocks = []
+    profit_stocks = []
+    high_risk_stocks = []
+
+    for stock, data in detail.items():
+        pnl = data["portfolio_summary"]["unrealized_pnl"]
+        risk = data["risk"]
+
+        if pnl < 0:
+            loss_stocks.append(stock)
+        else:
+            profit_stocks.append(stock)
+
+        if risk >= 8:
+            high_risk_stocks.append(stock)
+
+
+    unrealized = overall["total_unrealized_pnl"]
+
+    portfolio_health = (
+        "bad" if unrealized < 0
+        else "good"
+    )
+
+
+    avg_hold = overall["avg_hold_period_days"]
+    trading_velocity = overall["trading_velocity"]
+
+    long_term_holder = avg_hold > 90
+    active_trader = trading_velocity > 0.5
+
+    portfolio_scale = (
+        "large" if overall["total_portfolio_value"] > 100000
+        else "normal"
+    )
+
+
+    DAY_GAP = {
+        "short_term": (0, 3),
+        "swing": (4, 7),
+        "long_term": (8, 30)
+    }
+
+    min_day, max_day = DAY_GAP[user_type]
+
+    
     insights = {
-        "market_condition": market["trend"],
-        "market_risk": "high" if market["trend"] == "bearish" else "medium",
-        "cash_ratio": overall["cash_ratio"],
-        "cash_status": (
-            "low" if overall["cash_ratio"] < 0.05 else
-            "high" if overall["cash_ratio"] > 0.4 else
-            "normal"
-        ),
+        "market_condition": market_trend,
+        "market_risk": market_risk,
+        "volatility": market_volatility,
+
+        "cash_ratio": cash_ratio,
+        "cash_status": cash_status,
+
+        "portfolio_health": portfolio_health,
+        "portfolio_scale": portfolio_scale,
+
         "portfolio_concentration": {
             "stock": max_stock,
             "pct": round(max_pct, 2),
-            "is_high": max_pct > 0.4
+            "is_high": concentration_high
         },
+
         "worst_stock": {
             "stock": worst_stock,
             "change_percent": worst_change
         },
-        "portfolio_scale": (
-            "large" if overall["total_portfolio_value"] > 100000 else "normal"
-        )
+
+        "loss_stocks": loss_stocks,
+        "profit_stocks": profit_stocks,
+        "high_risk_stocks": high_risk_stocks,
+
+        "behavior": {
+            "long_term_holder": long_term_holder,
+            "active_trader": active_trader
+        },
+
+        "trading_style": {
+            "type": user_type,
+            "holding_period_days": f"{min_day}-{max_day}"
+        }
     }
 
-    return {
-        **portfolio,
-        "insights": insights
-    }
+    return insights
+
+def rule_engine(features):
+    products = set()
+    if features["market_risk"] == "high":
+        products.update([
+            "REBALANCE",
+            "STOP_LOSS_SERVICE",
+            "PORTFOLIO_INSURANCE",
+            "RISK_ALERT_SYSTEM"
+        ])
+
+    if features["cash_status"] == "high":
+        products.update([
+            "IDLE_CASH",
+            "CASH_SWEEP",
+            "FLEXIBLE_SAVING"
+        ])
+    elif features["cash_status"] == "low":
+        products.update([
+            "MARGIN",
+            "SMART_MARGIN",
+            "CREDIT_LINE"
+        ])
+
+    if features["portfolio_health"] == "bad":
+        products.update([
+            "REBALANCE",
+            "STOP_LOSS_SERVICE",
+            "COPY_TRADE",
+            "MODEL_PORTFOLIO"
+        ])
+
+    if features["portfolio_concentration"]["is_high"]:
+        products.update([
+            "REBALANCE",
+            "AUTO_REBALANCE"
+        ])
+
+    if features["loss_stocks"]:
+        products.update([
+            "STOP_LOSS_SERVICE",
+            "PORTFOLIO_INSURANCE"
+        ])
+
+    if features["high_risk_stocks"]:
+        products.update([
+            "REBALANCE",
+            "RISK_ALERT_SYSTEM"
+        ])
+
+    if features["behavior"]["active_trader"]:
+        products.update([
+            "DAY_TRADING_LIMIT",
+            "DERIVATIVES"
+        ])
+
+    if features["behavior"]["long_term_holder"]:
+        products.update([
+            "AUTO_REBALANCE",
+            "MODEL_PORTFOLIO",
+            "PRIVATE_WEALTH"
+        ])
+
+
+    style = features["trading_style"]["type"]
+
+    if style == "short_term":
+        products.update([
+            "DAY_TRADING_LIMIT",
+            "DERIVATIVES",
+            "SMART_MARGIN"
+        ])
+
+    elif style == "swing":
+        products.update([
+            "SMART_MARGIN",
+            "COPY_TRADE",
+            "MODEL_PORTFOLIO"
+        ])
+
+    elif style == "long_term":
+        products.update([
+            "MODEL_PORTFOLIO",
+            "PRIVATE_WEALTH",
+            "INVESTMENT_ADVISORY_VIP"
+        ])
+
+    if features["portfolio_scale"] == "large":
+        products.update([
+            "VIP_LOAN",
+            "STOCK_BACKED_LOAN",
+            "PRIVATE_WEALTH"
+        ])
+
+    return list(products)
 
 async def _update_stock_product_recommendation_async(transaction):
 
@@ -146,12 +319,28 @@ async def _update_stock_product_recommendation_async(transaction):
 
     BASE_URL = "http://localhost:8080/api/v1/user"
 
+    url = f"{BASE_URL}/behaviour/{user_id}"
+
+    res = requests.get(url)
+    if res.status_code != 200:
+        return {}
+
+    print(res.json())
+    user_type = res.json()["behaviour_insight"]
+  
     url = f"{BASE_URL}/summary/{user_id}"
-   
+
     res = requests.get(url)
     if res.status_code == 200:
-        user_context_data = enrich_context(res.json())
-        data = market_analysis_agent.recommend_stock_product(user_context_data)
+
+        user_context_data = res.json()
+
+        features = enrich_context(user_context_data, user_type)
+
+        pre_products = rule_engine(features)
+
+        
+        data = market_analysis_agent.recommend_stock_product(user_context_data, features, pre_products)
 
         await db_client.insert_stock_product_recommendation(user_id, data, status = "pending")
         return data
