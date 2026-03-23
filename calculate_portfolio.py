@@ -6,7 +6,6 @@ import asyncpg
 import asyncio
 from backend.app.clients.db import PostgresClient
 from backend.app.utils.portfolio import calculate_portfolio, stocks
-
 from backend.app.clients.cache import RedisClient
 
 db_client = PostgresClient(
@@ -43,15 +42,17 @@ async def save_portfolio():
                 portfolio = calculate_portfolio(user_df, realtime_prices)
 
                 await db_client.save_portfolio(user_id, portfolio)
+
+                # res = requests.get(f"http://localhost:8080/api/v1/user/analyze/{user_id}")
+                # if res.status_code == 200:
+                #     portfolio_advice = res.json()
+                #     await db_client.save_portfolio_advice(user_id, portfolio_advice)
+
         except Exception as e:
             print(e)
 
 
-    # for user_id in user_ids:
-    #     url = f"http://localhost:8080/api/v1/user/summary/{user_id}"
-    #     res = requests.get(url)
-    #     if res.status_code == 200:
-    #         data = res.json()
+        
 
         
 

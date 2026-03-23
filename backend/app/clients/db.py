@@ -372,3 +372,34 @@ class PostgresClient:
             DELETE FROM stock_transaction
             WHERE transaction_id = $1
         """, transaction_id)
+
+    
+    async def init_portfolio_advice_table(self):
+        await self.conn.execute("""
+        CREATE TABLE IF NOT EXISTS portfolio_advice (
+            user_id TEXT PRIMARY KEY,
+            data JSONB NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+        """)
+
+    async def save_portfolio_advice(self, user_id: str, portfolio_advice):
+        await self.conn.execute("""
+            INSERT INTO portfolio_advice(user_id, data)
+            VALUES($1, $2)
+            ON CONFLICT (user_id)
+            DO UPDATE SET data = EXCLUDED.data,
+                          created_at = CURRENT_TIMESTAMP
+        """,
+        user_id,
+        json.dumps(portfolio_advice)   
+    )
+
+    async def get_portfolio_advice(self, user_id: str) -> Optional[Dict]:
+        row = await self.conn.fetchrow("""
+            SELECT data
+            FROM portfolio_advice
+            WHERE user_id = $1
+        """, user_id)
+
+        return json.loads(row["data"]) if row else None

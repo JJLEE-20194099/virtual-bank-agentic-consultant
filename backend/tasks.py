@@ -79,6 +79,12 @@ async def _update_portfolio_async(user_id: str):
 
     await _update_stock_user_behaviour(user_id)
 
+    res = requests.get(f"http://localhost:8080/api/v1/user/analyze/{user_id}")
+    if res.status_code == 200:
+        print("aaaaaaaaaaaaaaaaaaaaaa")
+        portfolio_advice = res.json()
+        await db_client.save_portfolio_advice(user_id, portfolio_advice)
+
 
     await db_client.close()
 

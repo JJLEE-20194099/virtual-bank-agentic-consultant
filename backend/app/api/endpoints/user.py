@@ -117,9 +117,19 @@ async def get_stock_product_recommendation(user_id: str):
 
 @router.get(("/analyze/{user_id}"))
 async def analyze_stock_portfolio(user_id: str):
+
+    data = await db_client.get_portfolio_advice(user_id)
+    
+    if data != None:
+        return data
     
     user_portfolio_data = await get_stocks_portfolio_summary_by_user_id(user_id)
-    return market_analysis_agent.analyze_stock_portfolio(user_portfolio_data)
+
+    portfolio_advice = market_analysis_agent.analyze_stock_portfolio(user_portfolio_data)
+
+    await db_client.save_portfolio_advice(user_id, portfolio_advice)
+    return portfolio_advice
+
 
 
 
