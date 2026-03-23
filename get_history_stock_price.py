@@ -8,6 +8,7 @@ LENGTH = 1000
 INTERVAL = "1d"
 
 stocks = [
+"VN30",
 "ACB","BCM","BID","BVH","CTG","FPT","GAS","GVR","HDB","HPG",
 "MBB","MSN","MWG","PLX","POW","SAB","SSI","STB","TCB","TPB",
 "VCB","VHM","VIB","VIC","VJC","VNM","VPB","VRE",
@@ -18,7 +19,6 @@ stocks = [
 "PVS","PVT","REE","SBT","SHB","SJS","SZC","TCH","TCM","TNG",
 "VCG","VGC","VHC","VIX","VND","VOS","YEG"
 ]
-
 
 for stock in stocks:
     try:
@@ -42,4 +42,4 @@ for stock in stocks:
         print(f"Error {stock}: {e}")
 
 
-print("Saved to stock_history.json")
+print("Saved to history_price.json")

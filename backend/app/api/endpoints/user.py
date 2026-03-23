@@ -15,7 +15,7 @@ service = MarketService()
 async def get_stocks_portfolio_summary_by_user_id(user_id: str):
     portfolio_summary = await db_client.get_portfolio(user_id)
 
-    symbols = list(portfolio_summary.keys())
+    symbols = list(portfolio_summary["portfolio_stats"].keys())
 
     stock_summaries = await db_client.get_stock_summary_by_symbols(symbols)
 
@@ -31,13 +31,20 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
     values = [
         {
             "stock_summary": stock_summaries[i],
-            "portfolio_summary": portfolio_summary[key],
+            "portfolio_summary": portfolio_summary["portfolio_stats"][key],
             "company_summary": company_summary[i]
         }
         for i, key in enumerate(keys)
     ]
 
-    return dict(zip(keys, values))
+    del portfolio_summary["portfolio_stats"]
+
+    return {
+        "overall": {
+            **portfolio_summary
+        },
+        "detail": dict(zip(keys, values))
+    }
 
 
 @router.get(("/behaviour/{user_id}"))

@@ -139,6 +139,7 @@ def merge_data(old, new):
 
 
 stocks = [
+"VN30",
 "ACB","BCM","BID","BVH","CTG","FPT","GAS","GVR","HDB","HPG",
 "MBB","MSN","MWG","PLX","POW","SAB","SSI","STB","TCB","TPB",
 "VCB","VHM","VIB","VIC","VJC","VNM","VPB","VRE",

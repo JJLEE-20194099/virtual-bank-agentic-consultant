@@ -1,6 +1,7 @@
 
 import pandas as pd 
 import requests
+import json
 
 stocks = [
 "ACB","BCM","BID","BVH","CTG","FPT","GAS","GVR","HDB","HPG",
@@ -15,6 +16,12 @@ stocks = [
 ]
 
 BASE_URL = "http://localhost:8080/api/v1/market"
+
+with open("/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/company/summary.json", "r", encoding="utf-8") as f:
+    company_data = json.load(f)
+
+def match_sector(symbol):
+    return company_data[symbol]["sector"]
 
 
 def fetch_realtime(symbols):
@@ -40,6 +47,11 @@ def fetch_realtime(symbols):
 def calculate_portfolio(df, current_prices):
     portfolio = {}
 
+    df["sector"] = df["stock_code"].apply(match_sector)
+
+    sector_values = df.groupby('sector')['transaction_id'].sum().sort_values(ascending=False)
+    
+    preferred_categories = sector_values.head(3).index.tolist()
     
     user_stocks = list(df.stock_code.unique())
     state = dict(
@@ -49,12 +61,16 @@ def calculate_portfolio(df, current_prices):
                 {
                     "shares": 0,
                     "avg_price": 0,
-                    "realized_pnl": 0
+                    "realized_pnl": 0,
+                    "buy_queue": []
                 }
                 for _ in user_stocks
             ]
         )
     )
+
+    total_holding_time = pd.Timedelta(0)
+    total_sell_trades = 0
 
     for _, row in df.iterrows():
         symbol = row["stock_code"]
@@ -62,6 +78,7 @@ def calculate_portfolio(df, current_prices):
         price = row["price"]
         side = row["action"]
 
+        time = row["datetime"]
         s = state[symbol]
 
 
@@ -70,7 +87,26 @@ def calculate_portfolio(df, current_prices):
             s["shares"] += qty
             s["avg_price"] = total_cost / s["shares"]
 
+            s["buy_queue"].append({"qty": qty, "price": price, "time": time})
+
         elif side == "sell":
+
+            temp_qty = qty
+            while temp_qty > 0 and len(s["buy_queue"]):
+                buy_node = s["buy_queue"][0]
+                sell_qty = min(temp_qty, buy_node["qty"])
+                
+            
+                duration = time - buy_node["time"]
+                total_holding_time += duration
+                total_sell_trades += 1 
+                
+                buy_node["qty"] -= sell_qty
+                temp_qty -= sell_qty
+                if buy_node["qty"] == 0:
+                    s["buy_queue"].pop(0)
+
+
             pnl = (price - s["avg_price"]) * qty
             s["realized_pnl"] += pnl
 
@@ -78,9 +114,12 @@ def calculate_portfolio(df, current_prices):
 
             if s["shares"] == 0:
                 s["avg_price"] = 0
+                s["buy_queue"] = []
 
     results = {}
     total_portfolio_value = 0
+    total_realized_pnl = 0
+    total_unrealized_pnl = 0
 
     for symbol, s in state.items():
         current_price = current_prices[f"price:{symbol}"]["close_price"] / 1000
@@ -93,6 +132,9 @@ def calculate_portfolio(df, current_prices):
 
         total_portfolio_value += total_value
 
+        total_realized_pnl += s["realized_pnl"]
+        total_unrealized_pnl += unrealized
+
         results[symbol] = {
             "shares": s["shares"],
             "realized_pnl": round(s["realized_pnl"], 2),
@@ -102,10 +144,24 @@ def calculate_portfolio(df, current_prices):
             "current_price": current_price
         }
 
+    avg_hold_days = (total_holding_time.total_seconds() / 86400) / total_sell_trades if total_sell_trades > 0 else 0
+
     for symbol in results:
         value = results[symbol]["total_value"]
         pct = (value / total_portfolio_value * 100) if total_portfolio_value > 0 else 0
         results[symbol]["portfolio_pct"] = round(pct, 2)
+    
+    date_range = (df['datetime'].max() - df['datetime'].min()).days
+    date_range = max(date_range, 1)
+    trading_velocity = len(df) / date_range
 
-    return results
+    return {
+        "portfolio_stats": results,
+        "trading_velocity": round(trading_velocity, 2), 
+        "avg_hold_period_days": round(avg_hold_days, 2),
+        "preferred_categories": preferred_categories,
+        "total_portfolio_value": total_portfolio_value,
+        "total_realized_pnl": total_realized_pnl,
+        "total_unrealized_pnl": total_unrealized_pnl,
+    }
 

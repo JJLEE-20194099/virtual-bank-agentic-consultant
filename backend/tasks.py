@@ -118,6 +118,11 @@ async def _update_realtime_price_async():
         for item in realtime_prices
     }
 
+    path = f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/VN30/history_price.json"
+    with open(path, "r", encoding="utf-8") as f:
+        vn_30  = json.load(f)[0]["close"]
+    
+    data["price:VN30"] = vn_30
     
     redis_client.set(
         "realtime_prices:all",
