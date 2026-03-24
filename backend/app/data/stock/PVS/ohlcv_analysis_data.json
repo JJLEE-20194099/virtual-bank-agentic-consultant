@@ -1,8 +1,8 @@
 {
-  "current": 40.5,
-  "change": 0.5,
-  "change_percent": 1.25,
+  "current": 40.4,
+  "change": -0.1,
+  "change_percent": -0.25,
   "trend": "bullish",
   "current_state": "uptrend",
-  "volatility": 39.32
+  "volatility": 39.29
 }
