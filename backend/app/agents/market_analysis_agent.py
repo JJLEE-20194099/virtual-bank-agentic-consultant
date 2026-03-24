@@ -120,7 +120,7 @@ class MarketAnalysisAgent(BaselineAgent):
 
         for chunk in self.get_completion(messages, temperature=0.25):
             full_text += chunk
-            yield chunk 
+            yield chunk + " "
         # return {
         #     "query_parser": query_parser,
         #     "ohlcv_data": ohlcv_data,

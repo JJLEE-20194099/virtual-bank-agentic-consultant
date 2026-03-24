@@ -9,11 +9,108 @@ from app.model.user import StockUserBehaviourBase
 import requests
 from tasks import update_stock_product_recommendation
 from app.agents.market_analysis_agent import MarketAnalysisAgent
-
+from app.core.data_instance import data_client
+from app.utils.clean import clean_financial_data
 market_analysis_agent = MarketAnalysisAgent()
 
 router = APIRouter()
 service = MarketService()
+
+
+def score_new_stock(stock, PREFERRED_SECTORS, MARKET_TREND):
+    score = 0
+    if stock["sector"] in PREFERRED_SECTORS:
+        score += 2
+    else:
+        score -= 0.5  
+
+    pe = stock["pe_ratio"]
+    if pe < 8:
+        score += 3
+    elif pe < 15:
+        score += 2
+    elif pe < 25:
+        score += 0.5
+    else:
+        score -= 2
+
+
+    profit = stock["profit_before_tax_billion_vnd"]
+    if profit > 10000:
+        score += 2
+    elif profit > 3000:
+        score += 1
+
+    cap = stock["market_cap_billion_vnd"]
+    try:
+        if cap > 100000:
+            score += 2
+        elif cap > 30000:
+            score += 1
+    except:pass
+
+    div = stock["dividend_yield_percent"]
+    try:
+        if div >= 6:
+            score += 3
+        elif div >= 4:
+            score += 2
+        elif div >= 2:
+            score += 1
+    except:pass
+    if MARKET_TREND == "bearish":
+        try:
+            if div >= 4:
+                score += 1
+        except:pass
+        try:
+            if pe < 10:
+                score += 1
+        except:pass
+        try:
+            if cap > 50000:
+                score += 1
+        except:pass
+
+    return score
+
+def recommend_new_stocks(stock_list, my_stocks, PREFERRED_SECTORS, MARKET_TREND):
+    results = []
+
+    for symbol in stock_list.keys():
+        if symbol in my_stocks:
+            continue
+        stock = stock_list[symbol]
+        s = score_new_stock(stock, PREFERRED_SECTORS, MARKET_TREND)
+
+        results.append({
+            "name": stock["name"],
+            "sector": stock["sector"],
+            "pe": stock["pe_ratio"],
+            "dividend": stock["dividend_yield_percent"],
+            "score": round(s, 2),
+            "symbol": symbol
+        })
+
+    df = pd.DataFrame(results)
+    df = df.sort_values(by="score", ascending=False)
+
+    def label(score):
+        if score >= 8:
+            return "STRONG BUY"
+        elif score >= 5:
+            return "BUY"
+        elif score >= 2:
+            return "WATCHLIST"
+        else:
+            return "SKIP"
+
+    df["recommendation"] = df["score"].apply(label)
+
+    df = df[df["recommendation"] == "STRONG BUY"]
+
+    return df.to_dict(orient="records")
+
 
 @router.get(("/summary/{user_id}"))
 async def get_stocks_portfolio_summary_by_user_id(user_id: str):
@@ -90,9 +187,7 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
 
     del portfolio_summary["portfolio_stats"]
 
-    
-
-    return {
+    data = {
         "market-news": market_summary[0]["data"],
         "overall": {
             **portfolio_summary,
@@ -102,6 +197,23 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
             "overall_risk": overall_risk
         },
         "detail": dict(zip(keys, values))
+    }
+
+    PREFERRED_SECTORS = data["overall"]["preferred_categories"]
+    MARKET_TREND = data["market-news"]["trend"]
+
+    company_summaries = data_client.company_summaries
+    company_analysis = data_client.company_analysis
+
+    recommend_data = recommend_new_stocks(company_summaries, keys, PREFERRED_SECTORS, MARKET_TREND)
+
+    recommend_data = clean_financial_data(recommend_data)
+
+    recommend_data = [{**item, **(company_analysis[item["symbol"]])} for item in recommend_data]
+
+    return {
+        **data,
+        "recommend_data": recommend_data
     }
 
 

@@ -3,6 +3,7 @@ from app.api.router import api_router
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.db_instance import db_client
 from app.core.model_instance import model_client
+from app.core.data_instance import data_client
 from contextlib import asynccontextmanager
 
 loaded_model = None
@@ -23,6 +24,11 @@ async def lifespan(app: FastAPI):
 
     model_client.load()
     print("MODEL LOADED")
+
+    data_client.load_all_company_info()
+    data_client.load_all_company_analysis()
+    print("COMPANY DATA LOADED")
+
 
     yield
 

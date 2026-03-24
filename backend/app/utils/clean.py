@@ -10,3 +10,4 @@ def clean_financial_data(obj):
         return obj
     else:
         return obj
+    
