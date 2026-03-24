@@ -397,7 +397,7 @@ async def _update_realtime_price_async():
 
     path = f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/VN30/history_price.json"
     with open(path, "r", encoding="utf-8") as f:
-        vn_30  = json.load(f)[0]["close"]
+        vn_30  = json.load(f)[0]
     
     data["price:VN30"] = vn_30
     
