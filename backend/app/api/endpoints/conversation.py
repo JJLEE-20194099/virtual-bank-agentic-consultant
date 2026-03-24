@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
+import requests
 from app.service.intent.engine import classify_intent
 from app.service.finance.market.market_service import MarketService
 from app.service.finance.market.company_service import get_company_info
@@ -18,6 +19,9 @@ router = APIRouter()
 service = MarketService()
 market_analysis_agent = MarketAnalysisAgent()
 
+from app.clients.cache import RedisClient
+redis_client = RedisClient()
+
 class ChatRequest(BaseModel):
     user_id: str
     message: str
@@ -35,6 +39,27 @@ def today_str():
 
 def load_company_info(symbol):
     return get_company_info(symbol)
+
+def get_user_context(user_id:str):
+    cache_key = f"user_context:{user_id}"
+    
+    try:
+        cached = redis_client.get(cache_key)
+        return cached
+    except Exception as e:
+        print(e)
+        res = requests.get(f"http://localhost:8080/api/v1/user/summary/{user_id}")
+        if res.status_code == 200:
+            user_context = res.json()
+
+            redis_client.set(
+                cache_key,
+                json.dumps(user_context),
+                ex=60 * 5
+            )
+
+            return user_context
+            
 
 @router.post("/chat")
 def chat(req: ChatRequest):
@@ -74,6 +99,8 @@ def chat(req: ChatRequest):
         for symbol in symbols:
             context["ohlcv"][symbol] = service.get_ohlcv_by_length(symbol, length=7, interval="1d")
 
+
+    context["portfolio"] = get_user_context(req.user_id)
     
     def event_stream():
         for chunk in market_analysis_agent.response_market_question(context, user_message, query_parser):

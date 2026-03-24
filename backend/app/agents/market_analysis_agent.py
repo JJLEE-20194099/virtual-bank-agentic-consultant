@@ -81,6 +81,7 @@ class MarketAnalysisAgent(BaselineAgent):
         exchange_rate = context.get("exchange_rate", "N/A")
 
         prompt = MARKET_ANALYSIS_RESPONSE_FORMAT.format(
+            my_portfolio_info = context["portfolio"],
             intent=intent,
             symbols=symbols,
             company_info=company_info,
