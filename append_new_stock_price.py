@@ -191,10 +191,11 @@ async def run():
             if stock != "VN30":
                 realtime = format_realtime_data(realtime_prices[f"price:{stock}"])
             else:
-                url = f"{BASE_URL}/http://localhost:8080/api/v1/market/ohlcv-by-length/VN30?length=1&interval=1d"
+                url = f"{BASE_URL}/ohlcv-by-length/VN30?length=1&interval=1d"
                 res = requests.get(url)
                 if res.status_code == 200:
-                    realtime = res.json()
+                    realtime = res.json()[0]
+                    
 
 
             if realtime:
