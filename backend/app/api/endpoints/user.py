@@ -18,6 +18,10 @@ router = APIRouter()
 service = MarketService()
 
 
+from app.clients.cache import RedisClient
+redis_client = RedisClient()   
+
+
 def score_new_stock(stock, PREFERRED_SECTORS, MARKET_TREND):
     score = 0
     if stock["sector"] in PREFERRED_SECTORS:
@@ -115,6 +119,15 @@ def recommend_new_stocks(stock_list, my_stocks, PREFERRED_SECTORS, MARKET_TREND)
 
 @router.get(("/summary/{user_id}"))
 async def get_stocks_portfolio_summary_by_user_id(user_id: str):
+
+    cache_key = f"summary:{user_id}"
+
+    try:
+        cached = redis_client.get(cache_key)
+        return cached
+    except:
+        pass
+
     portfolio_summary = await db_client.get_portfolio(user_id)
 
     user_summary = await db_client.get_user(user_id)
@@ -212,10 +225,18 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
 
     recommend_data = [{**item, **(company_analysis[item["symbol"]])} for item in recommend_data]
 
-    return {
+    full_data = {
         **data,
         "recommend_data": recommend_data
     }
+
+    redis_client.set(
+        cache_key,
+        json.dumps(full_data, default=str),
+        ex=60 * 60
+    )
+
+    return full_data
 
 
 @router.get(("/behaviour/{user_id}"))
@@ -226,7 +247,22 @@ async def get_stock_behaviour_by_user_id(user_id: str):
 
 @router.get(("/recommend/{user_id}"))
 async def get_stock_product_recommendation(user_id: str):
+
+    cache_key = f"recommend:{user_id}"
+
+    try:
+        cached = redis_client.get(cache_key)
+        return cached
+    except:
+        pass
+
     data = await db_client.get_stock_product_recommendation(user_id)
+
+    redis_client.set(
+        cache_key,
+        json.dumps(data, default=str),
+        ex=60 * 60
+    )
 
     return data
 
@@ -242,9 +278,16 @@ async def get_question_recommendation_by_user_id(user_id: str):
     return generate_question_set(symbols)
 
 
-
 @router.get(("/analyze/{user_id}"))
 async def analyze_stock_portfolio(user_id: str):
+
+    cache_key = f"analyze:{user_id}"
+
+    try:
+        cached = redis_client.get(cache_key)
+        return cached
+    except:
+        pass
 
     data = await db_client.get_portfolio_advice(user_id)
     
@@ -256,6 +299,14 @@ async def analyze_stock_portfolio(user_id: str):
     portfolio_advice = market_analysis_agent.analyze_stock_portfolio(user_portfolio_data)
 
     await db_client.save_portfolio_advice(user_id, portfolio_advice)
+
+
+    redis_client.set(
+        cache_key,
+        json.dumps(portfolio_advice, default=str),
+        ex=60 * 60
+    )
+
     return portfolio_advice
 
 

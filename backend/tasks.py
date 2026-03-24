@@ -352,6 +352,14 @@ async def _update_stock_product_recommendation_async(transaction):
         data = market_analysis_agent.recommend_stock_product(user_context_data, features, pre_products)
 
         await db_client.insert_stock_product_recommendation(user_id, data, status = "pending")
+
+        cache_key = f"recommend:{user_id}"
+        redis_client.set(
+            cache_key,
+            json.dumps(data),
+            ex=60 * 60
+        )
+        
         return data
     return {}
 

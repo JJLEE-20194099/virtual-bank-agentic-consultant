@@ -21,6 +21,8 @@ vnstock
 asyncpg
 celery
 redis
+boto3
+awscli
 accelerate
 notebook
 jupyterlab
