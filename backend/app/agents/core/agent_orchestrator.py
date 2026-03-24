@@ -1,6 +1,6 @@
 from app.storage.memory_store import save_message, load_history
 from app.processor.intent_processor import detect_intent
-from app.clients.bedrock_client import bedrock_runtime
+from backend.app.clients.bedrock import bedrock_runtime
 from app.agents.bedrock_agent import AGENT_ID, AGENT_ALIAS
 
 import json
@@ -12,7 +12,7 @@ def build_context(history):
     ])
 
 
-def chat(user_id: str, message: str, session_id: str):
+def run_agent(user_id: str, message: str, session_id: str):
 
     save_message(user_id, "user", message, session_id)
     intent = detect_intent(message)
@@ -44,7 +44,6 @@ def chat(user_id: str, message: str, session_id: str):
         if "chunk" in e:
             result += e["chunk"]["bytes"].decode()
 
-    # 6. save assistant msg
     save_message(user_id, "assistant", result, session_id)
 
     return result

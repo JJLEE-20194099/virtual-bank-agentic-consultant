@@ -9,6 +9,7 @@ import json
 from dotenv import load_dotenv
 from app.agents.market_analysis_agent import MarketAnalysisAgent
 from fastapi.responses import StreamingResponse
+from app.agents.core.agent_orchestrator import run_agent
 import os
 load_dotenv() 
 from datetime import datetime
@@ -25,6 +26,11 @@ redis_client = RedisClient()
 class ChatRequest(BaseModel):
     user_id: str
     message: str
+
+class ChatSessionRequest(BaseModel):
+    user_id: str
+    message: str
+    session_id: str
 
 class ChatResponse(BaseModel):
     answer: str
@@ -141,3 +147,8 @@ def chat(req: ChatRequest):
     return StreamingResponse(event_stream(), media_type="text/plain")
 
 
+
+
+@router.post("/bedrock-chat")
+def chat_with_bedrock_agent(req: ChatSessionRequest):
+    return run_agent(req.user_id, req.message)

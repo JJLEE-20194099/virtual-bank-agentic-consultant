@@ -1,5 +1,4 @@
-from app.clients.bedrock_client import bedrock_runtime
-from app.agents.bedrock_agent import AGENT_ID, AGENT_ALIAS
+from app.clients.bedrock import BedrockClient
 import json
 
 def detect_intent(message: str):
@@ -8,15 +7,15 @@ def detect_intent(message: str):
         agentAliasId=AGENT_ALIAS,
         sessionId="intent-session",
         inputText=f"""
-Return JSON only:
-{{
-  "intent": "...",
-  "entities": {{}}
-}}
+            Return JSON only:
+            {{
+            "intent": "...",
+            "entities": {{}}
+            }}
 
-User: {message}
-"""
-    )
+            User: {message}
+            """
+        )
 
     result = ""
     for e in response["completion"]:
