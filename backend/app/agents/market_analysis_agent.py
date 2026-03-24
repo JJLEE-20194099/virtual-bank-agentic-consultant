@@ -119,15 +119,35 @@ class MarketAnalysisAgent(BaselineAgent):
 
         full_text = ""
 
-        for chunk in self.get_completion(messages, temperature=0.25):
+        # for chunk in self.get_completion(messages, temperature=0.25):
+        #     full_text += chunk
+        #     yield chunk + " "
+
+        def mock_stream():
+            chunks = [
+                "Based on your recent activity,",
+                " we have analyzed your preferences",
+                " and identified several stock products",
+                " that may align with your investment strategy.",
+                " These include a mix of high-growth tech stocks,",
+                " stable dividend-paying companies,",
+                " and emerging market opportunities.",
+                " For example, companies in the AI sector",
+                " have shown strong upward momentum,",
+                " while traditional energy stocks",
+                " continue to provide consistent returns.",
+                " Additionally, diversification across sectors",
+                " can help reduce risk and improve long-term performance.",
+                " Please review these recommendations carefully",
+                " and consider your risk tolerance before making any decisions."
+            ]
+
+            for chunk in chunks:
+                yield chunk
+
+        for chunk in mock_stream():
             full_text += chunk
             yield chunk + " "
-        # return {
-        #     "query_parser": query_parser,
-        #     "ohlcv_data": ohlcv_data,
-        #     "answer": answer
-        # }
-
     
     def recommend_stock_product(self, user_context_data, features, pre_products):
 

@@ -76,5 +76,5 @@ docker network connect swinnet postgres
 docker network connect swinnet redis
 docker network connect swinnet adminer
 
-uvicorn main:app --reload --host 0.0.0.0 --port 8080
+uvicorn main:app --host 0.0.0.0 --port 8080
 sudo apt-get install redis-tools
