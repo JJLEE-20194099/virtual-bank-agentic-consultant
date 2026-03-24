@@ -11,6 +11,7 @@ from tasks import update_stock_product_recommendation
 from app.agents.market_analysis_agent import MarketAnalysisAgent
 from app.core.data_instance import data_client
 from app.utils.clean import clean_financial_data
+from app.utils.stock import generate_question_set
 market_analysis_agent = MarketAnalysisAgent()
 
 router = APIRouter()
@@ -233,6 +234,12 @@ async def get_stock_product_recommendation(user_id: str):
 async def create_recommendation(user_id: str):
     update_stock_product_recommendation.delay({"customer_id": user_id})
 
+
+@router.post(("/question-list/{user_id}"))
+async def get_question_recommendation_by_user_id(user_id: str):
+    symbols = await db_client.get_unique_stock_codes(user_id)
+
+    return generate_question_set(symbols)
 
 
 

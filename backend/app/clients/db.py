@@ -374,6 +374,17 @@ class PostgresClient:
         """, transaction_id)
 
     
+    async def get_unique_stock_codes(self, customer_id: str):
+        query = """
+        SELECT DISTINCT stock_code
+        FROM stock_transaction
+        WHERE customer_id = $1;
+        """
+
+        rows = await self.conn.fetch(query, customer_id)
+
+        return [row["stock_code"] for row in rows]
+    
     async def init_portfolio_advice_table(self):
         await self.conn.execute("""
         CREATE TABLE IF NOT EXISTS portfolio_advice (

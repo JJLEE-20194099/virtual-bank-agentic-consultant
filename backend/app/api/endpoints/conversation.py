@@ -59,6 +59,31 @@ def get_user_context(user_id:str):
             )
 
             return user_context
+
+PORTFOLIO_INTENTS = {
+    "portfolio",
+    "buy_sell",
+    "risk",
+    "allocation",
+    "recommendation",
+}   
+def need_portfolio(intent, user_message):
+    keywords = [
+        "danh mục",
+        "portfolio",
+        "tôi đang giữ",
+        "rủi ro",
+        "lãi",
+        "lỗ",
+        "PnL",
+        "nên bán",
+        "nên giữ",
+    ]
+
+    return (
+        intent in PORTFOLIO_INTENTS
+        or any(k.lower() in user_message.lower() for k in keywords)
+    )
             
 
 @router.post("/chat")
@@ -69,6 +94,7 @@ def chat(req: ChatRequest):
     query_parser = json.loads(parse_query(user_message).replace('\\"', '"').replace("```json", "").replace("```", ""))
     symbols = query_parser["symbols"]
     intent = query_parser["intent"]
+    print(intent, symbols)
     context["ohlcv"] = {}
     for external_factor in query_parser["external_factors"]:
         if external_factor["type"] == "exchange_rate":
@@ -99,8 +125,14 @@ def chat(req: ChatRequest):
         for symbol in symbols:
             context["ohlcv"][symbol] = service.get_ohlcv_by_length(symbol, length=7, interval="1d")
 
+    if intent == "trend" and len(symbols) == 0:
+        context["ohlcv"]["OHLCV OF MARKET (VNINDEX 30)"] = service.get_ohlcv_by_length("VN30", length=14, interval="1d")
 
-    context["portfolio"] = get_user_context(req.user_id)
+
+    if need_portfolio(intent, user_message):
+        context["portfolio"] = get_user_context(req.user_id)
+    else:
+        context["portfolio"] = {}
     
     def event_stream():
         for chunk in market_analysis_agent.response_market_question(context, user_message, query_parser):

@@ -1,4 +1,5 @@
 from transformers import pipeline
+import json
 
 intents = [
   "CREDIT_CARD_DISCUSSION",
@@ -26,3 +27,4 @@ def classify_intent(text: str):
         "label": result["labels"][0],
         "score": result["scores"][0]
     }
+
