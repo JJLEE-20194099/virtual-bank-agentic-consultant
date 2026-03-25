@@ -46,8 +46,6 @@ def build_context(history):
 
 def save_message(user_id, role, message, metadata, session_id):
 
-    ensure_table_exists()
-    
     ddb.put_item(
         TableName=TABLE,
         Item={
