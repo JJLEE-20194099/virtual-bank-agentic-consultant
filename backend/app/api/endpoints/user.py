@@ -311,9 +311,6 @@ async def analyze_stock_portfolio(user_id: str):
 
 
 
-
-
-
 @router.post(("/behaviour/create"))
 async def save_stock_behaviour(payload: StockUserBehaviourBase):
     data = payload.model_dump()

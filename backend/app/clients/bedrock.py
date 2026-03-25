@@ -109,6 +109,29 @@ class BedrockClient:
             sessionState=session_state
         )
 
+        full_text = ""
+
+        print(agent_id, agent_alias_id)
+
+        for event in response["completion"]:
+            if "chunk" in event:
+                chunk = event["chunk"]
+                if "bytes" in chunk:
+
+                    text = chunk["bytes"].decode("utf-8")
+                    yield text + " "
+
+                    full_text += text
+
+    def offline_invoke_agent(self, agent_id: str, agent_alias_id: str, session_id: str, input_text: str, session_state):
+        response = self.bedrock_runtime.invoke_agent(
+            agentId=agent_id,
+            agentAliasId=agent_alias_id,
+            sessionId=session_id,
+            inputText=input_text,
+            sessionState=session_state
+        )
+
         output = []
 
         print(agent_id, agent_alias_id)
@@ -120,6 +143,8 @@ class BedrockClient:
                     output.append(chunk["bytes"].decode("utf-8"))
 
         return "".join(output)
+        
+                    
 
     def create_full_agent(
         self,

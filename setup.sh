@@ -70,7 +70,7 @@ docker run -d --name redis -p 6379:6379 redis
 
 docker run -d -p 8081:8080 adminer
 
-docker rename unruffled_allen adminer
+docker rename lucid_neumann adminer
 docker network create swinnet
 docker network connect swinnet postgres
 docker network connect swinnet redis

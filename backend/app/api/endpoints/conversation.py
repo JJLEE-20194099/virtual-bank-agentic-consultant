@@ -163,64 +163,71 @@ def chat_with_bedrock_agent(req: ChatSessionRequest):
     query_parser = json.loads(parse_query(user_message).replace('\\"', '"').replace("```json", "").replace("```", ""))
     symbols = query_parser["symbols"]
     intent = query_parser["intent"]
-    print(intent, symbols)
+    print(intent, symbols, query_parser)
     context["ohlcv"] = {}
     for external_factor in query_parser["external_factors"]:
         if external_factor["type"] == "exchange_rate":
-            context["exchange_rate"] = service.get_exchange_rate(today_str())
+            context["exchange_rate"] = json.dumps(service.get_exchange_rate(today_str()))
         
         if external_factor["type"] == "gold":
             if external_factor["scope"] == "global":
-                context["ohlcv"]["global_gold_price"] = service.get_global_gold_price()
+                context["ohlcv"]["global_gold_price"] = json.dumps(service.get_global_gold_price())
             else:
-                context["ohlcv"]["domestic_gold_price"] = service.get_domestic_gold_price()
+                context["ohlcv"]["domestic_gold_price"] = json.dumps(service.get_domestic_gold_price())
             
 
 
         if external_factor["type"] == "oil":
             if external_factor["scope"] == "global":
-                context["ohlcv"]["global_oil_price"] = service.get_global_oil_price()
+                context["ohlcv"]["global_oil_price"] = json.dumps(service.get_global_oil_price())
             else:
-                context["ohlcv"]["domestic_oil_price"] = service.get_domestic_oil_price()
+                context["ohlcv"]["domestic_oil_price"] = json.dumps(service.get_domestic_oil_price())
 
     if len(symbols) > 0:
         if "company_info" in [factor["type"] for factor in query_parser["external_factors"]]:
             if query_parser["requires_company_data"]:
                 context["company_info"] = {}
                 for symbol in symbols:
-                    context["company_info"][symbol] = get_company_info(symbol)
-    
+                    context["company_info"][symbol] = json.dumps(get_company_info(symbol))
+
+                context["company_info"] = json.dumps(context["company_info"])
     
         for symbol in symbols:
-            context["ohlcv"][symbol] = service.get_ohlcv_by_length(symbol, length=7, interval="1d")
+            context["ohlcv"][symbol] = json.dumps(service.get_ohlcv_by_length(symbol, length=7, interval="1d"))
+
+        
 
     if intent == "trend" and len(symbols) == 0:
-        context["ohlcv"]["OHLCV OF MARKET (VNINDEX 30)"] = service.get_ohlcv_by_length("VN30", length=14, interval="1d")
+        context["ohlcv"]["OHLCV OF MARKET (VNINDEX 30)"] = json.dumps(service.get_ohlcv_by_length("VN30", length=14, interval="1d"))
 
+    context["ohlcv"] = json.dumps(context["ohlcv"])
 
     if need_portfolio(intent, user_message):
-        context["portfolio"] = get_user_context(req.user_id)
+        context["portfolio"] = json.dumps(get_user_context(req.user_id))
     else:
-        context["portfolio"] = {}
+        context["portfolio"] = ""
 
     input_text = market_analysis_agent.enrich_user_question(context, user_message, query_parser)
 
-
     try:
-        print(bedrock_client.bedrock_runtime.meta.region_name)
-        result = bedrock_client.invoke_agent(
-            agent_id=req.agent_id,
-            agent_alias_id=req.agent_alias_id,
-            session_id=req.session_id,
-            input_text=input_text,
-            session_state=context
-        )
+        
+        def event_stream():
+            for chunk in bedrock_client.invoke_agent(
+                agent_id=req.agent_id,
+                agent_alias_id=req.agent_alias_id,
+                session_id=req.session_id,
+                input_text=input_text,
+                session_state={
+                    "sessionAttributes": context
+                }
+            ):
+                yield chunk
 
-        return {
-            "session_id": req.session_id,
-            "response": result
-        }
+        return StreamingResponse(event_stream(), media_type="text/plain")
 
     except Exception as e:
         print(e)
         return {}
+
+
+

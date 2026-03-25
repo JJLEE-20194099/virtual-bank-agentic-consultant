@@ -35,7 +35,7 @@ async def lifespan(app: FastAPI):
     print("Bedrock setup")
 
 
-    yieldd
+    yield
 
     await db_client.close()
     print("DB CLOSED")
