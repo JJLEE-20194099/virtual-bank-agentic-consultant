@@ -74,7 +74,7 @@ class MarketAnalysisAgent(BaselineAgent):
         
         return query_parser
 
-    def enrich_user_question(self, context, user_question, query_parser):
+    def enrich_user_question(self, context, user_question, query_parser, history):
         intent = query_parser["intent"]
         symbols = query_parser["symbols"]
         company_info = context.get("company_info", {})
@@ -82,6 +82,7 @@ class MarketAnalysisAgent(BaselineAgent):
         exchange_rate = context.get("exchange_rate", "N/A")
 
         prompt = MARKET_ANALYSIS_RESPONSE_FORMAT.format(
+            history_text = history,
             my_portfolio_info = context["portfolio"],
             intent=intent,
             symbols=symbols,
@@ -93,7 +94,7 @@ class MarketAnalysisAgent(BaselineAgent):
         return prompt
 
         
-    def response_market_question(self, context, user_question, query_parser):
+    def response_market_question(self, context, user_question, query_parser, history):
         
         intent = query_parser["intent"]
         symbols = query_parser["symbols"]
@@ -102,6 +103,7 @@ class MarketAnalysisAgent(BaselineAgent):
         exchange_rate = context.get("exchange_rate", "N/A")
 
         prompt = MARKET_ANALYSIS_RESPONSE_FORMAT.format(
+            history_text = history,
             my_portfolio_info = context["portfolio"],
             intent=intent,
             symbols=symbols,

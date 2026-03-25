@@ -7,12 +7,6 @@ import json
 bedrock_client = BedrockClient()
 
 
-def build_context(history):
-    return "\n".join([
-        f"{h['role']['S']}: {h['message']['S']}"
-        for h in history
-    ])
-
 
 def run_agent(user_id: str, message: str, session_id: str):
 

@@ -1,7 +1,8 @@
 import boto3
 import json
 import time
-from dotenv import load_dotenv      
+from dotenv import load_dotenv     
+from app.storage.memory_store import save_message, load_history 
 import os
 load_dotenv()
 
@@ -100,7 +101,7 @@ class BedrockClient:
             agentAliasName = agent_alias_name
         )
 
-    def invoke_agent(self, agent_id: str, agent_alias_id: str, session_id: str, input_text: str, session_state):
+    def invoke_agent(self, agent_id: str, agent_alias_id: str, session_id: str, input_text: str, session_state, user_id):
         response = self.bedrock_runtime.invoke_agent(
             agentId=agent_id,
             agentAliasId=agent_alias_id,
@@ -122,6 +123,8 @@ class BedrockClient:
                     yield text + " "
 
                     full_text += text
+
+        save_message(user_id, "assistant", full_text, {"agent_id": agent_id, "agent_alias_id": agent_alias_id}, session_id)
 
     def offline_invoke_agent(self, agent_id: str, agent_alias_id: str, session_id: str, input_text: str, session_state):
         response = self.bedrock_runtime.invoke_agent(

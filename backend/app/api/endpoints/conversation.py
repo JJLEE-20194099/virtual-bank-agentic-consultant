@@ -13,6 +13,7 @@ from app.agents.core.agent_orchestrator import run_agent
 import os
 load_dotenv() 
 from datetime import datetime
+from app.storage.memory_store import save_message, load_history, build_context
 
 from app.core.bedrock_instance import bedrock_client
 
@@ -31,10 +32,10 @@ class ChatRequest(BaseModel):
 
 class ChatSessionRequest(BaseModel):
     user_id: str = "C00001"
-    message: str = "Book me a flight to Hanoi"
+    message: str = "Đánh giá rủi ro danh mục đầu tư của tôi"
     session_id: str = "C00001"
-    agent_id: str
-    agent_alias_id: str
+    agent_id: str = "P4RQTQCYVA"
+    agent_alias_id: str = "TSTALIASID"
 
 class ChatResponse(BaseModel):
     answer: str
@@ -145,7 +146,7 @@ def chat(req: ChatRequest):
         context["portfolio"] = {}
     
     def event_stream():
-        for chunk in market_analysis_agent.response_market_question(context, user_message, query_parser):
+        for chunk in market_analysis_agent.response_market_question(context, user_message, query_parser, "[]"):
             yield chunk
 
     return StreamingResponse(event_stream(), media_type="text/plain")
@@ -164,50 +165,57 @@ def chat_with_bedrock_agent(req: ChatSessionRequest):
     symbols = query_parser["symbols"]
     intent = query_parser["intent"]
     print(intent, symbols, query_parser)
+
+    save_message(req.user_id, "user", user_message, query_parser, req.session_id)
+
     context["ohlcv"] = {}
     for external_factor in query_parser["external_factors"]:
         if external_factor["type"] == "exchange_rate":
-            context["exchange_rate"] = json.dumps(service.get_exchange_rate(today_str()))
+            context["exchange_rate"] = json.dumps(service.get_exchange_rate(today_str()), default=str)
         
         if external_factor["type"] == "gold":
             if external_factor["scope"] == "global":
-                context["ohlcv"]["global_gold_price"] = json.dumps(service.get_global_gold_price())
+                context["ohlcv"]["global_gold_price"] = json.dumps(service.get_global_gold_price(), default=str)
             else:
-                context["ohlcv"]["domestic_gold_price"] = json.dumps(service.get_domestic_gold_price())
+                context["ohlcv"]["domestic_gold_price"] = json.dumps(service.get_domestic_gold_price(), default=str)
             
 
 
         if external_factor["type"] == "oil":
             if external_factor["scope"] == "global":
-                context["ohlcv"]["global_oil_price"] = json.dumps(service.get_global_oil_price())
+                context["ohlcv"]["global_oil_price"] = json.dumps(service.get_global_oil_price(), default=str)
             else:
-                context["ohlcv"]["domestic_oil_price"] = json.dumps(service.get_domestic_oil_price())
+                context["ohlcv"]["domestic_oil_price"] = json.dumps(service.get_domestic_oil_price(), default=str)
 
     if len(symbols) > 0:
         if "company_info" in [factor["type"] for factor in query_parser["external_factors"]]:
             if query_parser["requires_company_data"]:
                 context["company_info"] = {}
                 for symbol in symbols:
-                    context["company_info"][symbol] = json.dumps(get_company_info(symbol))
+                    context["company_info"][symbol] = json.dumps(get_company_info(symbol), default=str)
 
-                context["company_info"] = json.dumps(context["company_info"])
+                context["company_info"] = json.dumps(context["company_info"], default=str)
     
         for symbol in symbols:
-            context["ohlcv"][symbol] = json.dumps(service.get_ohlcv_by_length(symbol, length=7, interval="1d"))
+            context["ohlcv"][symbol] = json.dumps(service.get_ohlcv_by_length(symbol, length=7, interval="1d"), default=str)
 
         
 
     if intent == "trend" and len(symbols) == 0:
         context["ohlcv"]["OHLCV OF MARKET (VNINDEX 30)"] = json.dumps(service.get_ohlcv_by_length("VN30", length=14, interval="1d"))
 
-    context["ohlcv"] = json.dumps(context["ohlcv"])
+    context["ohlcv"] = json.dumps(context["ohlcv"], default=str)
 
     if need_portfolio(intent, user_message):
-        context["portfolio"] = json.dumps(get_user_context(req.user_id))
+        context["portfolio"] = json.dumps(get_user_context(req.user_id), default=str)
     else:
         context["portfolio"] = ""
 
-    input_text = market_analysis_agent.enrich_user_question(context, user_message, query_parser)
+    history = load_history(req.user_id)
+
+    history = build_context(history)
+
+    input_text = market_analysis_agent.enrich_user_question(context, user_message, query_parser, history)
 
     try:
         
@@ -219,7 +227,8 @@ def chat_with_bedrock_agent(req: ChatSessionRequest):
                 input_text=input_text,
                 session_state={
                     "sessionAttributes": context
-                }
+                },
+                user_id = req.user_id
             ):
                 yield chunk
 
@@ -231,3 +240,14 @@ def chat_with_bedrock_agent(req: ChatSessionRequest):
 
 
 
+@router.post("/test-chat")
+def test_chat(req: ChatSessionRequest):
+    return bedrock_client.offline_invoke_agent(
+        agent_id=req.agent_id,
+        agent_alias_id=req.agent_alias_id,
+        session_id=req.session_id,
+        input_text=req.message,
+        session_state={
+            "sessionAttributes": {}
+        }
+    )

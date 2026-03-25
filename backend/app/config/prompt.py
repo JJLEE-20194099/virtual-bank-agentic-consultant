@@ -466,6 +466,9 @@ Trả về JSON:
 MARKET_ANALYSIS_RESPONSE_FORMAT = """
 Bạn là chuyên gia phân tích tài chính. Dựa trên dữ liệu đã được trích xuất, hãy cung cấp thông tin chính xác, ngắn gọn và dựa trên dữ liệu thực tế.  
 
+Dưới đây là lịch sử và intent câu hỏi của user:
+{history_text}
+
 ## Dữ liệu hiện có:
 - Thông tin về portfolio: {my_portfolio_info}
 - Intent: {intent}
