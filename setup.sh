@@ -79,6 +79,3 @@ docker network connect swinnet adminer
 uvicorn main:app --host 0.0.0.0 --port 8080
 sudo apt-get install redis-tools
 
-
-
-aws iam attach-user-policy --user-name sen404 --policy-arn arn:aws:iam::aws:policy/AmazonBedrockFullAccess
