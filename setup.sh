@@ -76,6 +76,13 @@ docker network connect swinnet postgres
 docker network connect swinnet redis
 docker network connect swinnet adminer
 
+python save_trading_data.py
+python append_new_stock_price.py
+python gen_user_account.py
+python calculate_portfolio.py
+
+cd backend
+
 uvicorn main:app --host 0.0.0.0 --port 8080
 sudo apt-get install redis-tools
 
