@@ -1,7 +1,13 @@
 import boto3
 import time
 
-ddb = boto3.client("dynamodb")
+from dotenv import load_dotenv      
+import os
+load_dotenv()
+
+region_name = os.getenv("AWS_REGION", "us-east-1")
+print(region_name)
+ddb = boto3.client("dynamodb", region_name=region_name)
 TABLE = "chat_memory"
 
 def save_message(user_id, role, message, session_id):

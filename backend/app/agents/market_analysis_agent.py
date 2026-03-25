@@ -63,6 +63,9 @@ class MarketAnalysisAgent(BaselineAgent):
         query_parser = self.get_completion(messages, temperature=0.25)
         return query_parser
 
+
+
+
     def run(self, user_question):
         
         query_parser = self.advise_based_on_conversation_and_client(
@@ -70,6 +73,24 @@ class MarketAnalysisAgent(BaselineAgent):
         )
         
         return query_parser
+
+    def enrich_user_question(self, context, user_question, query_parser):
+        intent = query_parser["intent"]
+        symbols = query_parser["symbols"]
+        company_info = context.get("company_info", {})
+        ohlcv_data = context.get("ohlcv", {})
+        exchange_rate = context.get("exchange_rate", "N/A")
+
+        prompt = MARKET_ANALYSIS_RESPONSE_FORMAT.format(
+            my_portfolio_info = context["portfolio"],
+            intent=intent,
+            symbols=symbols,
+            company_info=company_info,
+            ohlcv_data=ohlcv_data,
+            user_message=user_question,
+            exchange_rate=exchange_rate
+        )
+        return prompt
 
         
     def response_market_question(self, context, user_question, query_parser):
@@ -237,37 +258,7 @@ class MarketAnalysisAgent(BaselineAgent):
         messages = [
             {
                 "role": "system",
-                "content": (
-                    "Bạn là chuyên gia phân tích cổ phiếu tại công ty chứng khoán.\n\n"
-
-                    "MỤC TIÊU:\n"
-                    "- Phân tích từng mã cổ phiếu trong danh mục\n"
-                    "- Đưa ra nhận định rõ ràng về xu hướng, rủi ro và vị trí trong portfolio\n"
-                    "- Đưa ra lời khuyên với cổ phiếu đó, có thể xem các thông tin về công ty đó để đưa ra lời khuyên cùng với xu hướng\n\n"
-
-                    "QUY TẮC BẮT BUỘC:\n"
-                    "- Luôn trả lời bằng tiếng Việt\n"
-                    "- CHỈ trả về JSON hợp lệ (không text ngoài JSON)\n"
-                    "- Phải phân tích TẤT CẢ các mã trong danh mục\n"
-                    "- Không được bỏ sót cổ phiếu nào\n"
-                    "- Phân tích phải dựa trên dữ liệu thực tế (trend, volatility, PnL, sector, weight)\n\n"
-
-                    "TIÊU CHÍ PHÂN TÍCH:\n"
-                    "- Xu hướng (bullish / bearish / downtrend / uptrend)\n"
-                    "- Rủi ro (volatility + risk score)\n"
-                    "- Vai trò trong danh mục (core / satellite / overweight)\n"
-                    "- Tỷ trọng danh mục (portfolio_pct)\n"
-                    "- Lãi/lỗ chưa thực hiện\n"
-                    "- Tính tập trung rủi ro\n\n"
-
-                    "FORMAT OUTPUT (BẮT BUỘC):\n"
-                    "{\n"
-                    "  \"MÃ_CỔ_PHIẾU\": {\n"
-                    "    \"stock_analysis\": \"Phân tích ngắn gọn về xu hướng, rủi ro, vai trò trong danh mục\",\n"
-                    "    \"stock_advice\": \"Đưa ra những ý kiến về mã cổ phiếu này ở các khía cạnh: công ty, trend, category,...\"\n"
-                    "  }\n"
-                    "}\n"
-                )
+                "content": "Bạn là chuyên gia phân tích cổ phiếu tại công ty chứng khoán.\n\nMỤC TIÊU:\n- Phân tích từng mã cổ phiếu trong danh mục\n- Đưa ra nhận định rõ ràng về xu hướng, rủi ro và vị trí trong portfolio\n- Đưa ra lời khuyên với cổ phiếu đó, có thể xem các thông tin về công ty đó để đưa ra lời khuyên cùng với xu hướng\n\nQUY TẮC BẮT BUỘC:\n- Luôn trả lời bằng tiếng Việt\n- CHỈ trả về JSON hợp lệ (không text ngoài JSON)\n- Phải phân tích TẤT CẢ các mã trong danh mục\n- Không được bỏ sót cổ phiếu nào\n- Phân tích phải dựa trên dữ liệu thực tế (trend, volatility, PnL, sector, weight)\n\nTIÊU CHÍ PHÂN TÍCH:\n- Xu hướng (bullish / bearish / downtrend / uptrend)\n- Rủi ro (volatility + risk score)\n- Vai trò trong danh mục (core / satellite / overweight)\n- Tỷ trọng danh mục (portfolio_pct)\n- Lãi/lỗ chưa thực hiện\n- Tính tập trung rủi ro\n\nFORMAT OUTPUT (BẮT BUỘC):\n{\n  \"MÃ_CỔ_PHIẾU\": {\n    \"stock_analysis\": \"Phân tích ngắn gọn về xu hướng, rủi ro, vai trò trong danh mục\",\n    \"stock_advice\": \"Đưa ra những ý kiến về mã cổ phiếu này ở các khía cạnh: công ty, trend, category,...\"\n  }\n}"
             },
             {
                 "role": "user",

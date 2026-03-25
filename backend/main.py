@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.db_instance import db_client
 from app.core.model_instance import model_client
 from app.core.data_instance import data_client
+from app.core.bedrock_instance import bedrock_client
 from contextlib import asynccontextmanager
 
 loaded_model = None
@@ -30,7 +31,11 @@ async def lifespan(app: FastAPI):
     print("COMPANY DATA LOADED")
 
 
-    yield
+    bedrock_client.setup()
+    print("Bedrock setup")
+
+
+    yieldd
 
     await db_client.close()
     print("DB CLOSED")

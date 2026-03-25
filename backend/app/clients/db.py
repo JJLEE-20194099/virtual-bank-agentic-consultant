@@ -35,7 +35,6 @@ class PostgresClient:
     async def init_stock_user_behaviour_table(self):
         await self.conn.execute("""
         CREATE TABLE IF NOT EXISTS stock_user_behaviour (
-            id SERIAL PRIMARY KEY,
             user_id TEXT PRIMARY KEY,
             data JSONB NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

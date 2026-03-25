@@ -1,9 +1,11 @@
 from app.storage.memory_store import save_message, load_history
 from app.processor.intent_processor import detect_intent
-from backend.app.clients.bedrock import bedrock_runtime
+from app.clients.bedrock import BedrockClient
 from app.agents.bedrock_agent import AGENT_ID, AGENT_ALIAS
-
 import json
+
+bedrock_client = BedrockClient()
+
 
 def build_context(history):
     return "\n".join([
@@ -27,7 +29,7 @@ def run_agent(user_id: str, message: str, session_id: str):
     history = load_history(user_id)
     context = build_context(history)
 
-    response = bedrock_runtime.invoke_agent(
+    response = bedrock_client.invoke_agent(
         agentId=AGENT_ID,
         agentAliasId=AGENT_ALIAS,
         sessionId=session_id,

@@ -26,3 +26,5 @@ awscli
 accelerate
 notebook
 jupyterlab
+joblib
+scikit-learn

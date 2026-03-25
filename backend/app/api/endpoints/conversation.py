@@ -14,6 +14,8 @@ import os
 load_dotenv() 
 from datetime import datetime
 
+from app.core.bedrock_instance import bedrock_client
+
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 router = APIRouter()
@@ -28,9 +30,11 @@ class ChatRequest(BaseModel):
     message: str
 
 class ChatSessionRequest(BaseModel):
-    user_id: str
-    message: str
-    session_id: str
+    user_id: str = "C00001"
+    message: str = "Book me a flight to Hanoi"
+    session_id: str = "C00001"
+    agent_id: str
+    agent_alias_id: str
 
 class ChatResponse(BaseModel):
     answer: str
@@ -151,4 +155,72 @@ def chat(req: ChatRequest):
 
 @router.post("/bedrock-chat")
 def chat_with_bedrock_agent(req: ChatSessionRequest):
-    return run_agent(req.user_id, req.message)
+
+    context = {}
+
+    user_message = req.message
+
+    query_parser = json.loads(parse_query(user_message).replace('\\"', '"').replace("```json", "").replace("```", ""))
+    symbols = query_parser["symbols"]
+    intent = query_parser["intent"]
+    print(intent, symbols)
+    context["ohlcv"] = {}
+    for external_factor in query_parser["external_factors"]:
+        if external_factor["type"] == "exchange_rate":
+            context["exchange_rate"] = service.get_exchange_rate(today_str())
+        
+        if external_factor["type"] == "gold":
+            if external_factor["scope"] == "global":
+                context["ohlcv"]["global_gold_price"] = service.get_global_gold_price()
+            else:
+                context["ohlcv"]["domestic_gold_price"] = service.get_domestic_gold_price()
+            
+
+
+        if external_factor["type"] == "oil":
+            if external_factor["scope"] == "global":
+                context["ohlcv"]["global_oil_price"] = service.get_global_oil_price()
+            else:
+                context["ohlcv"]["domestic_oil_price"] = service.get_domestic_oil_price()
+
+    if len(symbols) > 0:
+        if "company_info" in [factor["type"] for factor in query_parser["external_factors"]]:
+            if query_parser["requires_company_data"]:
+                context["company_info"] = {}
+                for symbol in symbols:
+                    context["company_info"][symbol] = get_company_info(symbol)
+    
+    
+        for symbol in symbols:
+            context["ohlcv"][symbol] = service.get_ohlcv_by_length(symbol, length=7, interval="1d")
+
+    if intent == "trend" and len(symbols) == 0:
+        context["ohlcv"]["OHLCV OF MARKET (VNINDEX 30)"] = service.get_ohlcv_by_length("VN30", length=14, interval="1d")
+
+
+    if need_portfolio(intent, user_message):
+        context["portfolio"] = get_user_context(req.user_id)
+    else:
+        context["portfolio"] = {}
+
+    input_text = market_analysis_agent.enrich_user_question(context, user_message, query_parser)
+
+
+    try:
+        print(bedrock_client.bedrock_runtime.meta.region_name)
+        result = bedrock_client.invoke_agent(
+            agent_id=req.agent_id,
+            agent_alias_id=req.agent_alias_id,
+            session_id=req.session_id,
+            input_text=input_text,
+            session_state=context
+        )
+
+        return {
+            "session_id": req.session_id,
+            "response": result
+        }
+
+    except Exception as e:
+        print(e)
+        return {}

@@ -4,14 +4,6 @@ import boto3
 from backend.app.clients.bedrock import BedrockClient
 
 
-# iam = boto3.client("iam")
-
-# response = iam.list_roles()
-
-# for role in response["Roles"]:
-#     print(role["RoleName"], role["Arn"])
-
-
 bedrock_client = BedrockClient(roleArn = "arn:aws:iam::436756555762:role/AmazonBedrockExecutionRole")
 
 def test_create_bedrock_agent():

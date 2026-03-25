@@ -1,13 +1,52 @@
 import boto3
 import json
 import time
+from dotenv import load_dotenv      
+import os
+load_dotenv()
+
+
+aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
+aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
+region_name=os.getenv("AWS_REGION", "us-east-1")
+bedrock_role = os.getenv("BEDROCK_ROLE")
 
 class BedrockClient:
-    def __init__(self, region_name="us-east-1", roleArn = "MybedrockRole"):
+    def __init__(self, region_name="us-east-1"):
+
+        self.bedrock_agent = None
+        self.bedrock_runtime = None
+    
+    def setup(self):
+        # session = boto3.Session(
+        #     aws_access_key_id=aws_access_key_id,
+        #     aws_secret_access_key=aws_secret_access_key,
+        #     region_name=region_name
+        # )
+
+
         self.bedrock_agent = boto3.client("bedrock-agent", region_name=region_name)
         self.bedrock_runtime = boto3.client("bedrock-agent-runtime", region_name=region_name)
-        self.roleArn = roleArn
 
+    def update_agent(
+        self,
+        agent_id:str,
+        instruction: str,
+        description: str,
+        foundation_model: str,
+        agent_name:str
+    ):
+        response = self.bedrock_agent.update_agent(
+            agentId=agent_id,
+            instruction=instruction,
+            description=description,
+            foundationModel=foundation_model,
+            agentName = agent_name,
+            agentResourceRoleArn=bedrock_role
+        )
+
+        return response
+    
     def create_agent(
         self,
         name: str,
@@ -22,7 +61,7 @@ class BedrockClient:
             description=description,
             foundationModel=foundation_model,
             idleSessionTTLInSeconds=idle_session_ttl,
-            agentResourceRoleArn=self.roleArn
+            agentResourceRoleArn=bedrock_role
         )
 
         return response["agent"]["agentId"]
@@ -54,15 +93,25 @@ class BedrockClient:
         )
         return response["agentAlias"]["agentAliasId"]
 
-    def invoke_agent(self, agent_id: str, agent_alias_id: str, session_id: str, input_text: str):
+    def update_agent_alias(self, agent_id: str, agent_alias_id: str, agent_alias_name: str):
+        response = self.bedrock_agent.update_agent_alias(
+            agentId=agent_id,
+            agentAliasId=agent_alias_id,
+            agentAliasName = agent_alias_name
+        )
+
+    def invoke_agent(self, agent_id: str, agent_alias_id: str, session_id: str, input_text: str, session_state):
         response = self.bedrock_runtime.invoke_agent(
             agentId=agent_id,
             agentAliasId=agent_alias_id,
             sessionId=session_id,
             inputText=input_text,
+            sessionState=session_state
         )
 
         output = []
+
+        print(agent_id, agent_alias_id)
 
         for event in response["completion"]:
             if "chunk" in event:
