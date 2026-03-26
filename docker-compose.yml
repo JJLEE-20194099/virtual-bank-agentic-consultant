@@ -1,0 +1,226 @@
+version: '3.9'
+
+services:
+  # =============================================
+  # PostgreSQL Database
+  # =============================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: vbac-postgres
+    environment:
+      POSTGRES_USER: swin
+      POSTGRES_PASSWORD: swin
+      POSTGRES_DB: vbac
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - vbac-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U swin -d vbac"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # =============================================
+  # Redis Cache
+  # =============================================
+  redis:
+    image: redis:7-alpine
+    container_name: vbac-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - vbac-network
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # =============================================
+  # Adminer (Database UI)
+  # =============================================
+  adminer:
+    image: adminer:latest
+    container_name: vbac-adminer
+    ports:
+      - "8081:8080"
+    networks:
+      - vbac-network
+    depends_on:
+      - postgres
+    environment:
+      ADMINER_DESIGN: pepa-ligne
+
+  # =============================================
+  # Apache Kafka
+  # =============================================
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: vbac-kafka
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    ports:
+      - "9092:9092"
+    networks:
+      - vbac-network
+    depends_on:
+      - zookeeper
+    healthcheck:
+      test: kafka-broker-api-versions.sh --bootstrap-server kafka:9092 || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # =============================================
+  # Zookeeper (required by Kafka)
+  # =============================================
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: vbac-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_SYNC_LIMIT: 2
+      ZOOKEEPER_INIT_LIMIT: 5
+    ports:
+      - "2181:2181"
+    networks:
+      - vbac-network
+    healthcheck:
+      test: echo ruok | nc localhost 2181
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # =============================================
+  # Backend API Server
+  # =============================================
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vbac-backend
+    working_dir: /app/backend
+    command: uvicorn main:app --host 0.0.0.0 --port 8080 --reload
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://swin:swin@postgres:5432/vbac
+      REDIS_URL: redis://redis:6379/0
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - .:/app
+      - .:/root/code/hackathon/virtual-bank-agentic-consultant
+      - .env:/app/.env
+    networks:
+      - vbac-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/docs"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # =============================================
+  # Celery Worker
+  # =============================================
+  celery-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vbac-celery-worker
+    working_dir: /app/backend
+    command: celery -A tasks worker 
+      --loglevel=info 
+      -Q portfolio,recommend,realtime_price 
+      --concurrency=4
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://swin:swin@postgres:5432/vbac
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - .:/app
+      - .:/root/code/hackathon/virtual-bank-agentic-consultant
+      - .env:/app/.env
+    networks:
+      - vbac-network
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # =============================================
+  # Celery Beat (Scheduled Tasks)
+  # =============================================
+  celery-beat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vbac-celery-beat
+    working_dir: /app/backend
+    command: celery -A tasks beat --loglevel=info
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://swin:swin@postgres:5432/vbac
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - .:/app
+      - .:/root/code/hackathon/virtual-bank-agentic-consultant
+      - .env:/app/.env
+    networks:
+      - vbac-network
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+# =============================================
+# Volumes
+# =============================================
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+# =============================================
+# Networks
+# =============================================
+networks:
+  vbac-network:
+    driver: bridge

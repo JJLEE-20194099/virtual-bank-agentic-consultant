@@ -86,3 +86,4 @@ cd backend
 uvicorn main:app --host 0.0.0.0 --port 8080
 sudo apt-get install redis-tools
 
+docker-compose logs -f backend celery-worker celery-beat
