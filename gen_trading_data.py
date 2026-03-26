@@ -250,4 +250,4 @@ df = pd.DataFrame(transactions, columns=[
     "stock_code","action","quantity","price","fee"
 ])
 
-df.to_csv("./synthetic_trading_data.csv", index=False)
+df.to_csv("/root/code/hackathon/virtual-bank-agentic-consultant/synthetic_trading_data.csv", index=False)
