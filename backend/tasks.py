@@ -365,12 +365,13 @@ async def _update_stock_product_recommendation_async(transaction):
         cache_key = f"recommend:{user_id}"
         redis_client.set(
             cache_key,
-            json.dumps(data),
+            json.dumps({
+                "user_id": user_id,
+                "data": data
+            }),
             ex=60 * 60
         )
-        
-        return data
-    return {}
+      
 
 
 @celery_app.task(name="tasks.update_stock_product_recommendation")

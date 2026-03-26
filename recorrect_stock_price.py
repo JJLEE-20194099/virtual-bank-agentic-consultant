@@ -92,6 +92,6 @@ def apply_fee(value):
 final_df["fee"] = final_df["price"] * final_df["quantity"]
 final_df["fee"] = final_df["fee"].apply(apply_fee)
 
-final_df.to_csv("./correct_trading_data.csv", index=False)
+final_df.to_csv("/root/code/hackathon/virtual-bank-agentic-consultant/correct_trading_data.csv", index=False)
 
 print(list(set(dates)))

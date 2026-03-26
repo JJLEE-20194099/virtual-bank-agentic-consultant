@@ -99,6 +99,12 @@ class PostgresClient:
             WHERE user_id = $1
         """, user_id)
 
+        if row is None:
+            return {
+                "user_id": user_id,
+                "data": {"answer": {"products": []}}
+            }
+
         row = dict(row) 
 
         row["data"] = json.loads(row["data"])

@@ -7,7 +7,7 @@ import numpy as np
 from app.core.db_instance import db_client
 from app.model.user import StockUserBehaviourBase
 import requests
-from tasks import update_stock_product_recommendation
+from tasks import update_stock_product_recommendation, _update_stock_product_recommendation_async
 from app.agents.market_analysis_agent import MarketAnalysisAgent
 from app.core.data_instance import data_client
 from app.utils.clean import clean_financial_data
@@ -261,19 +261,22 @@ async def get_stock_product_recommendation(user_id: str):
 
     try:
         cached = redis_client.get(cache_key)
+        print("Get recommend data from cache")
         return cached
     except:
         pass
 
-    data = await db_client.get_stock_product_recommendation(user_id)
+    recommendation = await db_client.get_stock_product_recommendation(user_id)
 
-    redis_client.set(
-        cache_key,
-        json.dumps(data, default=str),
-        ex=60 * 60
-    )
+    if len(recommendation["data"]["answer"]["products"]) == 0:
+        update_stock_product_recommendation.delay({"customer_id": user_id})
+        return recommendation
+    
+    return recommendation
 
-    return data
+
+
+    
 
 @router.post(("/recommend/{user_id}"))
 async def create_recommendation(user_id: str):
