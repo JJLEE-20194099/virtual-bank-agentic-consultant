@@ -49,5 +49,3 @@ iam.update_assume_role_policy(
         }]
     })
 )
-
-\
