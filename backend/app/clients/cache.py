@@ -1,12 +1,17 @@
 import redis
 import json
+import os
+from typing import Optional, Dict
+from dotenv import load_dotenv
+
+load_dotenv()
+
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 
 class RedisClient:
     def __init__(self):
-        self.client = redis.Redis(
-            host="localhost",
-            port=6379,
-            db=0,
+        self.client = redis.from_url(
+            REDIS_URL,
             decode_responses=True
         )
 

@@ -2,7 +2,6 @@ import asyncpg
 import json
 from typing import Any, Dict, Optional, List
 
-
 class PostgresClient:
     def __init__(self, user: str, password: str, database: str, host: str = "localhost", port: int = 5432):
         self.user = user

@@ -5,6 +5,7 @@ from app.core.db_instance import db_client
 from app.core.model_instance import model_client
 from app.core.data_instance import data_client
 from app.core.bedrock_instance import bedrock_client
+from app.core.boto_instance import boto_client
 from contextlib import asynccontextmanager
 
 loaded_model = None
@@ -20,8 +21,11 @@ async def lifespan(app: FastAPI):
     await db_client.init_user_table()
     await db_client.init_stock_product_recommendation_table()
 
-
     print("DB CONNECTED")
+
+    boto_client.init_dynamo_session()
+    boto_client.init_memory_table()
+    print("BOTO CREATED & DYNAMO LOADED")
 
     model_client.load()
     print("MODEL LOADED")
@@ -30,9 +34,8 @@ async def lifespan(app: FastAPI):
     data_client.load_all_company_analysis()
     print("COMPANY DATA LOADED")
 
-
     bedrock_client.setup()
-    print("Bedrock setup")
+    print("BEDROCK CREATED")
 
 
     yield
