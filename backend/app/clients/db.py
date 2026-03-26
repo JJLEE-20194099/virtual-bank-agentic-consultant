@@ -380,7 +380,6 @@ class PostgresClient:
             WHERE transaction_id = $1
         """, transaction_id)
 
-    
     async def get_unique_stock_codes(self, customer_id: str):
         query = """
         SELECT DISTINCT stock_code

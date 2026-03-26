@@ -9,6 +9,8 @@ import asyncio
 from backend.app.clients.db import PostgresClient
 from urllib.parse import urlparse
 from backend.app.clients.cache import RedisClient
+from vnstock import Vnstock, Quote, Trading
+
 
 database_url = os.getenv("DATABASE_URL", "postgresql://swin:swin@localhost:5432/vbac")
 parsed = urlparse(database_url)
@@ -25,7 +27,8 @@ BASE_URL = "http://localhost:8080/api/v1/market"
 
 
 redis_client = RedisClient()    
-realtime_prices =  redis_client.get("realtime_prices:all")
+
+
 
 from urllib.parse import urlparse
 database_url = os.getenv("DATABASE_URL", "postgresql://swin:swin@localhost:5432/vbac")
@@ -175,61 +178,102 @@ stocks = [
 ]
 
 
+async def fetch_batch(batch):
+
+    board = Trading(source='KBS').price_board(batch)
+    data = board.to_dict(orient='records')
+    return data
+
+
+async def fetch_all(stocks):
+    tasks = []
+    batch_size = 10
+    for i in range(0, len(stocks), batch_size):
+        tasks.append(fetch_batch(stocks[i:i+batch_size]))
+    results = await asyncio.gather(*tasks)
+    return [item for sublist in results for item in sublist]
+
+
+
 async def run():
+
+    try:
+        realtime_prices = redis_client.get("realtime_prices:allsss")
+    except:
+        realtime_prices = await fetch_all(stocks)
+
+
+        url = f"{BASE_URL}/ohlcv-by-length/VN30?length=1&interval=1d"
+        res = requests.get(url)
+        if res.status_code == 200:
+            vn_30 = res.json()[0]
+
+        data = {
+            f"price:{item['symbol']}": item
+            for item in realtime_prices
+        }
+
+        data["price:VN30"] = vn_30
+
+        redis_client.set(
+            "realtime_prices:all",
+            json.dumps(data),
+            ex=60 * 60 * 24
+        )
+
+        redis_client.set_many(data, ex=60 * 60 * 24)
+
 
     await db_client.connect()
     await db_client.init_stock_summary_table()
+    try:
+        for stock in stocks:
 
-    for stock in stocks:
+            file_path = f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}/history_price.json"
+            history = load_data(file_path)
 
-        file_path = f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}/history_price.json"
-        history = load_data(file_path)
+            today = datetime.now().date()
 
-        today = datetime.now().date()
+            latest = get_latest_date(history)
 
-        latest = get_latest_date(history)
-
-        if latest:
-            latest_date = latest.date()
-            if latest_date < today - timedelta(days=1):
-                print(f"Missing history from {latest_date}")
-                missing_data = fetch_missing_history(stock, latest_date + timedelta(days=1))
-                history = merge_data(history, missing_data)
-        else:
-            print("No data, skip or fetch full")
-
-        has_today = any(
-            datetime.fromisoformat(d["time"]).date() == today
-            for d in history
-        )
-
-        if not has_today:
-            realtime = None
-            if stock != "VN30":
-                realtime = format_realtime_data(realtime_prices[f"price:{stock}"])
+            if latest:
+                latest_date = latest.date()
+                if latest_date < today - timedelta(days=1):
+                    print(f"Missing history from {latest_date}")
+                    missing_data = fetch_missing_history(stock, latest_date + timedelta(days=1))
+                    history = merge_data(history, missing_data)
             else:
-                url = f"{BASE_URL}/ohlcv-by-length/VN30?length=1&interval=1d"
-                res = requests.get(url)
-                if res.status_code == 200:
-                    realtime = res.json()[0]
-                    
+                print("No data, skip or fetch full")
 
+            has_today = any(
+                datetime.fromisoformat(d["time"]).date() == today
+                for d in history
+            )
 
-            if realtime:
-                history = merge_data(history, [realtime])
+            if not has_today:
+                realtime = None
+                if stock != "VN30": 
+                    realtime = format_realtime_data(realtime_prices[f"price:{stock}"])
+                else:
+                    realtime = vn_30
+                        
+                if realtime:
+                    history = merge_data(history, [realtime])
 
-        save_data(file_path, history)
-        ohlcv_analysis_data = analyze_ohlcv(history)
+            save_data(file_path, history)
+            ohlcv_analysis_data = analyze_ohlcv(history)
 
-        os.makedirs(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}", exist_ok=True)
-        with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}/ohlcv_analysis_data.json", "w", encoding="utf-8") as f:
-            json.dump(ohlcv_analysis_data, f, ensure_ascii=False, indent=2)
+            os.makedirs(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}", exist_ok=True)
+            with open(f"/root/code/hackathon/virtual-bank-agentic-consultant/backend/app/data/stock/{stock}/ohlcv_analysis_data.json", "w", encoding="utf-8") as f:
+                json.dump(ohlcv_analysis_data, f, ensure_ascii=False, indent=2)
 
-        await db_client.save_stock_summary(stock, ohlcv_analysis_data)
+            await db_client.save_stock_summary(stock, ohlcv_analysis_data)
 
-        time.sleep(0.1)
-        print(f"Done {stock}", latest_date, has_today)
+            time.sleep(0.1)
+            print(f"Done {stock}", latest_date, has_today)
 
+    finally:
+        await db_client.close()
 
 
 if __name__ == "__main__":
