@@ -71,6 +71,8 @@ async def simulate_buysell_stock(payload: SimulateStockBuySellBase):
 @router.post("/buy-sell")
 async def buysell_stock(payload: StockBuySellBase):
 
+    redis_client.delete(f"summary:{payload.customer_id}")
+
     realtime_prices = redis_client.get("realtime_prices:all")
 
     now = datetime.now(ZoneInfo("Asia/Ho_Chi_Minh")).replace(microsecond=0, tzinfo=None)
@@ -96,10 +98,8 @@ async def buysell_stock(payload: StockBuySellBase):
     await db_client.insert_stock_transactions([transaction])
 
 
-    chain(
-        update_portfolio.ds(payload.customer_id).set(queue="portfolio"),
-        update_stock_product_recommendation.s(transaction).set(queue="recommend")
-    ).delay()
+    update_portfolio.delay(payload.customer_id)
+    update_stock_product_recommendation.delay(transaction)
     
     return {"status": "ok", "transaction_id": transaction_id}
     

@@ -117,11 +117,19 @@ def recommend_new_stocks(stock_list, my_stocks, PREFERRED_SECTORS, MARKET_TREND)
     return df.to_dict(orient="records")
 
 
+@router.get(("/portfolio/{user_id}"))
+async def get_portfolio(user_id: str):
+
+    portfolio_summary = await db_client.get_portfolio(user_id)
+
+    return portfolio_summary
+
+
 @router.get(("/summary/{user_id}"))
 async def get_stocks_portfolio_summary_by_user_id(user_id: str):
 
     cache_key = f"summary:{user_id}"
-
+   
     try:
         cached = redis_client.get(cache_key)
         return cached
@@ -233,7 +241,7 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
     redis_client.set(
         cache_key,
         json.dumps(full_data, default=str),
-        ex=60 * 60
+        ex=60
     )
 
     return full_data

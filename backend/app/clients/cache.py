@@ -16,6 +16,9 @@ class RedisClient:
     def get(self, key):
         return json.loads(self.client.get(key))
 
+    def delete(self, key):
+        return self.client.delete(key)
+
     def set_many(self, data: dict, ex=None):
         """
         data = {

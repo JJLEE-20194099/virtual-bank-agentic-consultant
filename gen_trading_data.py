@@ -24,7 +24,7 @@ stocks = [
 "GMD","HAH","HSG","IDC","IJC","KBC","KDH","LPB","MBS","MSB",
 "NKG","NLG","NT2","OCB","PAN","PC1","PDR","PET","PHR","PVD",
 "PVS","PVT","REE","SBT","SHB","SJS","SZC","TCH","TCM","TNG",
-"VCG","VGC","VHC","VIX","VND","VOS","YEG"
+"VCG","VGC","VHC","VIX","VND","VOS","YEG", "PNJ"
 ]
 
 

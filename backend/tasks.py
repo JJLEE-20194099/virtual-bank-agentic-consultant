@@ -69,6 +69,11 @@ async def _update_portfolio_async(user_id: str):
 
     realtime_prices = redis_client.get("realtime_prices:all")
 
+    
+    res = requests.get(f"http://localhost:8080/api/v1/user/summary/{user_id}")
+    if res.status_code == 200:
+        redis_client.set(f"summary:{user_id}", json.dumps(res.json(), default=str), ex=60)
+
     await db_client.connect()
     data = await db_client.get_stock_transactions_by_user(customer_id = user_id, limit=-1)
     user_df = pd.DataFrame(data)
@@ -392,7 +397,7 @@ async def _update_realtime_price_async():
         "GMD","HAH","HSG","IDC","IJC","KBC","KDH","LPB","MBS","MSB",
         "NKG","NLG","NT2","OCB","PAN","PC1","PDR","PET","PHR","PVD",
         "PVS","PVT","REE","SBT","SHB","SJS","SZC","TCH","TCM","TNG",
-        "VCG","VGC","VHC","VIX","VND","VOS","YEG"
+        "VCG","VGC","VHC","VIX","VND","VOS","YEG", "PNJ"
         ]
 
 

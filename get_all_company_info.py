@@ -1,17 +1,18 @@
 import requests
 import json
 
-stocks = [
-"ACB","BCM","BID","BVH","CTG","FPT","GAS","GVR","HDB","HPG",
-"MBB","MSN","MWG","PLX","POW","SAB","SSI","STB","TCB","TPB",
-"VCB","VHM","VIB","VIC","VJC","VNM","VPB","VRE",
-"AAA","ANV","ASM","BCG","BSI","BMP","CII","CMG","CSM",
-"CSV","DBC","DCM","DGC","DIG","DPM","DXG","EVF","FRT","GEX",
-"GMD","HAH","HSG","IDC","IJC","KBC","KDH","LPB","MBS","MSB",
-"NKG","NLG","NT2","OCB","PAN","PC1","PDR","PET","PHR","PVD",
-"PVS","PVT","REE","SBT","SHB","SJS","SZC","TCH","TCM","TNG",
-"VCG","VGC","VHC","VIX","VND","VOS","YEG"
-]
+# stocks = [
+# "ACB","BCM","BID","BVH","CTG","FPT","GAS","GVR","HDB","HPG",
+# "MBB","MSN","MWG","PLX","POW","SAB","SSI","STB","TCB","TPB",
+# "VCB","VHM","VIB","VIC","VJC","VNM","VPB","VRE",
+# "AAA","ANV","ASM","BCG","BSI","BMP","CII","CMG","CSM",
+# "CSV","DBC","DCM","DGC","DIG","DPM","DXG","EVF","FRT","GEX",
+# "GMD","HAH","HSG","IDC","IJC","KBC","KDH","LPB","MBS","MSB",
+# "NKG","NLG","NT2","OCB","PAN","PC1","PDR","PET","PHR","PVD",
+# "PVS","PVT","REE","SBT","SHB","SJS","SZC","TCH","TCM","TNG",
+# "VCG","VGC","VHC","VIX","VND","VOS","YEG"
+# ]
+stocks = ["PNJ"]
 
 base_url = "http://localhost:8080/api/v1/company/info/"
 headers = {'accept': 'application/json'}
