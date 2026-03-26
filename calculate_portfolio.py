@@ -11,6 +11,10 @@ from urllib.parse import urlparse
 database_url = os.getenv("DATABASE_URL", "postgresql://swin:swin@localhost:5432/vbac")
 parsed = urlparse(database_url)
 
+from urllib.parse import urlparse
+database_url = os.getenv("DATABASE_URL", "postgresql://swin:swin@localhost:5432/vbac")
+parsed = urlparse(database_url)
+
 db_client = PostgresClient(
     user=parsed.username or "swin",
     password=parsed.password or "swin",

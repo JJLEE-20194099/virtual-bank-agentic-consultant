@@ -12,6 +12,7 @@ from app.agents.market_analysis_agent import MarketAnalysisAgent
 from app.core.data_instance import data_client
 from app.utils.clean import clean_financial_data
 from app.utils.stock import generate_question_set
+import os
 market_analysis_agent = MarketAnalysisAgent()
 
 router = APIRouter()

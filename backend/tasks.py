@@ -10,7 +10,7 @@ import json
 from datetime import datetime
 from app.utils.feature_engine import make_cluster_features
 from app.core.model_instance import model_client
-
+import os
 from app.core.db_instance import db_client
 from app.core.model_instance import model_client
 from app.agents.market_analysis_agent import MarketAnalysisAgent
@@ -19,12 +19,16 @@ market_analysis_agent = MarketAnalysisAgent()
 
 service = MarketService()
 
+from urllib.parse import urlparse
+database_url = os.getenv("DATABASE_URL", "postgresql://swin:swin@localhost:5432/vbac")
+parsed = urlparse(database_url)
+
 db_client = PostgresClient(
-    user="swin",
-    password="swin",
-    database="vbac",
-    host="localhost"
-)
+    user=parsed.username or "swin",
+    password=parsed.password or "swin",
+    database=parsed.path.lstrip("/") or "vbac",
+    host=parsed.hostname or "postgres",
+    port=parsed.port or 5432)
 
 redis_client = RedisClient()
 

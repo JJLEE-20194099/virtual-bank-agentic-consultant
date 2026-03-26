@@ -1,7 +1,8 @@
 import os
-from urllib.parse import urlparse
+
 from app.clients.db import PostgresClient
 
+from urllib.parse import urlparse
 database_url = os.getenv("DATABASE_URL", "postgresql://swin:swin@localhost:5432/vbac")
 parsed = urlparse(database_url)
 

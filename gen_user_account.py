@@ -14,7 +14,6 @@ db_client = PostgresClient(
     host=parsed.hostname or "postgres",
     port=parsed.port or 5432
 )
-
 async def run():
 
     await db_client.connect()
