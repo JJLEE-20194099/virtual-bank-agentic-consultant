@@ -16,3 +16,4 @@ get_pip.py
 backend/app/data/raw
 backend/.env
 swin-env
+demo

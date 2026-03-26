@@ -51,7 +51,7 @@ async def _update_stock_user_behaviour(user_id: str):
 
     insight_cluster_dict = {
         1: "short_term",
-        0: "swing",
+        0: "short_term",
         2: "long_term"
     }
 

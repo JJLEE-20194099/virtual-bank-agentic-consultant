@@ -70,7 +70,7 @@ docker run -d --name redis -p 6379:6379 redis
 
 docker run -d -p 8081:8080 adminer
 
-docker rename lucid_neumann adminer
+docker rename festive_kirch adminer
 docker network create swinnet
 docker network connect swinnet postgres
 docker network connect swinnet redis
@@ -78,8 +78,10 @@ docker network connect swinnet adminer
 
 python save_trading_data.py
 python append_new_stock_price.py
-python gen_user_account.py
 python calculate_portfolio.py
+python gen_user_account.py
+
+# Run behavior detection
 
 cd backend
 

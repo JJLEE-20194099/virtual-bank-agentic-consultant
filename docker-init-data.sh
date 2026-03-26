@@ -69,14 +69,14 @@ fi
 # Run data generation scripts
 print_status "Starting data initialization..."
 
-# # 1. Generate trading data
-# print_status "1/5: Generating trading data..."
-# if docker-compose exec -T backend python /app/gen_trading_data.py; then
-#     print_success "✓ Trading data generated"
-# else
-#     print_error "✗ Failed to generate trading data"
-#     exit 1
-# fi
+# 1. Generate trading data
+print_status "1/5: Generating trading data..."
+if docker-compose exec -T backend python /app/gen_trading_data.py; then
+    print_success "✓ Trading data generated"
+else
+    print_error "✗ Failed to generate trading data"
+    exit 1
+fi
 
 # 2. Save trading data to database
 print_status "2/5: Saving trading data to database..."
@@ -87,17 +87,8 @@ else
     exit 1
 fi
 
-# 3. Generate user accounts
-print_status "3/5: Generating user accounts..."
-if docker-compose exec -T backend python /app/gen_user_account.py; then
-    print_success "✓ User accounts generated"
-else
-    print_error "✗ Failed to generate user accounts"
-    exit 1
-fi
-
-# 4. Append stock prices
-print_status "4/5: Appending stock prices..."
+# 3. Append stock prices
+print_status "3/5: Appending stock prices..."
 if docker-compose exec -T backend python /app/append_new_stock_price.py; then
     print_success "✓ Stock prices appended"
 else
@@ -105,14 +96,25 @@ else
     exit 1
 fi
 
-# 5. Calculate portfolio
-print_status "5/5: Calculating portfolio..."
+# 4. Calculate portfolio
+print_status "4/5: Calculating portfolio..."
 if docker-compose exec -T backend python /app/calculate_portfolio.py; then
     print_success "✓ Portfolio calculated"
 else
     print_error "✗ Failed to calculate portfolio"
     exit 1
 fi
+
+# 5. Generate user accounts
+print_status "5/5: Generating user accounts..."
+if docker-compose exec -T backend python /app/gen_user_account.py; then
+    print_success "✓ User accounts generated"
+else
+    print_error "✗ Failed to generate user accounts"
+    exit 1
+fi
+
+
 
 print_success "🎉 All data initialization completed successfully!"
 echo ""

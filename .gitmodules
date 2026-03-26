@@ -1,0 +1,3 @@
+[submodule "demo-vbac"]
+	path = demo-vbac
+	url = https://github.com/VBAC-Finance-Consultant/VBAC.git
