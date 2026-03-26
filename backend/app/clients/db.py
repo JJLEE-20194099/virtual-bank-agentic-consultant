@@ -13,6 +13,7 @@ class PostgresClient:
         self.conn: Optional[asyncpg.Connection] = None
 
     async def connect(self):
+        print(self.user, self.password, self.database, self.host, self.port)
         self.conn = await asyncpg.connect(
             user=self.user,
             password=self.password,
