@@ -107,6 +107,7 @@ class PostgresClient:
 
         
 
+        row = dict(row)
         row["data"] = json.loads(row["data"])
 
         return row
