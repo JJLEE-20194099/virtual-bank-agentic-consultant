@@ -198,7 +198,7 @@ async def fetch_all(stocks):
 async def run():
 
     try:
-        realtime_prices = redis_client.get("realtime_prices:allsss")
+        realtime_prices = redis_client.get("realtime_prices:all")
     except:
         realtime_prices = await fetch_all(stocks)
 
