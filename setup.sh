@@ -87,3 +87,8 @@ uvicorn main:app --host 0.0.0.0 --port 8080
 sudo apt-get install redis-tools
 
 docker-compose logs -f backend celery-worker celery-beat
+
+cd /root/code/hackathon/virtual-bank-agentic-consultant
+docker-compose down -v
+docker-compose up -d --build
+bash docker-init-data.sh

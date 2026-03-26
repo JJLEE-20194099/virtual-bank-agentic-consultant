@@ -69,14 +69,14 @@ fi
 # Run data generation scripts
 print_status "Starting data initialization..."
 
-# 1. Generate trading data
-print_status "1/5: Generating trading data..."
-if docker-compose exec -T backend python /app/gen_trading_data.py; then
-    print_success "✓ Trading data generated"
-else
-    print_error "✗ Failed to generate trading data"
-    exit 1
-fi
+# # 1. Generate trading data
+# print_status "1/5: Generating trading data..."
+# if docker-compose exec -T backend python /app/gen_trading_data.py; then
+#     print_success "✓ Trading data generated"
+# else
+#     print_error "✗ Failed to generate trading data"
+#     exit 1
+# fi
 
 # 2. Save trading data to database
 print_status "2/5: Saving trading data to database..."

@@ -1,13 +1,18 @@
 from backend.app.clients.db import PostgresClient
 import asyncio
 import numpy as np
+import os
 import random
+from urllib.parse import urlparse
+database_url = os.getenv("DATABASE_URL", "postgresql://swin:swin@localhost:5432/vbac")
+parsed = urlparse(database_url)
 
 db_client = PostgresClient(
-    user="swin",
-    password="swin",
-    database="vbac",
-    host="localhost"
+    user=parsed.username or "swin",
+    password=parsed.password or "swin",
+    database=parsed.path.lstrip("/") or "vbac",
+    host=parsed.hostname or "postgres",
+    port=parsed.port or 5432
 )
 
 async def run():
@@ -26,9 +31,6 @@ async def run():
             symbols = list(portfolio_data["portfolio_stats"].keys())
 
             stock_summaries = await db_client.get_stock_summary_by_symbols(symbols)
-
-
-        
 
             has_big_loss = 0
             if total_unrealized_pnl < 0 and np.abs(total_unrealized_pnl) / total_val >= 0.01:
@@ -53,7 +55,8 @@ async def run():
 
             await db_client.insert_user(user_id, {"available_cash": available_cash})
             
-        except:
+        except Exception as e:
+            print(e)
             print("error:", user_id)
     
 if __name__ == "__main__":

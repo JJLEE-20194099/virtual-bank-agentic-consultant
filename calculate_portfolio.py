@@ -7,14 +7,17 @@ import asyncio
 from backend.app.clients.db import PostgresClient
 from backend.app.utils.portfolio import calculate_portfolio, stocks
 from backend.app.clients.cache import RedisClient
+from urllib.parse import urlparse
+database_url = os.getenv("DATABASE_URL", "postgresql://swin:swin@localhost:5432/vbac")
+parsed = urlparse(database_url)
 
 db_client = PostgresClient(
-    user="swin",
-    password="swin",
-    database="vbac",
-    host="localhost"
+    user=parsed.username or "swin",
+    password=parsed.password or "swin",
+    database=parsed.path.lstrip("/") or "vbac",
+    host=parsed.hostname or "postgres",
+    port=parsed.port or 5432
 )
-
 redis_client = RedisClient()    
 realtime_prices =  redis_client.get("realtime_prices:all")
 

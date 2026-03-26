@@ -7,8 +7,19 @@ import pandas as pd
 import numpy as np
 import asyncio
 from backend.app.clients.db import PostgresClient
-
+from urllib.parse import urlparse
 from backend.app.clients.cache import RedisClient
+
+database_url = os.getenv("DATABASE_URL", "postgresql://swin:swin@localhost:5432/vbac")
+parsed = urlparse(database_url)
+
+db_client = PostgresClient(
+    user=parsed.username or "swin",
+    password=parsed.password or "swin",
+    database=parsed.path.lstrip("/") or "vbac",
+    host=parsed.hostname or "postgres",
+    port=parsed.port or 5432
+)
 
 BASE_URL = "http://localhost:8080/api/v1/market"
 
@@ -150,13 +161,6 @@ stocks = [
 "PVS","PVT","REE","SBT","SHB","SJS","SZC","TCH","TCM","TNG",
 "VCG","VGC","VHC","VIX","VND","VOS","YEG", "PNJ"
 ]
-
-db_client = PostgresClient(
-    user="swin",
-    password="swin",
-    database="vbac",
-    host="localhost"
-)
 
 async def run():
 
