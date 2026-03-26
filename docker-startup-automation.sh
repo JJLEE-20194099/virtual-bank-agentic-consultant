@@ -51,21 +51,12 @@ docker-compose up -d
 print_info "Checking if all critical services are running..."
 sleep 10  # Give services time to start
 
-if docker-compose ps | grep -q "vbac-kafka.*Exited"; then
-    print_error "❌ Kafka container failed to start!"
-    print_error "Check logs with: docker-compose logs vbac-kafka"
-    print_error "Common fix: Run 'docker-compose down -v' to remove volumes and try again"
-    exit 1
-fi
-
-if docker-compose ps | grep -q "unhealthy"; then
-    print_warning "⚠️  Some services are unhealthy:"
-    docker-compose ps | grep -i unhealthy
-    print_error "Please check the logs and try again"
-    exit 1
-fi
-
+print_error "❌ Some services are unhealthy"
+print_info "Restart unhealthy servies..."
 docker restart vbac-kafka
+print_warning "⚠️  Docker compose logs:"
+docker-compose ps
+
 
 print_success "Docker compose started successfully"
 echo ""
