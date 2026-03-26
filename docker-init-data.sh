@@ -70,7 +70,7 @@ fi
 print_status "Starting data initialization..."
 
 # 1. Generate trading data
-print_status "1/6: Generating trading data..."
+print_status "1/7: Generating trading data..."
 if docker-compose exec -T backend python /app/gen_trading_data.py; then
     print_success "✓ Trading data generated"
 else
@@ -79,7 +79,7 @@ else
 fi
 
 # 2. Update trading data with exact price
-print_status "2/6: Update trading data..."
+print_status "2/7: Update trading data..."
 if docker-compose exec -T backend python /app/recorrect_stock_price.py; then
     print_success "✓ Trading data updated"
 else
@@ -88,7 +88,7 @@ else
 fi
 
 # 3. Save trading data to database
-print_status "3/6: Saving trading data to database..."
+print_status "3/7: Saving trading data to database..."
 if docker-compose exec -T backend python /app/save_trading_data.py; then
     print_success "✓ Trading data saved to database"
 else
@@ -97,7 +97,7 @@ else
 fi
 
 # 4. Append new stock prices
-print_status "4/6: Appending stock prices..."
+print_status "4/7: Appending stock prices..."
 if docker-compose exec -T backend python /app/append_new_stock_price.py; then
     print_success "✓ Stock prices appended"
 else
@@ -106,7 +106,7 @@ else
 fi
 
 # 5. Calculate portfolio
-print_status "5/6: Calculating portfolio..."
+print_status "5/7: Calculating portfolio..."
 if docker-compose exec -T backend python /app/calculate_portfolio.py; then
     print_success "✓ Portfolio calculated"
 else
@@ -115,11 +115,20 @@ else
 fi
 
 # 6. Generate user accounts
-print_status "6/6: Generating user accounts..."
+print_status "6/7: Generating user accounts..."
 if docker-compose exec -T backend python /app/gen_user_account.py; then
     print_success "✓ User accounts generated"
 else
     print_error "✗ Failed to generate user accounts"
+    exit 1
+fi
+
+# 7. Extract trading behaviour 
+print_status "7/7:  Extracting trading behaviour ..."
+if docker-compose exec -T backend python /app/gen_user_account.py; then
+    print_success "✓ Trading behaviour extracted"
+else
+    print_error "✗ Failed to extract trading behaviour "
     exit 1
 fi
 

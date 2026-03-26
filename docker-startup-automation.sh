@@ -9,8 +9,6 @@
 # 3. Run data initialization
 # 4. Restart celery-worker
 
-set -e
-
 # Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
