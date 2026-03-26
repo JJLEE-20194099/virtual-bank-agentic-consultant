@@ -105,7 +105,7 @@ class PostgresClient:
                 "data": {"answer": {"products": []}}
             }
 
-        row = dict(row) 
+        
 
         row["data"] = json.loads(row["data"])
 
@@ -236,6 +236,8 @@ class PostgresClient:
             WHERE symbol = $1
         """, symbol)
 
+        if row is None:
+            return {}
         row["data"] = json.loads(row["data"])
         return row
 
