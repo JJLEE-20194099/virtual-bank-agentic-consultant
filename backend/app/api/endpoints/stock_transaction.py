@@ -102,7 +102,12 @@ async def buysell_stock(payload: StockBuySellBase):
         stock_pnl_info = await db_client.get_stock_info_portfolio(payload.customer_id, payload.stock_code)
         user_info = await db_client.get_user(payload.customer_id)
 
-        user_info["available_cash"] += stock_pnl_info["shares"] * stock_pnl_info["current_price"]
+        print(stock_pnl_info)
+        print(user_info["available_cash"])
+        user_info["available_cash"] += payload.quantity * stock_pnl_info["current_price"]
+        print(user_info["available_cash"])
+
+
         await db_client.insert_user(payload.customer_id, user_info)
     
 

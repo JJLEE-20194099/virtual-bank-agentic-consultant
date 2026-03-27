@@ -133,6 +133,7 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
    
     try:
         cached = redis_client.get(cache_key)
+        print("Get Summary data from Cache")
         return cached
     except:
         pass
