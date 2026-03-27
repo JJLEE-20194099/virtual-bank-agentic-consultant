@@ -185,7 +185,25 @@ class PostgresClient:
         json.dumps(portfolio)   
     )
 
+
+
     
+    async def get_stock_info_portfolio(self, user_id: str, stock_code:str) -> Optional[Dict]:
+        row = await self.conn.fetchrow("""
+            SELECT data
+            FROM portfolio_summary
+            WHERE user_id = $1
+        """, user_id)
+
+        if row is None:
+            return {}
+        
+        portfolio = json.loads(row["data"])["portfolio_stats"]
+
+        if stock_code not in list(portfolio.keys()):
+            return {}
+        
+        return portfolio[stock_code]
 
 
     async def get_portfolio(self, user_id: str) -> Optional[Dict]:

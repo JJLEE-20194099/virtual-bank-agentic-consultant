@@ -242,7 +242,7 @@ async def get_stocks_portfolio_summary_by_user_id(user_id: str):
     redis_client.set(
         cache_key,
         json.dumps(full_data, default=str),
-        ex=60
+        ex=60 * 5
     )
 
     return full_data

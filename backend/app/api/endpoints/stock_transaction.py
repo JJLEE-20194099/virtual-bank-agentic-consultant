@@ -98,6 +98,14 @@ async def buysell_stock(payload: StockBuySellBase):
     await db_client.insert_stock_transactions([transaction])
 
 
+    if payload.action == "sell":
+        stock_pnl_info = await db_client.get_stock_info_portfolio(payload.customer_id, payload.stock_code)
+        user_info = await db_client.get_user(payload.customer_id)
+
+        user_info["available_cash"] += stock_pnl_info["shares"] * stock_pnl_info["current_price"]
+        await db_client.insert_user(payload.customer_id, user_info)
+    
+
     update_portfolio.delay(payload.customer_id)
     update_stock_product_recommendation.delay(transaction)
     
