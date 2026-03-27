@@ -255,6 +255,10 @@ async def run():
                 if stock != "VN30": 
                     realtime = format_realtime_data(realtime_prices[f"price:{stock}"])
                 else:
+                    url = f"{BASE_URL}/ohlcv-by-length/VN30?length=1&interval=1d"
+                    res = requests.get(url)
+                    if res.status_code == 200:
+                        vn_30 = res.json()[0]
                     realtime = vn_30
                         
                 if realtime:

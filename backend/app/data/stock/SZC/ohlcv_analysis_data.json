@@ -1,8 +1,8 @@
 {
-  "current": 28.4,
-  "change": -0.1,
-  "change_percent": -0.35,
+  "current": 28.6,
+  "change": 0.2,
+  "change_percent": 0.7,
   "trend": "bearish",
   "current_state": "downtrend_continuation",
-  "volatility": 37.25
+  "volatility": 37.23
 }
