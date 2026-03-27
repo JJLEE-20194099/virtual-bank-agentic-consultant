@@ -650,7 +650,7 @@ YÊU CẦU OUTPUT
 - BẮT BUỘC trả về JSON hợp lệ
 - KHÔNG viết thêm text ngoài JSON
 - Phải đề xuất ít nhất 5 sản phẩm
-- 30% sản phẩm phải đến từ pre_products
+- 10% sản phẩm phải đến từ pre_products
 - Reason phải gắn trực tiếp với insights
 
 =====================
