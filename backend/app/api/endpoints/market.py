@@ -52,16 +52,89 @@ async def get_domestic_gold_price_date(date: str = Query(..., description="YYYY-
 
 @router.get("/domestic-gold-price")
 async def get_domestic_gold_price():
-    return service.get_domestic_gold_price()
+
+    cache_key = f"summary:domestic-gold-price"
+   
+    try:
+        cached = redis_client.get(cache_key)
+        print("Get domestic-gold-price data from Cache")
+        return cached
+    except:
+        pass
+
+    data = service.get_domestic_gold_price()
+
+    redis_client.set(
+        cache_key,
+        json.dumps(data, default=str),
+        ex=60 * 15
+    )
+
+    return data
+
 
 @router.get("/global-gold-price")
 async def get_global_gold_price():
-    return service.get_global_gold_price()
+    cache_key = f"summary:global-gold-price"
+   
+    try:
+        cached = redis_client.get(cache_key)
+        print("Get global-gold-price data from Cache")
+        return cached
+    except:
+        pass
+    data = service.get_global_gold_price()
+
+    redis_client.set(
+        cache_key,
+        json.dumps(data, default=str),
+        ex=60 * 5
+    )
+
+    return data
+
                             
 @router.get("/global-oil-price")
 async def get_global_oil_price():
-    return service.get_global_oil_price()
+
+    cache_key = f"summary:global-oil-price"
+   
+    try:
+        cached = redis_client.get(cache_key)
+        print("Get global-oil-price data from Cache")
+        return cached
+    except:
+        pass
+
+    data = service.get_global_oil_price()
+
+    redis_client.set(
+        cache_key,
+        json.dumps(data, default=str),
+        ex=60 * 60
+    )
+
+    return data
+
 
 @router.get("/domestic-oil-price")
 async def get_domestic_oil_price():
-    return service.get_domestic_oil_price()
+
+    cache_key = f"summary:domestic-oil-price"
+   
+    try:
+        cached = redis_client.get(cache_key)
+        print("Get domestic-oil-price data from Cache")
+        return cached
+    except:
+        pass
+
+    data = service.get_domestic_oil_price()
+
+    redis_client.set(
+        cache_key,
+        json.dumps(data, default=str),
+        ex=60 * 60
+    )
+
+    return data

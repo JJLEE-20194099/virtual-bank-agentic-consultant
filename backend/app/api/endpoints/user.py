@@ -276,7 +276,6 @@ async def get_stock_product_recommendation(user_id: str):
     return recommendation
 
 
-
     
 
 @router.post(("/recommend/{user_id}"))
@@ -302,10 +301,10 @@ async def analyze_stock_portfolio(user_id: str):
     except:
         pass
 
-    data = await db_client.get_portfolio_advice(user_id)
+    # data = await db_client.get_portfolio_advice(user_id)
     
-    if data != None:
-        return data
+    # if data != None:
+    #     return data
     
     user_portfolio_data = await get_stocks_portfolio_summary_by_user_id(user_id)
 
@@ -317,7 +316,7 @@ async def analyze_stock_portfolio(user_id: str):
     redis_client.set(
         cache_key,
         json.dumps(portfolio_advice, default=str),
-        ex=60 * 60
+        ex=60 * 30
     )
 
     return portfolio_advice

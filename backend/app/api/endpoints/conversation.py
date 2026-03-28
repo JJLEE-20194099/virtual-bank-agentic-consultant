@@ -109,28 +109,114 @@ def chat(req: ChatRequest):
     context["ohlcv"] = {}
     for external_factor in query_parser["external_factors"]:
         if external_factor["type"] == "exchange_rate":
-            context["exchange_rate"] = service.get_exchange_rate(today_str())
+
+            cache_key = f"get_exchange_rate"
+
+            try:
+                context["exchange_rate"] = redis_client.get(cache_key)
+                
+            except:
+                tmp = service.get_exchange_rate(today_str())
+
+                redis_client.set(
+                    cache_key,
+                    json.dumps(tmp, default=str),
+                    ex=60 * 30
+                )
+
+                context["exchange_rate"] = tmp
         
         if external_factor["type"] == "gold":
             if external_factor["scope"] == "global":
-                context["ohlcv"]["global_gold_price"] = service.get_global_gold_price()
+
+                cache_key = f"summary:global-gold-price"
+
+                try:
+                    context["ohlcv"]["global_gold_price"] = redis_client.get(cache_key)
+                    
+                except:
+                    tmp = service.get_global_gold_price()
+
+                    redis_client.set(
+                        cache_key,
+                        json.dumps(tmp, default=str),
+                        ex=60 * 10
+                    )
+
+                    context["ohlcv"]["global_gold_price"] = tmp
+
+                 
             else:
-                context["ohlcv"]["domestic_gold_price"] = service.get_domestic_gold_price()
+                cache_key = f"summary:domestic-gold-price"
+
+                try:
+                    context["ohlcv"]["domestic_gold_price"] = redis_client.get(cache_key)
+                    
+                except:
+                    tmp = service.get_domestic_gold_price()
+
+                    redis_client.set(
+                        cache_key,
+                        json.dumps(tmp, default=str),
+                        ex=60 * 10
+                    )
+
+                    context["ohlcv"]["domestic_gold_price"] = tmp
             
 
 
         if external_factor["type"] == "oil":
             if external_factor["scope"] == "global":
-                context["ohlcv"]["global_oil_price"] = service.get_global_oil_price()
+                cache_key = f"summary:global-oil-price"
+
+                try:
+                    context["ohlcv"]["global_oil_price"] = redis_client.get(cache_key)
+                    
+                except:
+                    tmp = service.get_global_oil_price()
+
+                    redis_client.set(
+                        cache_key,
+                        json.dumps(tmp, default=str),
+                        ex=60 * 10
+                    )
+
+
+                    context["ohlcv"]["global_oil_price"] = tmp
             else:
-                context["ohlcv"]["domestic_oil_price"] = service.get_domestic_oil_price()
+               
+
+                cache_key = f"summary:domestic-oil-price"
+
+                try:
+                    context["ohlcv"]["domestic_oil_price"] = redis_client.get(cache_key)
+                    
+                except:
+                    tmp = service.get_domestic_oil_price()
+
+                    redis_client.set(
+                        cache_key,
+                        json.dumps(tmp, default=str),
+                        ex=60 * 10
+                    )
+
+                    context["ohlcv"]["domestic_oil_price"] = tmp
 
     if len(symbols) > 0:
         if "company_info" in [factor["type"] for factor in query_parser["external_factors"]]:
             if query_parser["requires_company_data"]:
                 context["company_info"] = {}
                 for symbol in symbols:
-                    context["company_info"][symbol] = get_company_info(symbol)
+                    cache_key = f"summary:company_info{symbol}"
+                    try:
+                        context["company_info"][symbol] = redis_client.get(cache_key)
+                    except:
+                        context["company_info"][symbol] = get_company_info(symbol)
+                        redis_client.set(
+                            cache_key,
+                            json.dumps(context["company_info"][symbol], default=str),
+                            ex=60 * 10
+                        )
     
     
         for symbol in symbols:
@@ -171,38 +257,145 @@ def chat_with_bedrock_agent(req: ChatSessionRequest):
     context["ohlcv"] = {}
     for external_factor in query_parser["external_factors"]:
         if external_factor["type"] == "exchange_rate":
-            context["exchange_rate"] = json.dumps(service.get_exchange_rate(today_str()), default=str)
+
+            cache_key = f"get_exchange_rate"
+
+            try:
+                context["exchange_rate"] = redis_client.get(cache_key)
+                
+            except:
+                tmp = service.get_exchange_rate(today_str())
+
+                redis_client.set(
+                    cache_key,
+                    json.dumps(tmp, default=str),
+                    ex=60 * 30
+                )
+
+                context["exchange_rate"] = tmp
         
         if external_factor["type"] == "gold":
             if external_factor["scope"] == "global":
-                context["ohlcv"]["global_gold_price"] = json.dumps(service.get_global_gold_price(), default=str)
+
+                cache_key = f"summary:global-gold-price"
+
+                try:
+                    context["ohlcv"]["global_gold_price"] = redis_client.get(cache_key)
+                    
+                except:
+                    tmp = service.get_global_gold_price()
+
+                    redis_client.set(
+                        cache_key,
+                        json.dumps(tmp, default=str),
+                        ex=60 * 10
+                    )
+
+                    context["ohlcv"]["global_gold_price"] = tmp
+
+                 
             else:
-                context["ohlcv"]["domestic_gold_price"] = json.dumps(service.get_domestic_gold_price(), default=str)
+                cache_key = f"summary:domestic-gold-price"
+
+                try:
+                    context["ohlcv"]["domestic_gold_price"] = redis_client.get(cache_key)
+                    
+                except:
+                    tmp = service.get_domestic_gold_price()
+
+                    redis_client.set(
+                        cache_key,
+                        json.dumps(tmp, default=str),
+                        ex=60 * 10
+                    )
+
+                    context["ohlcv"]["domestic_gold_price"] = tmp
             
 
 
         if external_factor["type"] == "oil":
             if external_factor["scope"] == "global":
-                context["ohlcv"]["global_oil_price"] = json.dumps(service.get_global_oil_price(), default=str)
+                cache_key = f"summary:global-oil-price"
+
+                try:
+                    context["ohlcv"]["global_oil_price"] = redis_client.get(cache_key)
+                    
+                except:
+                    tmp = service.get_global_oil_price()
+
+                    redis_client.set(
+                        cache_key,
+                        json.dumps(tmp, default=str),
+                        ex=60 * 10
+                    )
+
+
+                    context["ohlcv"]["global_oil_price"] = tmp
             else:
-                context["ohlcv"]["domestic_oil_price"] = json.dumps(service.get_domestic_oil_price(), default=str)
+               
+
+                cache_key = f"summary:domestic-oil-price"
+
+                try:
+                    context["ohlcv"]["domestic_oil_price"] = redis_client.get(cache_key)
+                    
+                except:
+                    tmp = service.get_domestic_oil_price()
+
+                    redis_client.set(
+                        cache_key,
+                        json.dumps(tmp, default=str),
+                        ex=60 * 10
+                    )
+
+                    context["ohlcv"]["domestic_oil_price"] = tmp
 
     if len(symbols) > 0:
         if "company_info" in [factor["type"] for factor in query_parser["external_factors"]]:
             if query_parser["requires_company_data"]:
                 context["company_info"] = {}
                 for symbol in symbols:
-                    context["company_info"][symbol] = json.dumps(get_company_info(symbol), default=str)
+                    cache_key = f"summary:company_info{symbol}"
+                    try:
+                        context["company_info"][symbol] = redis_client.get(cache_key)
+                    except:
+                        context["company_info"][symbol] = get_company_info(symbol)
+                        redis_client.set(
+                            cache_key,
+                            json.dumps(context["company_info"][symbol], default=str),
+                            ex=60 * 10
+                        )
 
                 context["company_info"] = json.dumps(context["company_info"], default=str)
     
         for symbol in symbols:
-            context["ohlcv"][symbol] = json.dumps(service.get_ohlcv_by_length(symbol, length=7, interval="1d"), default=str)
+            cache_key = f"ohlcv:{symbol}"
+            try:
+                context["ohlcv"][symbol] = redis_client.get(cache_key)
+            except:
+                context["ohlcv"][symbol] = json.dumps(service.get_ohlcv_by_length(symbol, length=14, interval="1d"), default=str)
+                redis_client.set(
+                    cache_key,
+                    json.dumps(context["ohlcv"][symbol], default=str),
+                    ex=60 * 15
+                )
+            
 
         
 
     if intent == "trend" and len(symbols) == 0:
-        context["ohlcv"]["OHLCV OF MARKET (VNINDEX 30)"] = json.dumps(service.get_ohlcv_by_length("VN30", length=14, interval="1d"))
+        cache_key = f"ohlcv:vn30"
+        try:
+            context["ohlcv"]["OHLCV OF MARKET (VNINDEX 30)"] = redis_client.get(cache_key)
+        except:
+            context["ohlcv"]["OHLCV OF MARKET (VNINDEX 30)"] = json.dumps(service.get_ohlcv_by_length("VN30", length=14, interval="1d"))
+            redis_client.set(
+                cache_key,
+                json.dumps(context["ohlcv"]["OHLCV OF MARKET (VNINDEX 30)"], default=str),
+                ex=60 * 15
+            )
+
+        
 
     context["ohlcv"] = json.dumps(context["ohlcv"], default=str)
 
