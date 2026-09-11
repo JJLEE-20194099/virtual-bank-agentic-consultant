@@ -208,4 +208,4 @@ For questions or collaboration, please reach out via GitHub Issues.
 
 ⭐ If you find this project useful, consider giving it a star!
 
-![cert](blob/master/blog21.png)
+![cert](https://github.com/JJLEE-20194099/virtual-bank-agentic-consultant/blob/master/blog21.jpg)
