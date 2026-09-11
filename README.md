@@ -208,4 +208,4 @@ For questions or collaboration, please reach out via GitHub Issues.
 
 ⭐ If you find this project useful, consider giving it a star!
 
-![cert](blog21.png)
+![cert](blob/master/blog21.png)
